@@ -1,7 +1,8 @@
-# .gitattributes for Unreal Engine projects with embedded Wwise projects
+# .gitattributes for Unity Engine projects with embedded Wwise projects
 # This is a work in progress, please report any issues to Quin Henshaw
 
 # Macros
+[attr]unityyaml eol=lf linguist-generated
 [attr]lfs filter=lfs diff=lfs merge=lfs -text
 
 # Default to auto-normalized line endings.
@@ -11,8 +12,51 @@
 *.cs diff=csharp text
 *.cpp diff=cpp text
 
-#Unreal Content
-Content/** lfs
+# Unity Text
+*.meta unityyaml
+*.asset unityyaml
+*.prefab unityyaml
+*.mat unityyaml
+*.anim unityyaml
+*.controller unityyaml
+*.overrideController unityyaml
+*.physicMaterial unityyaml
+*.physicsMaterial2D unityyaml
+*.playable unityyaml
+*.mask unityyaml
+*.brush unityyaml
+*.flare unityyaml
+*.fontsettings unityyaml
+*.guiskin unityyaml
+*.giparams unityyaml
+*.renderTexture unityyaml
+*.spriteatlas unityyaml
+*.terrainlayer unityyaml
+*.mixer unityyaml
+*.shadervariants unityyaml
+*.preset unityyaml
+*.vfx unityyaml
+*.vfxblock unityyaml
+*.vfxoperator unityyaml
+*.ciginc text
+*.shader text
+*.asmdef text
+*.shadergraph text
+*.shadersubgraph text
+
+# Unity Binary
+*.cubemap lfs
+*.unitypackage lfs
+*.bytes lfs
+*.unity lfs
+*.scenetemplate lfs
+
+# Unity Binary .asset files (must use following suffixes for identification)
+Assets/**/*[Tt]errain*.asset -unityyaml lfs
+Assets/**/*[Nn]av[Mm]esh*.asset -unityyaml lfs
+Assets/**/*[Ll]ighting*.asset -unityyaml lfs
+Assets/**/*ProbeVolume*.asset -unityyaml lfs
+Assets/**/*SDF*.asset -unityyaml lfs
 
 # Image
 *.psd lfs
@@ -35,6 +79,7 @@ Content/** lfs
 *.ZPR lfs
 *.ico lfs
 *.pur lfs
+*.raw lfs
 
 # Audio
 *.mp3 lfs
@@ -82,6 +127,7 @@ Content/** lfs
 *.pdb lfs
 *.mdb lfs
 *.a lfs
+*.bc lfs
 *.ilk lfs
 *.la lfs
 *.lai lfs
@@ -112,3 +158,9 @@ Content/** lfs
 *.wem lfs
 *.chm lfs
 *.bundle lfs
+AKSoundEngine lfs
+
+# FMOD files
+*.bank lfs
+# assigning the MacOS FMOD plugin to lfs since it is very large
+\Assets\Plugins\FMOD\platforms\mac\lib\fmodstudio.bundle\Contents\MacOS\fmodstudio lfs

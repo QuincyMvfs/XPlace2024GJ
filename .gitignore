@@ -1,20 +1,42 @@
-# .gitignore for Unreal Engine projects with embedded Wwise projects
+# .gitignore for Unity Engine projects with embedded Wwise and FMOD projects
 # This is a work in progress, please report any issues to Quin Henshaw
 
-# Unreal
-DerivedDataCache/
-Intermediate/
-Plugins/*/Intermediate/*
-Plugins/FMODStudio/Binaries/Win64/UE4Editor*
-Saved/
-Build/
-Builds/
-Test/
-Release/
-AutoBuildLogs/
-lfs/
-hooks/
-/Binaries/
+# Unity
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Test
+/Release/
+/AutoBuildLogs/
+/Logs/
+/MemoryCaptures/
+/UserSettings/
+/hooks/
+/lfs/
+/Recordings/
+/Screenshots/
+*sysinfo.txt
+
+# Unity Plugin settings
+ProjectSettings/Packages/com.unity.probuilder/Settings.json
+ProjectSettings/Packages/com.unity.progrids/Settings.json
+ProjectSettings/Packages/com.unity.polybrush/Settings.json
+Assets/Polybrush Data/*
+Assets/Polybrush Data.meta
+Assets/Plugins/AmplifyShaderEditor/Plugins/Editor/Templates/TemplateMenuItems.cs
+Assets/Plugins/AmplifyShaderEditor/Plugins/Editor/Templates/TemplateMenuItems.cs.meta
+
+# Odin Inspector Plugin
+Assets/Plugins/Sirenix/Assemblies/AOT/*
+Assets/Plugins/Sirenix/Demos/*
+!Assets/Plugins/Sirenix/Demos/*.unitypackage
+
+# Wwise Plugin
+Assets/Wwise/Editor/ProjectData/
+Assets/StreamingAssets/Audio/GeneratedSoundBanks/Mac/
+Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/
 
 # Wwise Project
 Wwise/IncrementalSoundBankData.xml
@@ -26,7 +48,27 @@ Wwise/*.prof
 Wwise/*.validationcache
 Wwise/*.wsettings
 
-# Fmod Project
+#FMOD Plugin
+
+# Never ignore DLLs in the FMOD subfolder.
+!/[Aa]ssets/Plugins/FMOD/**/lib/*
+
+# Don't ignore images and gizmos used by FMOD in the Unity Editor.
+!/[Aa]ssets/Gizmos/FMOD/*
+!/[Aa]ssets/Editor Default Resources/FMOD/*
+                    
+# Ignore the Cache folder since it is updated locally.
+/[Aa]ssets/Plugins/FMOD/Cache/*
+                    
+# Ignore bank files in the StreamingAssets folder.
+/[Aa]ssets/StreamingAssets/**/*.bank
+/[Aa]ssets/StreamingAssets/**/*.bank.meta
+                    
+# If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
+# Log files can be ignored.
+fmod_editor.log
+
+# FMOD Project
 FMOD/.user/
 FMOD/.unsaved/
 FMOD/.cache/
@@ -36,6 +78,7 @@ FMOD/unsaved/
 FMOD/restore/
 FMOD/fmod.log
 FMOD/fmod_editor.log
+FMOD/Metadata/ProfilerSession
 
 # Code Editors
 .vs/
@@ -64,10 +107,8 @@ FMOD/fmod_editor.log
 Thumbs.db
 Thumbs.db.meta
 
-# Stuff that shouldn't ever be there
+# Stuff that never should be...
 .play
-SavedData.txt
-
 
 # Mac
 *.DS_Store
