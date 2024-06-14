@@ -9,10 +9,7 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private float _airbornLeftRightSpeed = 1.0f;
     [SerializeField] private float _moveForwardSpeed = 5.0f;
     [SerializeField] private float _jumpHeight = 5.0f;
-    [SerializeField] private float _jumpSpeed = 1.25f;
-    [SerializeField] private float _jumpApexSpeed = 0.25f;
     [SerializeField] private float _gravity = -9.81f;
-    [SerializeField] private float _airTime = 0.50f;
 
     [Header("Limiters")]
     [SerializeField] private float _maxDistanceLeftRight = 5.0f;
@@ -22,11 +19,10 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private LayerMask _layerMask;
 
-    protected Vector3 _startPosition;
     private Vector3 _gravityDir = new Vector3(0, -9.81f, 0);
+    private TrickController _trickController;
     protected IEnumerator _currentState;
     private bool _isFalling = false;
-
 
     public Vector3 PlayerPosition => _playerGameObject.transform.position;
 
@@ -34,11 +30,7 @@ public class PlayerMovement3D : MonoBehaviour
     {
         _rb.useGravity = false;
         _gravityDir.y = _gravity;
-    }
-
-    private void Start()
-    {
-        _startPosition = PlayerPosition;
+        _trickController = GetComponent<TrickController>();
     }
 
     // Custom Gravity
@@ -46,8 +38,15 @@ public class PlayerMovement3D : MonoBehaviour
     {
         _rb.AddForce(_gravityDir, ForceMode.Acceleration);
 
-        if (Physics.Raycast(_rb.transform.position, -Vector3.up, out RaycastHit hitInfo, 0.5f, _layerMask)) {
-            _isFalling = false;
+        if (Physics.Raycast(_rb.transform.position, -Vector3.up, out RaycastHit hitInfo, 0.5f, _layerMask)) 
+        {
+            if (_isFalling)
+            {
+                if (_trickController.CheckTrickSuccess()) { Debug.Log("TrickSuccess"); }
+                else { Debug.Log("TrickFail"); }
+                _trickController.SetCanTrick(false);
+                _isFalling = false;
+            }
         }
         else { _isFalling = true; }
     }
@@ -125,6 +124,7 @@ public class PlayerMovement3D : MonoBehaviour
 
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight() * 100, 0);
         _rb.AddForce(JumpForce, ForceMode.Force);
+        _trickController.SetCanTrick(true);
     }
 
     private float CalculateJumpHeight()
