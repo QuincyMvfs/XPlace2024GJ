@@ -11,6 +11,7 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private float _jumpHeight = 5.0f;
     [SerializeField] private float _jumpSpeed = 1.25f;
     [SerializeField] private float _jumpApexSpeed = 0.25f;
+    [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private float _airTime = 0.50f;
 
     [Header("Limiters")]
@@ -18,16 +19,37 @@ public class PlayerMovement3D : MonoBehaviour
 
     [Header("PlayerMesh")]
     [SerializeField] private GameObject _playerGameObject;
+    [SerializeField] private Rigidbody _rb;
+    [SerializeField] private LayerMask _layerMask;
 
     protected Vector3 _startPosition;
+    private Vector3 _gravityDir = new Vector3(0, -9.81f, 0);
     protected IEnumerator _currentState;
     private bool _isFalling = false;
 
+
     public Vector3 PlayerPosition => _playerGameObject.transform.position;
+
+    private void Awake()
+    {
+        _rb.useGravity = false;
+        _gravityDir.y = _gravity;
+    }
 
     private void Start()
     {
         _startPosition = PlayerPosition;
+    }
+
+    // Custom Gravity
+    private void FixedUpdate()
+    {
+        _rb.AddForce(_gravityDir, ForceMode.Acceleration);
+
+        if (Physics.Raycast(_rb.transform.position, -Vector3.up, out RaycastHit hitInfo, 0.5f, _layerMask)) {
+            _isFalling = false;
+        }
+        else { _isFalling = true; }
     }
 
     public void ChangeMovementState(MovementDirections Direction)
@@ -101,43 +123,8 @@ public class PlayerMovement3D : MonoBehaviour
     {
         if (_isFalling == true) return;
 
-        StartCoroutine(Jumping());
-    }
-
-    private IEnumerator Jumping()
-    {
-        _isFalling = true;
-        float JumpHeight = CalculateJumpHeight();
-        while (PlayerPosition.y < JumpHeight)
-        {
-            float NewY;
-            if (PlayerPosition.y / JumpHeight > 0.8f) 
-            {
-                NewY = Mathf.Lerp(PlayerPosition.y, JumpHeight + 0.1f, _jumpApexSpeed * Time.fixedUnscaledDeltaTime);
-            }
-            else
-            {
-                NewY = Mathf.Lerp(PlayerPosition.y, JumpHeight + 0.1f, _jumpSpeed * Time.fixedUnscaledDeltaTime);
-            }
-            Vector3 NewPosition = new Vector3(PlayerPosition.x, NewY, PlayerPosition.z);
-            _playerGameObject.transform.position = NewPosition;
-            yield return null;
-        }
-
-        StartCoroutine(Falling());
-    }
-
-    private IEnumerator Falling()
-    {
-        while (PlayerPosition.y > _startPosition.y)
-        {
-            float NewY = Mathf.Lerp(PlayerPosition.y, _startPosition.y - 0.1f, (_jumpSpeed * Time.fixedUnscaledDeltaTime));
-            Vector3 NewPosition = new Vector3(PlayerPosition.x, NewY, PlayerPosition.z);
-            _playerGameObject.transform.position = NewPosition;
-            yield return null;
-        }
-
-        _isFalling = false;
+        Vector3 JumpForce = new Vector3(0, CalculateJumpHeight() * 100, 0);
+        _rb.AddForce(JumpForce, ForceMode.Force);
     }
 
     private float CalculateJumpHeight()
@@ -147,17 +134,4 @@ public class PlayerMovement3D : MonoBehaviour
 
         return NewJumpHeight;
     }
-
-    //private void Update()
-    //{
-    //    if (PlayerPosition.y > CalculateJumpHeight())
-    //    {
-    //        _playerGameObject.transform.position = new Vector3(PlayerPosition.x, CalculateJumpHeight() + _startPosition.y, PlayerPosition.z);
-    //    }
-    //    else if (PlayerPosition.y < _startPosition.y)
-    //    {
-    //        _playerGameObject.transform.position = new Vector3(PlayerPosition.x, _startPosition.y, PlayerPosition.z);
-
-    //    }
-    //}
 }
