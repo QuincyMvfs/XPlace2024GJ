@@ -173,7 +173,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087069807699460658}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 208152ff741d6554994d14d87c2cbaa2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1206,7 +1206,6 @@ MonoBehaviour:
   _gravity: -9.81
   _maxDistanceLeftRight: 10
   _playerGameObject: {fileID: 1087069807699460658}
-  _rb: {fileID: 6811080132536337694}
   _layerMask:
     serializedVersion: 2
     m_Bits: 1

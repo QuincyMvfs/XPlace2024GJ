@@ -16,19 +16,25 @@ public class PlayerMovement3D : MonoBehaviour
 
     [Header("PlayerMesh")]
     [SerializeField] private GameObject _playerGameObject;
-    [SerializeField] private Rigidbody _rb;
     [SerializeField] private LayerMask _layerMask;
 
     private Vector3 _gravityDir = new Vector3(0, -9.81f, 0);
-    private TrickController _trickController;
+    private Vector3 _forwardDir = new Vector3(0, 0, 10);
+
     protected IEnumerator _currentState;
     private bool _isFalling = false;
+
+    private TrickController _trickController;
+    private Rigidbody _playerMeshRB;
 
     public Vector3 PlayerPosition => _playerGameObject.transform.position;
 
     private void Awake()
     {
-        _rb.useGravity = false;
+        _playerMeshRB = _playerGameObject.GetComponent<Rigidbody>();
+        _playerMeshRB.useGravity = false;
+        _forwardDir.z = _moveForwardSpeed * 5;
+
         _gravityDir.y = _gravity;
         _trickController = GetComponent<TrickController>();
     }
@@ -36,9 +42,10 @@ public class PlayerMovement3D : MonoBehaviour
     // Custom Gravity
     private void FixedUpdate()
     {
-        _rb.AddForce(_gravityDir, ForceMode.Acceleration);
+        _playerMeshRB.AddForce(_gravityDir, ForceMode.Acceleration);
+        transform.transform.Translate(_forwardDir * Time.fixedDeltaTime);
 
-        if (Physics.Raycast(_rb.transform.position, -Vector3.up, out RaycastHit hitInfo, 0.5f, _layerMask)) 
+        if (Physics.Raycast(_playerMeshRB.transform.position, -Vector3.up, out RaycastHit hitInfo, 0.5f, _layerMask)) 
         {
             if (_isFalling)
             {
@@ -49,6 +56,7 @@ public class PlayerMovement3D : MonoBehaviour
             }
         }
         else { _isFalling = true; }
+
     }
 
     public void ChangeMovementState(MovementDirections Direction)
@@ -123,7 +131,7 @@ public class PlayerMovement3D : MonoBehaviour
         if (_isFalling == true) return;
 
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight() * 100, 0);
-        _rb.AddForce(JumpForce, ForceMode.Force);
+        _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
         _trickController.SetCanTrick(true);
     }
 
