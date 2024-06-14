@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private void OnMoveLeft()
     {
         _isMovingLeft = !_isMovingLeft;
-        Debug.Log(_isMovingLeft);
 
         if (_isMovingLeft)
         {
@@ -49,7 +48,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnJump()
     {
-
+        _characterMovement.Jump();
     }
 
     private void OnLeftArrow()
