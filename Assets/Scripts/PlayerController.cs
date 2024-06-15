@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnJump()
     {
-        _characterMovement.Jump();
+        _characterMovement.Jump(JumpPowerType.Small);
     }
 
     private void OnLeftArrow()

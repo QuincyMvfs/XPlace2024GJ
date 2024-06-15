@@ -8,7 +8,9 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private float _moveLeftRightSpeed = 5.0f;
     [SerializeField] private float _airbornLeftRightSpeed = 1.0f;
     [SerializeField] private float _moveForwardSpeed = 5.0f;
-    [SerializeField] private float _jumpHeight = 5.0f;
+    [SerializeField] private float _lowJumpHeight = 5.0f;
+    [SerializeField] private float _mediumJumpHeight = 10.0f;
+    [SerializeField] private float _bigJumpHeight = 15.0f;
     [SerializeField] private float _rampJumpHeight = 10.0f;
     [SerializeField] private float _gravity = -9.81f;
 
@@ -127,19 +129,31 @@ public class PlayerMovement3D : MonoBehaviour
         yield return null;
     }
 
-    public void Jump()
+    public void Jump(JumpPowerType jumpPower)
     {
         if (_isFalling == true) return;
 
-        Vector3 JumpForce = new Vector3(0, CalculateJumpHeight() * 100, 0);
+        Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
         _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
         _trickController.SetCanTrick(true);
     }
 
-    private float CalculateJumpHeight()
+    private float CalculateJumpHeight(JumpPowerType jumpPower)
     {
         float NewJumpHeight = 0;
-        NewJumpHeight = _jumpHeight + (_moveForwardSpeed * 0.5f);
+        switch (jumpPower)
+        {
+            case JumpPowerType.Small:
+                NewJumpHeight = _lowJumpHeight + (_moveForwardSpeed * 0.5f);
+                break;
+            case JumpPowerType.Medium:
+                NewJumpHeight = _mediumJumpHeight + (_moveForwardSpeed * 0.5f);
+                break;
+            case JumpPowerType.Large:
+                NewJumpHeight = _bigJumpHeight + (_moveForwardSpeed * 0.5f);
+                break;
+        }
+
 
         return NewJumpHeight;
     }
