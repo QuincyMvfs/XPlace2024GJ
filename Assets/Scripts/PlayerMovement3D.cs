@@ -144,3 +144,8 @@ public class PlayerMovement3D : MonoBehaviour
         return NewJumpHeight;
     }
 }
+
+public enum JumpPowerType
+{
+    Small, Medium, Large
+}
