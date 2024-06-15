@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b833e35ebe87c75458ef6924afd8d64e, type: 3}
-  m_Name: TrickCombo_02
+  m_Name: TrickCombo_05
   m_EditorClassIdentifier: 
-  Combo: 00000000010000000200000003000000
+  Combo: 03000000010000000300000003000000
