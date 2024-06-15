@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement3D))]
+[RequireComponent(typeof(TrickController))]
+
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovement3D _characterMovement;
+    private TrickController _trickController;
 
     private bool _isMovingLeft = false;
     private bool _isMovingRight = false;
@@ -13,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _characterMovement = GetComponent<PlayerMovement3D>();
+        _trickController = GetComponent<TrickController>();
     }
 
     private void OnMoveLeft()
@@ -53,22 +58,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnLeftArrow()
     {
-
+        _trickController.ReceiveTrickInput(TrickButtons.Left);
     }
 
     private void OnRightArrow()
     {
-
+        _trickController.ReceiveTrickInput(TrickButtons.Right);
     }
 
     private void OnUpArrow()
     {
-
+        _trickController.ReceiveTrickInput(TrickButtons.Up);
     }
 
     private void OnDownArrow()
     {
-
+        _trickController.ReceiveTrickInput(TrickButtons.Down);
     }
 }
 

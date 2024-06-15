@@ -9,25 +9,54 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private float _airbornLeftRightSpeed = 1.0f;
     [SerializeField] private float _moveForwardSpeed = 5.0f;
     [SerializeField] private float _jumpHeight = 5.0f;
-    [SerializeField] private float _jumpSpeed = 1.25f;
-    [SerializeField] private float _jumpApexSpeed = 0.25f;
-    [SerializeField] private float _airTime = 0.50f;
+    [SerializeField] private float _gravity = -9.81f;
 
     [Header("Limiters")]
     [SerializeField] private float _maxDistanceLeftRight = 5.0f;
 
     [Header("PlayerMesh")]
     [SerializeField] private GameObject _playerGameObject;
+    [SerializeField] private LayerMask _layerMask;
 
-    protected Vector3 _startPosition;
+    private Vector3 _gravityDir = new Vector3(0, -9.81f, 0);
+    private Vector3 _forwardDir = new Vector3(0, 0, 10);
+
     protected IEnumerator _currentState;
     private bool _isFalling = false;
 
+    private TrickController _trickController;
+    private Rigidbody _playerMeshRB;
+
     public Vector3 PlayerPosition => _playerGameObject.transform.position;
 
-    private void Start()
+    private void Awake()
     {
-        _startPosition = PlayerPosition;
+        _playerMeshRB = _playerGameObject.GetComponent<Rigidbody>();
+        _playerMeshRB.useGravity = false;
+        _forwardDir.z = _moveForwardSpeed * 5;
+
+        _gravityDir.y = _gravity;
+        _trickController = GetComponent<TrickController>();
+    }
+
+    // Custom Gravity
+    private void FixedUpdate()
+    {
+        _playerMeshRB.AddForce(_gravityDir, ForceMode.Acceleration);
+        transform.transform.Translate(_forwardDir * Time.fixedDeltaTime);
+
+        if (Physics.Raycast(_playerMeshRB.transform.position, -Vector3.up, out RaycastHit hitInfo, 0.5f, _layerMask)) 
+        {
+            if (_isFalling)
+            {
+                if (_trickController.CheckTrickSuccess()) { Debug.Log("TrickSuccess"); }
+                else { Debug.Log("TrickFail"); }
+                _trickController.SetCanTrick(false);
+                _isFalling = false;
+            }
+        }
+        else { _isFalling = true; }
+
     }
 
     public void ChangeMovementState(MovementDirections Direction)
@@ -101,43 +130,9 @@ public class PlayerMovement3D : MonoBehaviour
     {
         if (_isFalling == true) return;
 
-        StartCoroutine(Jumping());
-    }
-
-    private IEnumerator Jumping()
-    {
-        _isFalling = true;
-        float JumpHeight = CalculateJumpHeight();
-        while (PlayerPosition.y < JumpHeight)
-        {
-            float NewY;
-            if (PlayerPosition.y / JumpHeight > 0.8f) 
-            {
-                NewY = Mathf.Lerp(PlayerPosition.y, JumpHeight + 0.1f, _jumpApexSpeed * Time.fixedUnscaledDeltaTime);
-            }
-            else
-            {
-                NewY = Mathf.Lerp(PlayerPosition.y, JumpHeight + 0.1f, _jumpSpeed * Time.fixedUnscaledDeltaTime);
-            }
-            Vector3 NewPosition = new Vector3(PlayerPosition.x, NewY, PlayerPosition.z);
-            _playerGameObject.transform.position = NewPosition;
-            yield return null;
-        }
-
-        StartCoroutine(Falling());
-    }
-
-    private IEnumerator Falling()
-    {
-        while (PlayerPosition.y > _startPosition.y)
-        {
-            float NewY = Mathf.Lerp(PlayerPosition.y, _startPosition.y - 0.1f, (_jumpSpeed * Time.fixedUnscaledDeltaTime));
-            Vector3 NewPosition = new Vector3(PlayerPosition.x, NewY, PlayerPosition.z);
-            _playerGameObject.transform.position = NewPosition;
-            yield return null;
-        }
-
-        _isFalling = false;
+        Vector3 JumpForce = new Vector3(0, CalculateJumpHeight() * 100, 0);
+        _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
+        _trickController.SetCanTrick(true);
     }
 
     private float CalculateJumpHeight()
@@ -147,17 +142,4 @@ public class PlayerMovement3D : MonoBehaviour
 
         return NewJumpHeight;
     }
-
-    //private void Update()
-    //{
-    //    if (PlayerPosition.y > CalculateJumpHeight())
-    //    {
-    //        _playerGameObject.transform.position = new Vector3(PlayerPosition.x, CalculateJumpHeight() + _startPosition.y, PlayerPosition.z);
-    //    }
-    //    else if (PlayerPosition.y < _startPosition.y)
-    //    {
-    //        _playerGameObject.transform.position = new Vector3(PlayerPosition.x, _startPosition.y, PlayerPosition.z);
-
-    //    }
-    //}
 }
