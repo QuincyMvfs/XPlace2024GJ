@@ -10,7 +10,7 @@ public class ScoreController : MonoBehaviour
     [Header("Score Variables")]
     [SerializeField] private float _baseScore = 25;
     [SerializeField] private float _baseMultiplier = 1.0f;
-    [SerializeField] private Dictionary<int, float> _multiplierMap = new Dictionary<int, float>();
+    [SerializeField] public List<float> _multiplierMap = new List<float>();
     [SerializeField] private ScoreUIManager _scoreUIManager;
 
     private int _currentScore = 0;
@@ -21,32 +21,18 @@ public class ScoreController : MonoBehaviour
     public int CurrentStreak => _currentStreak;
     public float CurrentMultiplier => _currentMultiplier;
 
-    private void Awake()
-    {
-        _multiplierMap.Add(0, 1.0f);
-        _multiplierMap.Add(1, 1.2f);
-        _multiplierMap.Add(2, 1.5f);
-        _multiplierMap.Add(3, 2f);
-        _multiplierMap.Add(4, 3f);
-        _multiplierMap.Add(5, 5f);
-        _multiplierMap.Add(6, 8f);
-        _multiplierMap.Add(7, 16f);
-        _multiplierMap.Add(8, 25f);
-        _multiplierMap.Add(9, 30f);
-        _multiplierMap.Add(10, 50f);
-    }
-
     public void AddScore()
     {
-        if (_multiplierMap.ContainsKey(_currentStreak))
+        if (_currentStreak <= _multiplierMap.Count - 1)
         {
             float value = _multiplierMap[_currentStreak];
+            Debug.Log(value);
             _currentScore += Mathf.RoundToInt(_baseScore * value);
             UpdateScoreValues(value);
         }
         else
         {
-            float value = _multiplierMap.Values.Last();
+            float value = _multiplierMap[_multiplierMap.Count - 1];
             _currentScore += Mathf.RoundToInt(_baseScore * value);
             UpdateScoreValues(value);
         }

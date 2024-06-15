@@ -9,6 +9,7 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private float _airbornLeftRightSpeed = 1.0f;
     [SerializeField] private float _moveForwardSpeed = 5.0f;
     [SerializeField] private float _jumpHeight = 5.0f;
+    [SerializeField] private float _rampJumpHeight = 10.0f;
     [SerializeField] private float _gravity = -9.81f;
 
     [Header("Limiters")]
