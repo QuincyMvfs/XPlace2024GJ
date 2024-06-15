@@ -6,6 +6,7 @@ public class TrickController : MonoBehaviour
 {
     [SerializeField] private TrickSetSO _trickSet;
     [SerializeField] private bool _alwaysTrick = false;
+    [SerializeField] private float _inputWaitTime = 0.2f;
 
     private List<TrickButtons> _inputButtons = new List<TrickButtons>();
 
@@ -66,13 +67,28 @@ public class TrickController : MonoBehaviour
         else if (_inputButtons.Count <= 0 && _inputGiven) return true;
 
         // For each combo in the trick set
+        int tooLongInputs = 0;
         for (int i = 0; i < _trickSet.TrickCombos.Count; i++)
         {
             int correctInputs = 0;
             for (int j = 0; j < _inputButtons.Count; j++)
             {
                 // If the input amount of buttons is more than the given combo, no match
-                if (_trickSet.TrickCombos[i].Combo.Count != _inputButtons.Count) { break; }
+                if (_trickSet.TrickCombos[i].Combo.Count != _inputButtons.Count) 
+                {
+                    if (_trickSet.TrickCombos[i].Combo.Count < _inputButtons.Count)
+                    {
+                        tooLongInputs++;
+                        if (tooLongInputs >= _trickSet.TrickCombos.Count)
+                        {
+                            _scoreController.BreakCombo();
+                            _inputButtons.Clear();
+                            return false;
+                        }
+                    }
+
+                    break; 
+                }
 
                 // If the given combos j index of button is the same as the input j, thats the correct input.
                 if (_trickSet.TrickCombos[i].Combo[j] == _inputButtons[j]) { correctInputs++; }
