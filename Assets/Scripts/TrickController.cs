@@ -9,6 +9,12 @@ public class TrickController : MonoBehaviour
     private List<TrickButtons> _inputButtons = new List<TrickButtons>();
 
     private bool _canReceiveInputs = false;
+    private ScoreController _scoreController;
+
+    private void Awake()
+    {
+        _scoreController = GetComponent<ScoreController>();
+    }
 
     public void SetCanTrick(bool canTrick)
     {
@@ -25,7 +31,12 @@ public class TrickController : MonoBehaviour
     public bool CheckTrickSuccess()
     {
         // No buttons were pressed
-        if (_inputButtons.Count <= 0) return false;
+        if (_inputButtons.Count <= 0)
+        {
+            _inputButtons.Clear();
+            _scoreController.BreakCombo();
+            return false;
+        }
 
         // For each combo in the trick set
         for (int i = 0; i < _trickSet.TrickCombos.Count; i++)
@@ -43,6 +54,7 @@ public class TrickController : MonoBehaviour
                 // If the amount of correct inputs it equal to the length of the combo and input, return true
                 if (correctInputs == _trickSet.TrickCombos[i].Combo.Count && _inputButtons.Count == correctInputs)
                 {
+                    _scoreController.AddScore();
                     _inputButtons.Clear();
                     return true;
                 }
@@ -50,6 +62,7 @@ public class TrickController : MonoBehaviour
         }
 
         _inputButtons.Clear();
+        _scoreController.BreakCombo();
         return false;
     }
 }
