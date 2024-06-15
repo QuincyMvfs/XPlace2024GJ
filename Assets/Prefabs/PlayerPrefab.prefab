@@ -1201,11 +1201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5144f41cf8708b478acfc758e9137e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveLeftRightSpeed: 5
+  _moveLeftRightSpeed: 7
   _airbornLeftRightSpeed: 1
-  _moveForwardSpeed: 0.1
-  _jumpHeight: 5
-  _gravity: -9.81
+  _moveForwardSpeed: 10
+  _jumpHeight: 1
+  _gravity: -30
   _maxDistanceLeftRight: 10
   _playerGameObject: {fileID: 1087069807699460658}
   _layerMask:
