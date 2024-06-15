@@ -1199,10 +1199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5144f41cf8708b478acfc758e9137e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveLeftRightSpeed: 5
+  _moveLeftRightSpeed: 10
   _airbornLeftRightSpeed: 1
-  _moveForwardSpeed: 5
-  _jumpHeight: 5
+  _moveForwardSpeed: 10
+  _jumpHeight: 3
   _gravity: -9.81
   _maxDistanceLeftRight: 10
   _playerGameObject: {fileID: 1087069807699460658}
