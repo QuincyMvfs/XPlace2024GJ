@@ -10,8 +10,10 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] private string gameplaySceneToLoad;
 
     [Header("References")]
-    [SerializeField] GameObject menuHandle;
-    [SerializeField] GameObject settingsMenuHandle;
+    [SerializeField] private GameObject menuHandle;
+    [SerializeField] private GameObject levelSelectHandle;
+    [SerializeField] private GameObject settingsMenuHandle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,18 @@ public class MainMenuHandler : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(gameplaySceneToLoad);
+    }
+
+    public void OpenLevelSelector()
+    {
+        levelSelectHandle.SetActive(true);
+        menuHandle.SetActive(false);
+    }
+
+    public void CloseLevelSelector() 
+    {
+        levelSelectHandle?.SetActive(false);
+        menuHandle?.SetActive(true);
     }
 
     public void OpenSettingsMenu()
