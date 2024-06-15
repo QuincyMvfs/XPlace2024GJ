@@ -19,7 +19,7 @@ public class RampScript : MonoBehaviour
         {
             if (playerMesh.PlayerGameObject.TryGetComponent<PlayerMovement3D>(out PlayerMovement3D playerMovement))
             {
-                playerMovement.Jump();
+                playerMovement.Jump(JumpPowerType.Large);
             }
         }
     }
