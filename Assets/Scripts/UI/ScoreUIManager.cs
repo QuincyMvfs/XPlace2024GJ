@@ -29,11 +29,11 @@ public class ScoreUIManager : MonoBehaviour
 
     public void UpdateStreak(int value)
     {
-        _streakText.text = _startComboString + value.ToString();
+        _streakText.text = _startStreakString + value.ToString();
     }
 
     public void UpdateCombo(float value)
     {
-        _comboText.text = _startStreakString + value.ToString();
+        _comboText.text = _startComboString + value.ToString();
     }
 }
