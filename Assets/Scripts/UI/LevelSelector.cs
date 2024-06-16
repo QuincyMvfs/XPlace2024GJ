@@ -9,6 +9,8 @@ public class LevelSelector : MonoBehaviour
 {
 
     [Header("References")]
+    [SerializeField] private string[] _levelNames;
+
     [SerializeField] private GameObject LevelOneButton;
     [SerializeField] private GameObject LevelTwoButton;
     [SerializeField] private GameObject LevelThreeButton;
@@ -19,7 +21,6 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private GameObject[] _levelThreeStars;
     [SerializeField] private GameObject[] _levelFourStars;
 
-    [SerializeField] private string[] _levelNames;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class LevelSelector : MonoBehaviour
 
 
         //temp -- we need to read the player profile and set the stars accordingly
-        foreach (var star in _levelOneStars)
+        foreach (var star in _levelFourStars)
         { star.SetActive(false); }
 
         foreach (var star in _levelTwoStars)

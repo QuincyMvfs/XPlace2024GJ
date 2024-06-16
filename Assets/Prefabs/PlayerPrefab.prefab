@@ -186,10 +186,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.647598
   m_Height: 4
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.051506042, y: 0.54, z: 0}
 --- !u!114 &2049619272306254504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,9 +231,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324388216533049113}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.040942974, y: 0.000000029791869, z: -0.0000000012207914,
-    w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
+  m_LocalRotation: {x: -0.0017788913, y: -0, z: -0, w: 0.99999845}
+  m_LocalPosition: {x: 0, y: 1.28, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1215,12 +1214,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5144f41cf8708b478acfc758e9137e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveLeftRightSpeed: 7
+  _moveLeftRightSpeed: 3
   _airbornLeftRightSpeed: 1
   _moveForwardSpeed: 10
   _lowJumpHeight: 1
   _mediumJumpHeight: 10
-  _bigJumpHeight: 15
   _rampJumpHeight: 5
   _gravity: -30
   _maxDistanceLeftRight: 10
@@ -1241,6 +1239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trickSet: {fileID: 11400000, guid: 830036ef969bce34682f89a83c881066, type: 2}
+  _alwaysTrick: 0
+  _inputWaitTime: 0.2
 --- !u!114 &7763447329787320958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,8 +1501,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8761967298286654922}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0017788822, y: -0, z: -0, w: 0.99999845}
-  m_LocalPosition: {x: 0, y: 1.2799999, z: -10.49}
+  m_LocalRotation: {x: -0.0017788913, y: -0, z: -0, w: 0.99999845}
+  m_LocalPosition: {x: 0, y: 1.28, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
