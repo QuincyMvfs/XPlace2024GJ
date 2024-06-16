@@ -934,6 +934,9 @@ MonoBehaviour:
   OnInputReceived:
     m_PersistentCalls:
       m_Calls: []
+  OnDisplayTrickSuccessText:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7763447329787320958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1237,6 +1240,21 @@ PrefabInstance:
       propertyPath: _trickController
       value: 
       objectReference: {fileID: 1130872851831564014}
+    - target: {fileID: 5251276686579208866, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: _checkInterval
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251276686579208866, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: _playerMovement
+      value: 
+      objectReference: {fileID: 3987534407580462498}
+    - target: {fileID: 5251276686579208866, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: _playerRigidbody
+      value: 
+      objectReference: {fileID: 6811080132536337694}
     - target: {fileID: 5691945573052356583, guid: 0b2f01e34b740804e8bbf4742cee06c8,
         type: 3}
       propertyPath: _playerMovementComponent

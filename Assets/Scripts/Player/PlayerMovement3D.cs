@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
+using UnityEditor.ShaderGraph.Internal;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement3D : MonoBehaviour
 {
@@ -41,6 +43,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     private TrickController _trickController;
     private Rigidbody _playerMeshRB;
+
+    private Vector3 _previousPosition = Vector3.zero;
 
     public Vector3 PlayerPosition => _playerGameObject.transform.position;
 
@@ -85,29 +89,35 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void AddMovementSpeed(float value)
     {
-        _forwardDir.z += value * 5;
-        if (_forwardDir.z/5 > _maxSpeed)
+        _newForwardDir.z += value * 5;
+        if (_newForwardDir.z/5 > _maxSpeed)
         {
-            _forwardDir.z = _maxSpeed * 5;
+            _newForwardDir.z = _maxSpeed * 5;
         }
     }
 
     public void ReduceMovementSpeed(float value)
     {
-        _forwardDir.z -= value * 5;
+        _newForwardDir.z -= value * 5;
 
-        if (_forwardDir.z < (_moveForwardSpeed * 5))
-        { 
-            _forwardDir.z = _moveForwardSpeed * 5;
+        if (_newForwardDir.z < (_moveForwardSpeed * 5))
+        {
+            _newForwardDir.z = _moveForwardSpeed * 5;
         }
     }
 
     public void ResetMovementSpeed()
     {
-        _forwardDir.z = _moveForwardSpeed * 5;
+        _newForwardDir.z = _moveForwardSpeed * 5;
     }
 
-    
+    public float GetCurrentSpeed(float interval)
+    {
+        float distance = Vector3.Distance(_previousPosition, PlayerPosition);
+        _previousPosition = PlayerPosition;
+        float multiplier = Mathf.Pow(10, 2);
+        return Mathf.Round((distance / interval) * multiplier) / multiplier;
+    }
 
     public void ChangeMovementState(MovementDirections Direction)
     {
