@@ -12,6 +12,8 @@ public class TrickUIManager : MonoBehaviour
     [SerializeField] private Sprite _rightArrow;
     [SerializeField] private GameObject _trickImage;
     [SerializeField] private PlayerMovement3D _playerMovementComponent;
+    
+    private TrickController _trickControllerComponent;
 
     private Dictionary<TrickButtons, Sprite> _arrowSprites = new Dictionary<TrickButtons, Sprite>();
 
@@ -21,8 +23,15 @@ public class TrickUIManager : MonoBehaviour
         _arrowSprites.Add(TrickButtons.Down, _downArrow);
         _arrowSprites.Add(TrickButtons.Right, _leftArrow);
         _arrowSprites.Add(TrickButtons.Left, _rightArrow);
-
-        _playerMovementComponent.OnJumpEvent += DisplayTrick;
+        
+        if(_playerMovementComponent!= null)
+        {
+            _playerMovementComponent.OnJumpEvent += DisplayTrick;
+            if(_trickControllerComponent = _playerMovementComponent.GetComponent<TrickController>())
+            {
+                _trickControllerComponent.OnTrickSuccessEvent += DisplayTrick;
+            }
+        }
     }
 
     public void DisplayTrick(bool isInAir)

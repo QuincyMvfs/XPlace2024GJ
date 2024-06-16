@@ -15,6 +15,9 @@ public class TrickController : MonoBehaviour
     private PlayerMovement3D _movement;
     private ScoreController _scoreController;
 
+    public delegate void TrickSuccessHandler(bool isTrickSuccessful);
+    public event TrickSuccessHandler OnTrickSuccessEvent;
+
     private void Awake()
     {
         _scoreController = GetComponent<ScoreController>();
@@ -99,6 +102,7 @@ public class TrickController : MonoBehaviour
                 {
                     _scoreController.AddScore();
                     _inputButtons.Clear();
+                    OnTrickSuccessEvent.Invoke(true);
                     return true;
                 }
             }
