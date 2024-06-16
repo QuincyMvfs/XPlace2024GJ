@@ -11,6 +11,8 @@ public class Mine : MonoBehaviour
     [SerializeField] private float amplitude = 0.5f;  // Height of the floating
     [SerializeField] private float frequency = 1f;    // Speed of the floating
     private Vector3 startPos;
+    [SerializeField] private float _minDelay = 0f;
+    [SerializeField] private float _maxDelay = 5f;
 
     private void Awake()
     {
@@ -19,9 +21,10 @@ public class Mine : MonoBehaviour
 
     void Start()
     {
-        // Record the starting position of the GameObject
         startPos = transform.position;
-        StartCoroutine(FloatingLoop());
+        float randomDelay = Random.Range(_minDelay, _maxDelay);
+        // Record the starting position of the GameObject
+        StartCoroutine(StartingDelay(randomDelay));
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -36,11 +39,16 @@ public class Mine : MonoBehaviour
         }
     }
 
+    private IEnumerator StartingDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(FloatingLoop());
+    }
+
     private IEnumerator FloatingLoop()
     {
         while (true)
         {
-
             // Calculate the new position
             Vector3 newPos = startPos;
             newPos.y += Mathf.Sin(Time.time * frequency) * amplitude;

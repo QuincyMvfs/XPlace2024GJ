@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 0.5
   frequency: 2
+  _minDelay: 0
+  _maxDelay: 1
 --- !u!205 &2502263873109489536
 LODGroup:
   m_ObjectHideFlags: 0
