@@ -27,6 +27,7 @@ public class TrickUIManager : MonoBehaviour
         if(_playerMovementComponent!= null)
         {
             _playerMovementComponent.OnJumpEvent += DisplayTrick;
+
             if(_trickControllerComponent = _playerMovementComponent.GetComponent<TrickController>())
             {
                 _trickControllerComponent.OnTrickSuccessEvent += DisplayTrick;
@@ -38,11 +39,13 @@ public class TrickUIManager : MonoBehaviour
     {
         if(!isInAir) 
         {
+            this.gameObject.SetActive(false);
             ClearChildren();
             return;
         }
 
         ClearChildren();
+        this.gameObject.SetActive(true);
         int randomTrick = Random.Range(0, _trickSet.TrickCombos.Count);
 
         TrickSO chosenTrick = _trickSet.TrickCombos[randomTrick];
