@@ -32,7 +32,6 @@ public class ScoreController : MonoBehaviour
         if (_currentStreak <= _multiplierMap.Count - 1)
         {
             float value = _multiplierMap[_currentStreak];
-            Debug.Log(value);
             _currentScore += Mathf.RoundToInt(_baseScore * value);
             UpdateScoreValues(value);
         }
