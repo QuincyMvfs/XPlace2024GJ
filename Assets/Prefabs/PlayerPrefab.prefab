@@ -187,7 +187,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.647598
-  m_Height: 4
+  m_Height: 3.3
   m_Direction: 2
   m_Center: {x: 0.051506042, y: 0.54, z: 0}
 --- !u!114 &2049619272306254504
@@ -233,7 +233,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.040942978, y: 0.000000029791872, z: -0.0000000012207916,
     w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
+  m_LocalPosition: {x: 0, y: 7.7799997, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1258,6 +1258,7 @@ MonoBehaviour:
   _rightArrow: {fileID: 21300000, guid: 1900008a8add3d04caa3c9566a1ec4db, type: 3}
   _trickImage: {fileID: 1063247923968920997, guid: a332820ee78ef54428e8d8e4339c41e1,
     type: 3}
+  _playerMovementComponent: {fileID: 0}
 --- !u!1 &7868389763621126878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,7 +1642,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.040942978, y: 0.000000029791872, z: -0.0000000012207916,
     w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
+  m_LocalPosition: {x: 0, y: 7.7799997, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
