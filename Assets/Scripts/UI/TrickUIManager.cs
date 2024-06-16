@@ -33,6 +33,9 @@ public class TrickUIManager : MonoBehaviour
                 _trickControllerComponent.OnTrickSuccessEvent.AddListener(DisplayTrick);
             }
         }
+
+        this.gameObject.SetActive(false);
+        ClearChildren();
     }
 
     public void DisplayTrick(bool isInAir)
