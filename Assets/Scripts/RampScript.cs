@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class RampScript : MonoBehaviour
 {
+    [SerializeField] private float _rampJumpHeight = 15f;
+
     private BoxCollider _collider;
 
     private void Awake()
@@ -19,6 +21,7 @@ public class RampScript : MonoBehaviour
         {
             if (playerMesh.PlayerGameObject.TryGetComponent<PlayerMovement3D>(out PlayerMovement3D playerMovement))
             {
+                playerMovement.ChangeRampJumpHeight(_rampJumpHeight);
                 playerMovement.Jump(JumpPowerType.Large);
             }
         }
