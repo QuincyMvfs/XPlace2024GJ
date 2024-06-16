@@ -6,31 +6,27 @@ using UnityEngine;
 
 public class Mine : MonoBehaviour
 {
-    private SphereCollider _collider;
-    [SerializeField] private float amplitude = 0.5f;  // Height of the floating
-    [SerializeField] private float frequency = 1f;    // Speed of the floating
-    private Vector3 startPos;
+    [SerializeField] private float _amplitude = 0.5f;  // Height of the floating
+    [SerializeField] private float _frequency = 1f;    // Speed of the floating
     [SerializeField] private float _minDelay = 0f;
     [SerializeField] private float _maxDelay = 5f;
-    [SerializeField] private float rotationSpeedX = 45f;  // Degrees per second around the x-axis
-    [SerializeField] private float rotationSpeedY = 45f;  // Degrees per second around the y-axis
-    [SerializeField] private float rotationSpeedZ = 45f;  // Degrees per second around the z-axis
-    private float rotationAmountX;
-    private float rotationAmountY;
-    private float rotationAmountZ;
-    private float phaseShift;
+    [SerializeField] private float _rotationSpeedX = 45f;  
+    [SerializeField] private float _rotationSpeedY = 45f;  
+    [SerializeField] private float _rotationSpeedZ = 45f;
+    [SerializeField] private GameObject _mineVfxPrefab;
 
-    private void Awake()
-    {
-        _collider = GetComponent<SphereCollider>();
-    }
-
+    private float _rotationAmountX;
+    private float _rotationAmountY;
+    private float _rotationAmountZ;
+    private float _phaseShift;
+    private Vector3 _startPos;
+    
     void Start()
     {
-        startPos = transform.position;
+        _startPos = transform.position;
 
         // Record the starting position of the GameObject
-        phaseShift = Random.Range(0f, 1f + Mathf.PI);
+        _phaseShift = Random.Range(0f, 1f + Mathf.PI);
         StartCoroutine(StartingDelay(0.1f));
     }
 
@@ -46,7 +42,16 @@ public class Mine : MonoBehaviour
                 {
                     playerMovement.ResetMovementSpeed();
                 }
-                Destroy(this.gameObject);
+
+                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                this.gameObject.GetComponent<SphereCollider>().enabled = false;
+
+                if (_mineVfxPrefab != null)
+                {
+                    Instantiate(_mineVfxPrefab, _mineVfxPrefab.transform);
+                }
+
+                StartCoroutine(DestroyAfterDelay(0.5f));
             }
         }
     }
@@ -62,23 +67,29 @@ public class Mine : MonoBehaviour
         while (true)
         {
             // Calculate the new position
-            Vector3 newPos = startPos;
-            newPos.y += Mathf.Sin(Time.time * frequency + phaseShift) * amplitude;
+            Vector3 newPos = _startPos;
+            newPos.y += Mathf.Sin(Time.time * _frequency + _phaseShift) * _amplitude;
 
             // Calculate the rotation for this frame
-            rotationAmountX = rotationSpeedX * Time.deltaTime;
-            rotationAmountY = rotationSpeedY * Time.deltaTime;
-            rotationAmountZ = rotationSpeedZ * Time.deltaTime;
+            _rotationAmountX = _rotationSpeedX * Time.deltaTime;
+            _rotationAmountY = _rotationSpeedY * Time.deltaTime;
+            _rotationAmountZ = _rotationSpeedZ * Time.deltaTime;
 
             // Apply the rotations
-            transform.Rotate(Vector3.right, rotationAmountX);
-            transform.Rotate(Vector3.up, rotationAmountY);
-            transform.Rotate(Vector3.forward, rotationAmountZ);
+            transform.Rotate(Vector3.right, _rotationAmountX);
+            transform.Rotate(Vector3.up, _rotationAmountY);
+            transform.Rotate(Vector3.forward, _rotationAmountZ);
 
             // Apply the new position
             transform.position = newPos;
 
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(this.gameObject);
     }
 }
