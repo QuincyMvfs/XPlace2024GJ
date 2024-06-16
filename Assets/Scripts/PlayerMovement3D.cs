@@ -14,6 +14,7 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private float _mediumJumpHeight = 10.0f;
     [SerializeField] private float _rampJumpHeight = 10.0f;
     [SerializeField] private float _gravity = -9.81f;
+    [SerializeField] private float _maxSpeed = 15.0f;
 
     [Header("Limiters")]
     [SerializeField] private float _maxDistanceLeftRight = 5.0f;
@@ -52,13 +53,18 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void AddMovementSpeed(float value)
     {
-        _forwardDir.z += value;
+        _forwardDir.z += value * 5;
+        if (_forwardDir.z/5 > _maxSpeed)
+        {
+            _forwardDir.z = _maxSpeed * 5;
+        }
     }
 
     public void ReduceMovementSpeed(float value)
     {
-        _forwardDir.z -= value;
-        if(_forwardDir.z < (_moveForwardSpeed * 5))
+        _forwardDir.z -= value * 5;
+
+        if (_forwardDir.z < (_moveForwardSpeed * 5))
         { 
             _forwardDir.z = _moveForwardSpeed * 5;
         }
