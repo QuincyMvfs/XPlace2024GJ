@@ -10,7 +10,6 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private float _moveForwardSpeed = 5.0f;
     [SerializeField] private float _lowJumpHeight = 5.0f;
     [SerializeField] private float _mediumJumpHeight = 10.0f;
-    [SerializeField] private float _bigJumpHeight = 15.0f;
     [SerializeField] private float _rampJumpHeight = 10.0f;
     [SerializeField] private float _gravity = -9.81f;
 
@@ -26,6 +25,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     protected IEnumerator _currentState;
     private bool _isFalling = false;
+
+    public bool IsFalling => _isFalling;
 
     private TrickController _trickController;
     private Rigidbody _playerMeshRB;
@@ -52,8 +53,6 @@ public class PlayerMovement3D : MonoBehaviour
         {
             if (_isFalling)
             {
-                if (_trickController.CheckTrickSuccess()) { Debug.Log("TrickSuccess"); }
-                else { Debug.Log("TrickFail"); }
                 _trickController.SetCanTrick(false);
                 _isFalling = false;
             }
@@ -150,14 +149,20 @@ public class PlayerMovement3D : MonoBehaviour
                 NewJumpHeight = _mediumJumpHeight + (_moveForwardSpeed * 0.5f);
                 break;
             case JumpPowerType.Large:
-                NewJumpHeight = _bigJumpHeight + (_moveForwardSpeed * 0.5f);
+                NewJumpHeight = _rampJumpHeight + (_moveForwardSpeed * 0.5f);
                 break;
         }
 
 
         return NewJumpHeight;
     }
+    public void ChangeRampJumpHeight(float newHeight) 
+    {
+        _rampJumpHeight = newHeight;
+    }
+
 }
+
 
 public enum JumpPowerType
 {
