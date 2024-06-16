@@ -22,7 +22,7 @@ public class RampScript : MonoBehaviour
             if (playerMesh.PlayerGameObject.TryGetComponent<PlayerMovement3D>(out PlayerMovement3D playerMovement))
             {
                 playerMovement.ChangeRampJumpHeight(_rampJumpHeight);
-                playerMovement.Jump(JumpPowerType.Large);
+                playerMovement.ForceJump(JumpPowerType.Large);
             }
         }
     }

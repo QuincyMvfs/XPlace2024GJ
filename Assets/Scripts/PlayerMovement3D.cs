@@ -137,6 +137,13 @@ public class PlayerMovement3D : MonoBehaviour
         _trickController.SetCanTrick(true);
     }
 
+    public void ForceJump(JumpPowerType jumpPower)
+    {
+        Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
+        _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
+        _trickController.SetCanTrick(true);
+    }
+
     private float CalculateJumpHeight(JumpPowerType jumpPower)
     {
         float NewJumpHeight = 0;
