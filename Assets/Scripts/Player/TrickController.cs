@@ -20,6 +20,9 @@ public class TrickController : MonoBehaviour
     public class TrickSuccessEvent : UnityEvent<bool> { }
     [HideInInspector] public TrickSuccessEvent OnTrickSuccessEvent;
 
+    public UnityEvent<TrickButtons> OnInputReceived;
+    public UnityEvent OnDisplayTrickSuccessText;
+
     private void Awake()
     {
         _scoreController = GetComponent<ScoreController>();
@@ -46,13 +49,24 @@ public class TrickController : MonoBehaviour
         _inputGiven = false;
     }
 
+    public void BreakCurrentTrick()
+    {
+        _inputButtons.Clear();
+        _scoreController.BreakCombo();
+        OnTrickSuccessEvent.Invoke(true);
+        _inputGiven = false;
+    }
+
     public void ReceiveTrickInput(TrickButtons Button)
     {
         if (!_canReceiveInputs) return;
 
         _inputGiven = true;
         _inputButtons.Add(Button);
-        if (!CheckTrickSuccess() && !_movement.IsFalling)
+        OnInputReceived.Invoke(Button);
+
+        bool isTrickSuccess = !CheckTrickSuccess();
+        if (!isTrickSuccess && !_movement.IsFalling)
         {
             _inputButtons.Clear();
             _scoreController.BreakCombo();
@@ -102,6 +116,8 @@ public class TrickController : MonoBehaviour
                 // If the amount of correct inputs it equal to the length of the combo and input, return true
                 if (correctInputs == _trickSet.TrickCombos[i].Combo.Count && _inputButtons.Count == correctInputs)
                 {
+                    Debug.Log($"Correct Count: {correctInputs} | Combo Count: {_trickSet.TrickCombos[i].Combo.Count} | Input Count: {_inputButtons.Count}");
+                    OnDisplayTrickSuccessText.Invoke();
                     _scoreController.AddScore();
                     _inputButtons.Clear();
                     OnTrickSuccessEvent.Invoke(true);
