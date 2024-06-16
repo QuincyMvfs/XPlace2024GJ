@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class PlayerMovement3D : MonoBehaviour
 {
@@ -22,8 +23,9 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private LayerMask _layerMask;
 
 
-    public delegate void JumpHandler(bool isInAir);
-    public event JumpHandler OnJumpEvent;
+    [System.Serializable]
+    public class JumpEvent : UnityEvent<bool> { }
+    [HideInInspector] public JumpEvent OnJumpEvent;
 
     private Vector3 _gravityDir = new Vector3(0, -9.81f, 0);
     private Vector3 _forwardDir = new Vector3(0, 0, 10);
@@ -79,7 +81,7 @@ public class PlayerMovement3D : MonoBehaviour
             {
                 _trickController.SetCanTrick(false);
                 _isFalling = false;
-                OnJumpEvent(false);
+                OnJumpEvent.Invoke(false);
             }
         }
         else 
@@ -161,7 +163,7 @@ public class PlayerMovement3D : MonoBehaviour
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
         _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
         _trickController.SetCanTrick(true);
-        OnJumpEvent(true);
+        OnJumpEvent.Invoke(true);
     }
 
     public void ForceJump(JumpPowerType jumpPower)
@@ -169,7 +171,7 @@ public class PlayerMovement3D : MonoBehaviour
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
         _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
         _trickController.SetCanTrick(true);
-        OnJumpEvent(true);
+        OnJumpEvent.Invoke(true);
     }
 
     private float CalculateJumpHeight(JumpPowerType jumpPower)
@@ -195,7 +197,6 @@ public class PlayerMovement3D : MonoBehaviour
     {
         _rampJumpHeight = newHeight;
     }
-
 }
 
 

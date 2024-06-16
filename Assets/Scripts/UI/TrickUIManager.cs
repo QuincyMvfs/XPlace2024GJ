@@ -26,11 +26,11 @@ public class TrickUIManager : MonoBehaviour
         
         if(_playerMovementComponent!= null)
         {
-            _playerMovementComponent.OnJumpEvent += DisplayTrick;
+            _playerMovementComponent.OnJumpEvent.AddListener(DisplayTrick);
 
             if(_trickControllerComponent = _playerMovementComponent.GetComponent<TrickController>())
             {
-                _trickControllerComponent.OnTrickSuccessEvent += DisplayTrick;
+                _trickControllerComponent.OnTrickSuccessEvent.AddListener(DisplayTrick);
             }
         }
     }

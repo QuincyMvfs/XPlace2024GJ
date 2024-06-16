@@ -120,13 +120,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86326e3e394fe7248aef8d89fa992fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.5
-  frequency: 2
+  _amplitude: 0.5
+  _frequency: 1
   _minDelay: 0
   _maxDelay: 1
-  rotationSpeedX: 0
-  rotationSpeedY: 60
-  rotationSpeedZ: 0
+  _rotationSpeedX: 45
+  _rotationSpeedY: 45
+  _rotationSpeedZ: 45
+  _innerMine: {fileID: 4789075742300586205}
+  _mineVfxPrefab: {fileID: 0}
 --- !u!205 &2502263873109489536
 LODGroup:
   m_ObjectHideFlags: 0

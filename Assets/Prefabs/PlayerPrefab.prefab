@@ -1258,6 +1258,7 @@ MonoBehaviour:
   _rightArrow: {fileID: 21300000, guid: 1900008a8add3d04caa3c9566a1ec4db, type: 3}
   _trickImage: {fileID: 1063247923968920997, guid: a332820ee78ef54428e8d8e4339c41e1,
     type: 3}
+  _playerMovementComponent: {fileID: 3987534407580462498}
 --- !u!1 &7868389763621126878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,8 +1353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5144f41cf8708b478acfc758e9137e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveLeftRightSpeed: 7
-  _airbornLeftRightSpeed: 3.5
+  _moveLeftRightSpeed: 3
+  _airbornLeftRightSpeed: 1.7
   _moveForwardSpeed: 10
   _lowJumpHeight: 1
   _mediumJumpHeight: 10
@@ -1364,6 +1365,9 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
+  OnJumpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1130872851831564014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,6 +1383,9 @@ MonoBehaviour:
   _trickSet: {fileID: 11400000, guid: 830036ef969bce34682f89a83c881066, type: 2}
   _alwaysTrick: 0
   _inputWaitTime: 0.2
+  OnTrickSuccessEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7763447329787320958
 MonoBehaviour:
   m_ObjectHideFlags: 0

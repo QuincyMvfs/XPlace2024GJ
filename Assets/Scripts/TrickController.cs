@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TrickController : MonoBehaviour
 {
@@ -15,8 +16,9 @@ public class TrickController : MonoBehaviour
     private PlayerMovement3D _movement;
     private ScoreController _scoreController;
 
-    public delegate void TrickSuccessHandler(bool isTrickSuccessful);
-    public event TrickSuccessHandler OnTrickSuccessEvent;
+    [System.Serializable]
+    public class TrickSuccessEvent : UnityEvent<bool> { }
+    [HideInInspector] public TrickSuccessEvent OnTrickSuccessEvent;
 
     private void Awake()
     {
