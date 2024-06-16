@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -21.38, y: 0, z: 84.640015}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6526264116190228428}
@@ -106,8 +106,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2.18
+  m_Center: {x: 0, y: -0.42, z: 0}
 --- !u!114 &2493277786754226659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,10 +124,9 @@ MonoBehaviour:
   _frequency: 1
   _minDelay: 0
   _maxDelay: 1
-  _rotationSpeedX: 45
-  _rotationSpeedY: 45
-  _rotationSpeedZ: 45
-  _innerMine: {fileID: 4789075742300586205}
+  _rotationSpeedX: 0
+  _rotationSpeedY: 90
+  _rotationSpeedZ: 0
   _mineVfxPrefab: {fileID: 0}
 --- !u!205 &2502263873109489536
 LODGroup:
