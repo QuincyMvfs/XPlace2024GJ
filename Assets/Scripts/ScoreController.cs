@@ -21,6 +21,12 @@ public class ScoreController : MonoBehaviour
     public int CurrentStreak => _currentStreak;
     public float CurrentMultiplier => _currentMultiplier;
 
+    private void Start()
+    {
+        UpdateScoreValues(0);
+        BreakCombo();
+    }
+
     public void AddScore()
     {
         if (_currentStreak <= _multiplierMap.Count - 1)
@@ -36,6 +42,12 @@ public class ScoreController : MonoBehaviour
             _currentScore += Mathf.RoundToInt(_baseScore * value);
             UpdateScoreValues(value);
         }
+    }
+
+    public void AddCoinScore(int score)
+    {
+        _currentScore += score;
+        _scoreUIManager.UpdateScore(_currentScore);
     }
 
     private void UpdateScoreValues(float value)
