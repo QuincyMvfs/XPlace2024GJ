@@ -21,8 +21,8 @@ public class TrickUIManager : MonoBehaviour
     {
         _arrowSprites.Add(TrickButtons.Up, _upArrow);
         _arrowSprites.Add(TrickButtons.Down, _downArrow);
-        _arrowSprites.Add(TrickButtons.Right, _leftArrow);
-        _arrowSprites.Add(TrickButtons.Left, _rightArrow);
+        _arrowSprites.Add(TrickButtons.Right, _rightArrow);
+        _arrowSprites.Add(TrickButtons.Left, _leftArrow);
         
         if(_playerMovementComponent!= null)
         {
@@ -57,6 +57,7 @@ public class TrickUIManager : MonoBehaviour
         {
             if(_arrowSprites.TryGetValue(chosenTrick.Combo[i], out Sprite sprite))
             {
+                Debug.Log(chosenTrick.Combo[i] + " " + sprite);
                 GameObject newTrickImage = Instantiate(_trickImage, transform);
                 newTrickImage.GetComponent<Image>().sprite = sprite;
             }
