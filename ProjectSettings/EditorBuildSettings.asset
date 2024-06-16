@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/ScenesForRelease/MainMenu.unity
     guid: 436b9c8da1e82c946837fa875e716b5b
   - enabled: 1
-    path: Assets/Scenes/LevelGym.unity
-    guid: c85b0fbd23273df479c1cdc050fb681f
+    path: Assets/Scenes/ScenesForRelease/Level_1_America.unity
+    guid: 3673d59aa2c71bf44b70df1bd38aba13
+  - enabled: 1
+    path: Assets/Scenes/ScenesForRelease/Level_2_Asia.unity
+    guid: f375534e5f1121042b43b9df639722d7
+  - enabled: 1
+    path: Assets/Scenes/ScenesForRelease/Level_3_MiddleEast.unity
+    guid: 24e6964661923d74ebb9b7d8858608e3
+  - enabled: 1
+    path: Assets/Scenes/ScenesForRelease/Level_4_Europe.unity
+    guid: acc93c4968a40dd4a84e25435f328a22
   m_configObjects: {}

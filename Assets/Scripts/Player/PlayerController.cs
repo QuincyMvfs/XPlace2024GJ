@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
             _playerInput.enabled = false;
         }
 
-        GameManager.Instance.PauseGame(this);
+        GameManager.Instance?.PauseGame(this);
     }
 
     public void UnpauseController()
