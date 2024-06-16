@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerMovement3D))]
 [RequireComponent(typeof(TrickController))]
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerMovement3D _characterMovement;
     private TrickController _trickController;
+    private PlayerInput _playerInput;
 
     private bool _isMovingLeft = false;
     private bool _isMovingRight = false;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         _characterMovement = GetComponent<PlayerMovement3D>();
         _trickController = GetComponent<TrickController>();
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     private void OnMoveLeft()
@@ -74,6 +77,22 @@ public class PlayerController : MonoBehaviour
     private void OnDownArrow()
     {
         _trickController.ReceiveTrickInput(TrickButtons.Down);
+    }
+
+    private void OnPause()
+    {
+        
+        if(_playerInput != null)
+        {
+            _playerInput.enabled = false;
+        }
+
+        GameManager.Instance.PauseGame(this);
+    }
+
+    public void UnpauseController()
+    {
+        _playerInput.enabled = true;
     }
 }
 

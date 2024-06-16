@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class GameManager : MonoBehaviour
     public string profileName;
     public int starCount;
     public Color profileColor;
+
+    [Header("References")]
+    [SerializeField] private GameObject pauseMenu;
+
+    private PlayerController playerController;
 
     private void Awake()
     {
@@ -24,6 +30,25 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadProfile();
+    }
+
+    public void PauseGame(PlayerController controller)
+    {
+        playerController = controller;
+
+        if(SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            pauseMenu.SetActive(true);
+        }
+    }
+
+    public void UnPauseGame()
+    {
+        if(playerController != null)
+
+        { playerController.UnpauseController(); }
+
+        pauseMenu.SetActive(false);
     }
 
     [System.Serializable]
@@ -56,7 +81,6 @@ public class GameManager : MonoBehaviour
             profileName = data.profileName;
             profileColor = data.profileColor;
             starCount = data.starCount;
-            Debug.Log("File Exists: " + path);
         }
     }
 }
