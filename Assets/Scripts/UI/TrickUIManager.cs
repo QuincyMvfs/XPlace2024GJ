@@ -45,6 +45,7 @@ public class TrickUIManager : MonoBehaviour
         }
 
         ClearChildren();
+        
         this.gameObject.SetActive(true);
         int randomTrick = Random.Range(0, _trickSet.TrickCombos.Count);
 

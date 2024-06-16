@@ -120,3 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4568f5f68eac65f49a60e872c7812e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speedAddition: 10
+  _lastingTime: 5
+  _speedBoostVfxPrefab: {fileID: 0}

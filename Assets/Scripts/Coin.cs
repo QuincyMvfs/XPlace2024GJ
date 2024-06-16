@@ -50,6 +50,7 @@ public class Coin : MonoBehaviour
                 scoreController.AddCoinScore(_scoreAmount);
 
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                this.gameObject.GetComponent<SphereCollider>().enabled = false;
 
                 if(_coinVfxPrefab != null)
                 {

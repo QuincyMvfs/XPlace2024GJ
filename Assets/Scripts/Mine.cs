@@ -41,6 +41,11 @@ public class Mine : MonoBehaviour
             if (playerMesh.PlayerGameObject.TryGetComponent<ScoreController>(out ScoreController scoreController))
             {
                 scoreController.BreakCombo();
+             
+                if (playerMesh.PlayerGameObject.TryGetComponent<PlayerMovement3D>(out PlayerMovement3D playerMovement))
+                {
+                    playerMovement.ResetMovementSpeed();
+                }
                 Destroy(this.gameObject);
             }
         }

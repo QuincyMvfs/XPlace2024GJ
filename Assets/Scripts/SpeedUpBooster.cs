@@ -6,27 +6,39 @@ using UnityEngine;
 
 public class SpeedUpBooster : MonoBehaviour
 {
-    private CapsuleCollider _collider;
-    private bool _hastriggered = false;
+    [SerializeField] private float _speedAddition = 10.0f;
+    [SerializeField] private float _lastingTime = 10.0f;
+    [SerializeField] private GameObject _speedBoostVfxPrefab;
 
-    private void Awake()
-    {
-        _collider = GetComponent<CapsuleCollider>();
-    }
+    private PlayerMovement3D _playerMovementComponent;
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (_hastriggered == false)
+        if (collision.gameObject.TryGetComponent<PlayerMesh>(out PlayerMesh playerMesh))
         {
-            Debug.Log(collision.gameObject);
-            Debug.Log("SPEED UP!");
-            if (collision.gameObject.TryGetComponent<PlayerMovement3D>(out PlayerMovement3D speedController))
+            if (playerMesh.PlayerGameObject.TryGetComponent<PlayerMovement3D>(out PlayerMovement3D playerMovementComponent))
             {
-                //player speed up go to here
+                _playerMovementComponent = playerMovementComponent;
+                _playerMovementComponent.AddMovementSpeed(_speedAddition);
+
+                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
+                if (_speedBoostVfxPrefab != null)
+                {
+                    Instantiate(_speedBoostVfxPrefab, _speedBoostVfxPrefab.transform);
+                }
+
+                StartCoroutine(DestroyAfterDelay(_lastingTime));
             }
-            _hastriggered = true;
-            Destroy(this.gameObject);
         }
-        
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        _playerMovementComponent.ReduceMovementSpeed(_speedAddition);
+        Destroy(this.gameObject);
     }
 }

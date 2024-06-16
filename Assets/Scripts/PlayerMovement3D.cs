@@ -21,6 +21,7 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private GameObject _playerGameObject;
     [SerializeField] private LayerMask _layerMask;
 
+
     public delegate void JumpHandler(bool isInAir);
     public event JumpHandler OnJumpEvent;
 
@@ -45,6 +46,25 @@ public class PlayerMovement3D : MonoBehaviour
 
         _gravityDir.y = _gravity;
         _trickController = GetComponent<TrickController>();
+    }
+
+    public void AddMovementSpeed(float value)
+    {
+        _forwardDir.z += value;
+    }
+
+    public void ReduceMovementSpeed(float value)
+    {
+        _forwardDir.z -= value;
+        if(_forwardDir.z < (_moveForwardSpeed * 5))
+        { 
+            _forwardDir.z = _moveForwardSpeed * 5;
+        }
+    }
+
+    public void ResetMovementSpeed()
+    {
+        _forwardDir.z = _moveForwardSpeed * 5;
     }
 
     // Custom Gravity
@@ -128,7 +148,6 @@ public class PlayerMovement3D : MonoBehaviour
             yield return null;
         }
     }
-    //
 
     private IEnumerator Stop()
     {
