@@ -13,6 +13,7 @@ public class Mine : MonoBehaviour
     [SerializeField] private float _rotationSpeedX = 45f;  
     [SerializeField] private float _rotationSpeedY = 45f;  
     [SerializeField] private float _rotationSpeedZ = 45f;
+    [SerializeField] private GameObject _innerMine;
     [SerializeField] private GameObject _mineVfxPrefab;
 
     private float _rotationAmountX;
@@ -45,6 +46,7 @@ public class Mine : MonoBehaviour
 
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 this.gameObject.GetComponent<SphereCollider>().enabled = false;
+                _innerMine.GetComponent<MeshRenderer>().enabled = false;
 
                 if (_mineVfxPrefab != null)
                 {
