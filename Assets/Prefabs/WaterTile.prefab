@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6900469260555990090}
   - component: {fileID: 3721316025941384022}
   - component: {fileID: 5409408331846134395}
+  - component: {fileID: 8605319311369264185}
   m_Layer: 0
   m_Name: WaterTile
   m_TagString: Untagged
@@ -106,3 +107,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!205 &8605319311369264185
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771565621632646237}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 10
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.051761344
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3721316025941384022}
+  - screenRelativeHeight: 0.018379739
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.0021007583
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1

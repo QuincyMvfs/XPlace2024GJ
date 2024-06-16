@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1363212315753280319}
   - component: {fileID: 8597246560296043765}
   - component: {fileID: 186670220654793845}
+  - component: {fileID: 5560856930742331829}
   m_Layer: 0
   m_Name: Ramp
   m_TagString: Untagged
@@ -118,3 +119,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabfee3ac0885704096e7fab1e03c632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rampJumpHeight: 15
+--- !u!205 &5560856930742331829
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530251829575320684}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.021744277
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1363212315753280319}
+  - screenRelativeHeight: 0.0089536505
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.0026390846
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
