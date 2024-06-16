@@ -21,31 +21,34 @@ public class Mine : MonoBehaviour
     {
         // Record the starting position of the GameObject
         startPos = transform.position;
-    }
-
-    private void Update()
-    {
-        // Calculate the new position
-        Vector3 newPos = startPos;
-        newPos.y += Mathf.Sin(Time.time * frequency) * amplitude;
-
-        // Apply the new position
-        transform.position = newPos;
+        StartCoroutine(FloatingLoop());
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (_hastriggered == false)
+        if (collision.gameObject.TryGetComponent<PlayerMesh>(out PlayerMesh playerMesh))
         {
-            Debug.Log(collision.gameObject);
-            Debug.Log("boom");
-            if (collision.gameObject.TryGetComponent<ScoreController>(out ScoreController scoreController))
+            if (playerMesh.PlayerGameObject.TryGetComponent<ScoreController>(out ScoreController scoreController))
             {
                 scoreController.BreakCombo();
-                Debug.Log("breakCombo");
+                Destroy(this.gameObject);
             }
-            _hastriggered = true;
-            Destroy(this.gameObject);
+        }
+    }
+
+    private IEnumerator FloatingLoop()
+    {
+        while (true)
+        {
+
+            // Calculate the new position
+            Vector3 newPos = startPos;
+            newPos.y += Mathf.Sin(Time.time * frequency) * amplitude;
+
+            // Apply the new position
+            transform.position = newPos;
+
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }

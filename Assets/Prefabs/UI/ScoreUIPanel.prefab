@@ -435,7 +435,7 @@ PrefabInstance:
     - target: {fileID: 148955231742990281, guid: ce1b7a285659e2245bfc315d3d246f66,
         type: 3}
       propertyPath: m_text
-      value: 'Combo: '
+      value: 'Multipiler: '
       objectReference: {fileID: 0}
     - target: {fileID: 148955231742990281, guid: ce1b7a285659e2245bfc315d3d246f66,
         type: 3}
