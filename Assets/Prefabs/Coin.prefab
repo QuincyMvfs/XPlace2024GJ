@@ -119,10 +119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90317f73d2fdfb46a75f8b7f2b654f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeedX: 0
-  rotationSpeedY: 450
-  rotationSpeedZ: 0
-  scoreAmount: 50
+  _rotationSpeedX: 45
+  _rotationSpeedY: 45
+  _rotationSpeedZ: 45
+  _scoreAmount: 50
+  _coinVfxPrefab: {fileID: 0}
 --- !u!205 &4177530718814300733
 LODGroup:
   m_ObjectHideFlags: 0
