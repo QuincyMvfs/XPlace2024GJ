@@ -127,6 +127,7 @@ MonoBehaviour:
   _rotationSpeedX: 0
   _rotationSpeedY: 90
   _rotationSpeedZ: 0
+  _slowDuration: 1
   _innerMine: {fileID: 4789075742300586205}
   _mineVfxPrefab: {fileID: 9109212495951674130, guid: 85a55fd350d9af04ab5d42a91b316072,
     type: 3}

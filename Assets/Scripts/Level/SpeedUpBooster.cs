@@ -19,7 +19,7 @@ public class SpeedUpBooster : MonoBehaviour
             if (playerMesh.PlayerGameObject.TryGetComponent<PlayerMovement3D>(out PlayerMovement3D playerMovementComponent))
             {
                 _playerMovementComponent = playerMovementComponent;
-                _playerMovementComponent.AddMovementSpeed(_speedAddition);
+                _playerMovementComponent.AddMovementSpeed(_speedAddition, _lastingTime);
 
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
@@ -37,8 +37,6 @@ public class SpeedUpBooster : MonoBehaviour
     IEnumerator DestroyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        _playerMovementComponent.ReduceMovementSpeed(_speedAddition);
         Destroy(this.gameObject);
     }
 }
