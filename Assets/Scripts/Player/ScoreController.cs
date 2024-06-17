@@ -17,6 +17,9 @@ public class ScoreController : MonoBehaviour
     private int _currentStreak = 0;
     private float _currentMultiplier = 0;
 
+    private float _highestStreak;
+    private float _highestMultiplier;
+
     public int CurrentScore => _currentScore;
     public int CurrentStreak => _currentStreak;
     public float CurrentMultiplier => _currentMultiplier;
@@ -28,15 +31,16 @@ public class ScoreController : MonoBehaviour
     }
     public void AddScore()
     {
+        float value = 0;
         if (_currentStreak <= _multiplierMap.Count - 1)
         {
-            float value = _multiplierMap[_currentStreak];
+            value = _multiplierMap[_currentStreak];
             _currentScore += Mathf.RoundToInt(_baseScore * value);
             UpdateScoreValues(value);
         }
         else
         {
-            float value = _multiplierMap[_multiplierMap.Count - 1];
+            value = _multiplierMap[_multiplierMap.Count - 1];
             _currentScore += Mathf.RoundToInt(_baseScore * value);
             UpdateScoreValues(value);
         }
@@ -59,6 +63,9 @@ public class ScoreController : MonoBehaviour
         _currentStreak++;
         _currentMultiplier = value;
 
+        if (_currentStreak > _highestStreak) _highestStreak = _currentStreak;
+        if (_currentMultiplier > _highestMultiplier) _highestMultiplier = _currentMultiplier;
+
         _scoreUIManager.UpdateCombo(_currentMultiplier);
         _scoreUIManager.UpdateScore(_currentScore);
         _scoreUIManager.UpdateStreak(_currentStreak);
@@ -76,5 +83,15 @@ public class ScoreController : MonoBehaviour
     public void EnableEndScreen()
     {
         _endScreen.SetActive(true);
+    }
+
+    public float GetHighestStreak()
+    {
+        return _highestStreak;
+    }
+
+    public float GetHighestMultiplier()
+    {
+        return _highestMultiplier;
     }
 }
