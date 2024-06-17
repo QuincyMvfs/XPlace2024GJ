@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2624818860086674044}
   - component: {fileID: 7699547242321777738}
   m_Layer: 0
-  m_Name: VFX_CoinSparkle
+  m_Name: VFX_SparkleScore3x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

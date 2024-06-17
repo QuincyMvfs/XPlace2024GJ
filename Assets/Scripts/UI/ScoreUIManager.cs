@@ -29,7 +29,8 @@ public class ScoreUIManager : MonoBehaviour
 
     public void UpdateStreak(int value)
     {
-        _streakText.text = _startStreakString + value.ToString();
+        
+            _streakText.text = "<color=red>X</color>" + _startStreakString + value.ToString();
     }
 
     public void UpdateCombo(float value)
