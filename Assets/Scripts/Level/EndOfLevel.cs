@@ -15,6 +15,9 @@ public class EndOfLevel : MonoBehaviour
             {
                 scoreController.EnableEndScreen();
                 LevelFinished.Invoke();
+
+                FinalScoreUIHandler finalScoreUIHandler = FindObjectOfType<FinalScoreUIHandler>();
+                finalScoreUIHandler.gameObject.SetActive(true);
             }
         }
     }

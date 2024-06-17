@@ -14,7 +14,7 @@ public class MusicManager : MonoBehaviour
         _source.loop = true;
         _source.Play();
 
-        EndOfLevel endOfLevel = new EndOfLevel();
+        EndOfLevel endOfLevel;
         endOfLevel = FindObjectOfType<EndOfLevel>();
         if (endOfLevel != null)
         {
