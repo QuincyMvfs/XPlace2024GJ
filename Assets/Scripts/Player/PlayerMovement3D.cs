@@ -73,11 +73,6 @@ public class PlayerMovement3D : MonoBehaviour
 
     private void Awake()
     {
-        // Sets max fps to screen 
-        RefreshRate refreshRate = Screen.currentResolution.refreshRateRatio;
-        int refreshRateInt = Mathf.RoundToInt((float)refreshRate.numerator / refreshRate.denominator);
-        Application.targetFrameRate = refreshRateInt;
-
         _landingSFXSource = _landingSFXGameObject.GetComponent<AudioSource>();
         _landingSFXSource.Stop();
         _jumpSFXSource = _jumpSFX.GetComponent<AudioSource>();
