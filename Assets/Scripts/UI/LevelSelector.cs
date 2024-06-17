@@ -29,7 +29,6 @@ public class LevelSelector : MonoBehaviour
         LevelThreeButton.GetComponent<Button>().interactable = false;
         LevelFourButton.GetComponent<Button>().interactable = false;
 
-
         //temp -- we need to read the player profile and set the stars accordingly
         foreach (var star in _levelFourStars)
         { star.SetActive(false); }

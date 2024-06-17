@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class EndOfLevel : MonoBehaviour
 {
@@ -17,5 +18,6 @@ public class EndOfLevel : MonoBehaviour
                 LevelFinished.Invoke();
             }
         }
+
     }
 }
