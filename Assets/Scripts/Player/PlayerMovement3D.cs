@@ -9,17 +9,19 @@ using Unity.VisualScripting;
 
 public class PlayerMovement3D : MonoBehaviour
 {
-    [Header("Speeds")]
+    [Header("Movement Speeds")]
     [SerializeField] private float _moveLeftRightSpeed = 5.0f;
     [SerializeField] private float _airbornLeftRightSpeed = 1.0f;
     [SerializeField] private float _moveForwardSpeed = 5.0f;
     [SerializeField] private float _slowedForwardMoveSpeed = 3.0f;
+    [SerializeField] private float _maxSpeed = 15.0f;
+    [SerializeField] private float _accelerationSpeed = 10.0f;
+
+    [Header("Jumping Variables")]
     [SerializeField] private float _lowJumpHeight = 5.0f;
     [SerializeField] private float _mediumJumpHeight = 10.0f;
     [SerializeField] private float _rampJumpHeight = 10.0f;
     [SerializeField] private float _gravity = -9.81f;
-    [SerializeField] private float _maxSpeed = 15.0f;
-    [SerializeField] private float _accelerationSpeed = 10.0f;
 
     [Header("Limiters")]
     [SerializeField] private float _maxDistanceLeftRight = 5.0f;
@@ -28,6 +30,24 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private GameObject _playerGameObject;
     [SerializeField] private LayerMask _layerMask;
 
+    [Header("Audio")]
+    [SerializeField] private GameObject _movingSFXGameObject;
+    private AudioSource _movingSFXSource;
+    private AudioClip _normalMovingSFX;
+    [SerializeField] private AudioClip _fastMovingSFX;
+    [SerializeField] private AudioClip _slowMovingSFX;
+
+    [SerializeField] private AudioClip _smallJumpSFX;
+    [SerializeField] private AudioClip _bigJumpSFX;
+    [SerializeField] private GameObject _jumpSFX;
+    private AudioSource _jumpSFXSource;
+
+    [SerializeField] private AudioClip _smallLandingSFX;
+    [SerializeField] private AudioClip _largeLandingSFX;
+    [SerializeField] private GameObject _landingSFXGameObject;
+    private AudioSource _landingSFXSource;
+    private JumpPowerType _previousJumpPower;
+    private float _nextLandingSFXTime = 0;
 
     [System.Serializable]
     public class JumpEvent : UnityEvent<bool> { }
@@ -53,6 +73,14 @@ public class PlayerMovement3D : MonoBehaviour
 
     private void Awake()
     {
+        _landingSFXSource = _landingSFXGameObject.GetComponent<AudioSource>();
+        _landingSFXSource.Stop();
+        _jumpSFXSource = _jumpSFX.GetComponent<AudioSource>();
+        _jumpSFXSource.Stop();
+
+        _movingSFXSource = _movingSFXGameObject.GetComponent<AudioSource>();
+        _normalMovingSFX = _movingSFXSource.clip;
+
         _playerMeshRB = _playerGameObject.GetComponent<Rigidbody>();
         _playerMeshRB.useGravity = false;
         _forwardDir.z = _moveForwardSpeed * 5;
@@ -82,11 +110,22 @@ public class PlayerMovement3D : MonoBehaviour
                 _trickController.SetCanTrick(false);
                 _isFalling = false;
                 OnJumpEvent.Invoke(false);
+
+                if (Time.time > _nextLandingSFXTime)
+                {
+                    _nextLandingSFXTime = Time.time + 0.5f;
+                    if (_previousJumpPower == JumpPowerType.Small) { PlayLandingSFX(_smallLandingSFX); }
+                    else { PlayLandingSFX(_largeLandingSFX); }
+                }
+
+                if (_jumpSFXSource != null && _jumpSFXSource.clip == _bigJumpSFX) StopJumpSFX();
+                if (!_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(true); }
             }
         }
         else
         {
             _isFalling = true;
+            if (_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(false); }
         }
     }
 
@@ -109,7 +148,7 @@ public class PlayerMovement3D : MonoBehaviour
             _newForwardDir.z = _maxSpeed * 5 ;
         }
 
-
+        ChangeMovingSFX(_fastMovingSFX);
         ChangeMovementState(ResetSpeedUpState(delay));
     }
 
@@ -122,17 +161,19 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void ResetMovementSpeed()
     {
+        ChangeMovingSFX(_normalMovingSFX);
+
         _newForwardDir.z = _moveForwardSpeed * 5;
     }
 
     public void TemporarySlowDown(float slowDuration)
     {
-        _stopCoroutine = true;
         ChangeMovementState(SlowDownState(slowDuration));
     }
 
     private IEnumerator SlowDownState(float slowDuration)
     {
+        ChangeMovingSFX(_slowMovingSFX);
         _currentAcceleration = _forwardDir.z * 5;
         _newForwardDir.z = _slowedForwardMoveSpeed * 5;
 
@@ -140,7 +181,8 @@ public class PlayerMovement3D : MonoBehaviour
 
         _currentAcceleration = _slowedForwardMoveSpeed * 5;
         _newForwardDir.z = _moveForwardSpeed * 5;
-        
+        _movingSFXSource.clip = _normalMovingSFX;
+        ChangeMovingSFX(_normalMovingSFX);
     }
 
     public float GetCurrentSpeed(float interval)
@@ -149,6 +191,12 @@ public class PlayerMovement3D : MonoBehaviour
         _previousPosition = PlayerPosition;
         float multiplier = Mathf.Pow(10, 2);
         return Mathf.Round((distance / interval) * multiplier) / multiplier;
+    }
+
+    private void ChangeMovingSFX(AudioClip newClip)
+    {
+        _movingSFXSource.clip = newClip;
+        _movingSFXSource.Play();
     }
 
     public void ChangeMovementState(MovementDirections Direction)
@@ -221,6 +269,7 @@ public class PlayerMovement3D : MonoBehaviour
     {
         if (_isFalling == true) return;
 
+        _previousJumpPower = jumpPower;
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
         _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
 
@@ -232,6 +281,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void ForceJump(JumpPowerType jumpPower)
     {
+        _previousJumpPower = jumpPower;
+
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
         _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
         _trickController.SetCanTrick(true);
@@ -244,19 +295,42 @@ public class PlayerMovement3D : MonoBehaviour
         switch (jumpPower)
         {
             case JumpPowerType.Small:
-                NewJumpHeight = _lowJumpHeight + (_moveForwardSpeed * 0.5f);
+                NewJumpHeight = _lowJumpHeight + ((_newForwardDir.z / 5) * 0.5f);
+                ChangeJumpSFX(_smallJumpSFX);
                 break;
             case JumpPowerType.Medium:
-                NewJumpHeight = _mediumJumpHeight + (_moveForwardSpeed * 0.5f);
+                NewJumpHeight = _mediumJumpHeight + ((_newForwardDir.z / 5) * 0.5f);
+                ChangeJumpSFX(_smallJumpSFX);
                 break;
             case JumpPowerType.Large:
-                NewJumpHeight = _rampJumpHeight + (_moveForwardSpeed * 0.5f);
+                NewJumpHeight = _rampJumpHeight + ((_newForwardDir.z / 5) * 0.5f);
+                ChangeJumpSFX(_bigJumpSFX);
                 break;
         }
 
-
         return NewJumpHeight;
     }
+
+    private void ChangeJumpSFX(AudioClip newClip)
+    {
+        _jumpSFXSource.clip = newClip;
+        _jumpSFXSource.Play();
+    }
+
+    private void StopJumpSFX()
+    {
+        if (_jumpSFX == null) return;
+
+        _jumpSFXSource.Stop();
+    }
+
+    private void PlayLandingSFX(AudioClip newClip)
+    {
+        _jumpSFXSource.clip = newClip;
+        _jumpSFXSource.volume = 0.5f;
+        _jumpSFXSource.Play();
+    }
+
     public void ChangeRampJumpHeight(float newHeight) 
     {
         _rampJumpHeight = newHeight;
