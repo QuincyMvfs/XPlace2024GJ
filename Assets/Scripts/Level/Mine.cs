@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Mine : MonoBehaviour
 {
+    [Header("Rotation")]
     [SerializeField] private float _amplitude = 0.5f;  // Height of the floating
     [SerializeField] private float _frequency = 1f;    // Speed of the floating
     [SerializeField] private float _minDelay = 0f;
@@ -13,6 +14,11 @@ public class Mine : MonoBehaviour
     [SerializeField] private float _rotationSpeedX = 45f;  
     [SerializeField] private float _rotationSpeedY = 45f;  
     [SerializeField] private float _rotationSpeedZ = 45f;
+
+    [Header("Slow Functionality")]
+    [SerializeField] private float _slowDuration = 1.0f;
+
+    [Header("GameObjects")]
     [SerializeField] private GameObject _innerMine;
     [SerializeField] private GameObject _mineVfxPrefab;
 
@@ -41,7 +47,7 @@ public class Mine : MonoBehaviour
              
                 if (playerMesh.PlayerGameObject.TryGetComponent<PlayerMovement3D>(out PlayerMovement3D playerMovement))
                 {
-                    playerMovement.ResetMovementSpeed();
+                    playerMovement.TemporarySlowDown(_slowDuration);
                 }
 
                 this.gameObject.GetComponent<MeshRenderer>().enabled = false;

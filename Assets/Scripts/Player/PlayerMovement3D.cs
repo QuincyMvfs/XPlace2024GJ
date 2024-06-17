@@ -5,6 +5,7 @@ using System;
 using UnityEngine.Events;
 using UnityEditor.ShaderGraph.Internal;
 using static UnityEngine.Rendering.DebugUI;
+using Unity.VisualScripting;
 
 public class PlayerMovement3D : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private float _moveLeftRightSpeed = 5.0f;
     [SerializeField] private float _airbornLeftRightSpeed = 1.0f;
     [SerializeField] private float _moveForwardSpeed = 5.0f;
+    [SerializeField] private float _slowedForwardMoveSpeed = 3.0f;
     [SerializeField] private float _lowJumpHeight = 5.0f;
     [SerializeField] private float _mediumJumpHeight = 10.0f;
     [SerializeField] private float _rampJumpHeight = 10.0f;
@@ -37,10 +39,11 @@ public class PlayerMovement3D : MonoBehaviour
     private float _currentAcceleration = 0;
 
     protected IEnumerator _currentState;
+    protected IEnumerator _currentMovementState;
     private bool _isFalling = false;
 
     public bool IsFalling => _isFalling;
-
+    private bool _stopCoroutine = false;
     private TrickController _trickController;
     private Rigidbody _playerMeshRB;
 
@@ -87,28 +90,56 @@ public class PlayerMovement3D : MonoBehaviour
         }
     }
 
-    public void AddMovementSpeed(float value)
+    private void ChangeMovementState(IEnumerator newState)
     {
+        if (_currentMovementState != null) StopCoroutine(_currentMovementState);
+
+        _currentMovementState = newState;
+        StartCoroutine(_currentMovementState);
+    }
+
+    public void AddMovementSpeed(float value, float delay)
+    {
+        _newForwardDir.z = _moveForwardSpeed;
         _newForwardDir.z += value * 5;
         if (_newForwardDir.z/5 > _maxSpeed)
         {
             _newForwardDir.z = _maxSpeed * 5;
         }
+
+        _currentAcceleration = _newForwardDir.z * 5;
+
+        ChangeMovementState(ResetSpeedUpState(delay));
     }
 
-    public void ReduceMovementSpeed(float value)
+    private IEnumerator ResetSpeedUpState(float delay)
     {
-        _newForwardDir.z -= value * 5;
+        yield return new WaitForSeconds(delay);
 
-        if (_newForwardDir.z < (_moveForwardSpeed * 5))
-        {
-            _newForwardDir.z = _moveForwardSpeed * 5;
-        }
+        ResetMovementSpeed();
     }
 
     public void ResetMovementSpeed()
     {
         _newForwardDir.z = _moveForwardSpeed * 5;
+    }
+
+    public void TemporarySlowDown(float slowDuration)
+    {
+        _stopCoroutine = true;
+        ChangeMovementState(SlowDownState(slowDuration));
+    }
+
+    private IEnumerator SlowDownState(float slowDuration)
+    {
+        _currentAcceleration = _forwardDir.z * 5;
+        _newForwardDir.z = _slowedForwardMoveSpeed * 5;
+
+        yield return new WaitForSeconds(slowDuration);
+
+        _currentAcceleration = _slowedForwardMoveSpeed * 5;
+        _newForwardDir.z = _moveForwardSpeed * 5;
+        
     }
 
     public float GetCurrentSpeed(float interval)
