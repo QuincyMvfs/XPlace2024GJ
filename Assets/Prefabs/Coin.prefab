@@ -118,6 +118,8 @@ MonoBehaviour:
   _scoreAmount: 50
   _coinVfxPrefab: {fileID: 6785223838309990872, guid: e2cbaef15aa65464fab24e1036c3832e,
     type: 3}
+  _pickupSFX: {fileID: 8008280732679582133, guid: bb24b2912715b52499780db280172a52,
+    type: 3}
 --- !u!205 &4177530718814300733
 LODGroup:
   m_ObjectHideFlags: 0
