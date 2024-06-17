@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7244433368997393096}
   - component: {fileID: 4666108440408304723}
+  - component: {fileID: -7142331365906849942}
   m_Layer: 0
-  m_Name: SFX_CoinPickup
+  m_Name: SFX_Ambience_Seagull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,11 +43,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f263d3ba1066b924b88d707f79aa59db, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dc12148bede606b4a85d283480768d99, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -88,7 +89,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -128,3 +129,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7142331365906849942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8008280732679582133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ba2d4d03aec9a49babaadbd7941fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _victoryMusic: {fileID: 8300000, guid: f85d2205ab984454dbad1469d5b24767, type: 3}
