@@ -13,6 +13,13 @@ public class MusicManager : MonoBehaviour
         _source = GetComponent<AudioSource>();
         _source.loop = true;
         _source.Play();
+
+        EndOfLevel endOfLevel = new EndOfLevel();
+        endOfLevel = FindObjectOfType<EndOfLevel>();
+        if (endOfLevel != null)
+        {
+            endOfLevel.LevelFinished.AddListener(PlayVictoryMusic);
+        }
     }
 
     public void PlayVictoryMusic()

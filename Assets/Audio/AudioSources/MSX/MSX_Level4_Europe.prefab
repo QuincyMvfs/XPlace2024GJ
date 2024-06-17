@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7244433368997393096}
   - component: {fileID: 4666108440408304723}
+  - component: {fileID: -1927141397941051555}
   m_Layer: 0
   m_Name: MSX_Level4_Europe
   m_TagString: Untagged
@@ -128,3 +129,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1927141397941051555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8008280732679582133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ba2d4d03aec9a49babaadbd7941fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _victoryMusic: {fileID: 8300000, guid: f85d2205ab984454dbad1469d5b24767, type: 3}
