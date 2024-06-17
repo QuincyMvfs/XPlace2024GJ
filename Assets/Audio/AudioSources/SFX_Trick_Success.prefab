@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7244433368997393096}
   - component: {fileID: 4666108440408304723}
   m_Layer: 0
-  m_Name: SFX_TrickInput
+  m_Name: SFX_Trick_Success
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

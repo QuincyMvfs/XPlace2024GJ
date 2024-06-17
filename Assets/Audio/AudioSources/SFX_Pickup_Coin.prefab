@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7244433368997393096}
   - component: {fileID: 4666108440408304723}
   m_Layer: 0
-  m_Name: SFX_SmallLanding
+  m_Name: SFX_Pickup_Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,9 +42,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a79f7261a12f0114fb46294a9bbd247a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 56a18a10ad601014fb5f31b89afcbe91, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.327
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -88,7 +88,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
