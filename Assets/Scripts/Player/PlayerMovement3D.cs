@@ -100,14 +100,15 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void AddMovementSpeed(float value, float delay)
     {
-        _newForwardDir.z = _moveForwardSpeed;
+        _currentAcceleration = _forwardDir.z * 5;
+
+        _newForwardDir.z = _moveForwardSpeed * 5;
         _newForwardDir.z += value * 5;
-        if (_newForwardDir.z/5 > _maxSpeed)
+        if (_newForwardDir.z > _maxSpeed * 5)
         {
-            _newForwardDir.z = _maxSpeed * 5;
+            _newForwardDir.z = _maxSpeed * 5 ;
         }
 
-        _currentAcceleration = _newForwardDir.z * 5;
 
         ChangeMovementState(ResetSpeedUpState(delay));
     }
