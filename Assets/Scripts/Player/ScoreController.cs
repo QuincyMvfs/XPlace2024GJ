@@ -26,7 +26,6 @@ public class ScoreController : MonoBehaviour
         UpdateScoreValues(0);
         BreakCombo();
     }
-
     public void AddScore()
     {
         if (_currentStreak <= _multiplierMap.Count - 1)

@@ -11,8 +11,6 @@ public class Coin : MonoBehaviour
     [SerializeField] private float _rotationSpeedZ = 45f; 
     [SerializeField] private int _scoreAmount = 50;
     [SerializeField] private GameObject _coinVfxPrefab;
-    [SerializeField] private MeshRenderer _mesh;
-
 
     private float _rotationAmountX;
     private float _rotationAmountY;
@@ -50,8 +48,8 @@ public class Coin : MonoBehaviour
             {
                 scoreController.AddCoinScore(_scoreAmount);
 
-                _mesh.enabled = false;
                 this.gameObject.GetComponent<SphereCollider>().enabled = false;
+                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
                 if(_coinVfxPrefab != null)
                 {

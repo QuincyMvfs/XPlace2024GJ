@@ -83,6 +83,7 @@ MonoBehaviour:
   _speedAddition: 2
   _lastingTime: 2.5
   _speedBoostVfxPrefab: {fileID: 0}
+  _mesh: {fileID: 523265944962394239}
 --- !u!23 &523265944962394239
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -263,6 +264,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VFX_SparkleBooster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566384082420015233, guid: d107cf2d9c6aad4438c13880412bcbd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7699547242321777738, guid: d107cf2d9c6aad4438c13880412bcbd9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8788523184293765301, guid: d107cf2d9c6aad4438c13880412bcbd9,
         type: 3}
