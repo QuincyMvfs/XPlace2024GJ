@@ -22,7 +22,7 @@ public class SpeedMeterUI : MonoBehaviour
     {
         while (true)
         {
-            _speedText.text = _startText + _playerMovement.GetCurrentSpeed(_checkInterval).ToString();
+            _speedText.text = _startText + _playerMovement.GetCurrentSpeed(_checkInterval).ToString("F0");
 
             yield return new WaitForSeconds(_checkInterval);
         }
