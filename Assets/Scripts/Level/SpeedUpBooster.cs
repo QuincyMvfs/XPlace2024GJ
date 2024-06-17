@@ -9,7 +9,6 @@ public class SpeedUpBooster : MonoBehaviour
     [SerializeField] private float _speedAddition = 10.0f;
     [SerializeField] private float _lastingTime = 10.0f;
     [SerializeField] private GameObject _speedBoostVfxPrefab;
-    [SerializeField] private MeshRenderer _mesh;
 
     private PlayerMovement3D _playerMovementComponent;
 
@@ -22,8 +21,8 @@ public class SpeedUpBooster : MonoBehaviour
                 _playerMovementComponent = playerMovementComponent;
                 _playerMovementComponent.AddMovementSpeed(_speedAddition, _lastingTime);
 
-                _mesh.enabled = false;
                 this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
                 if (_speedBoostVfxPrefab != null)
                 {

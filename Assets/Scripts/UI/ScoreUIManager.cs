@@ -29,8 +29,15 @@ public class ScoreUIManager : MonoBehaviour
 
     public void UpdateStreak(int value)
     {
-        
+        if(value > 0)
+        {
+            _streakText.enabled = true;
             _streakText.text = "<color=red>X</color>" + _startStreakString + value.ToString();
+        }
+        else
+        {
+            _streakText.enabled = false;
+        }
     }
 
     public void UpdateCombo(float value)
