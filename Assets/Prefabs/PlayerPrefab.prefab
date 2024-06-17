@@ -904,7 +904,7 @@ MonoBehaviour:
   _rampJumpHeight: 5
   _gravity: -30
   _maxSpeed: 15
-  _accelerationSpeed: 10
+  _accelerationSpeed: 30
   _maxDistanceLeftRight: 15
   _playerGameObject: {fileID: 1087069807699460658}
   _layerMask:
