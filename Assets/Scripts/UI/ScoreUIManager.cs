@@ -31,7 +31,7 @@ public class ScoreUIManager : MonoBehaviour
         if(value > 0)
         {
             _streakText.enabled = true;
-            _streakText.text = "<color=red>X</color>" + _startStreakString + value.ToString();
+            _streakText.text = _startStreakString + value.ToString();
         }
         else
         {
