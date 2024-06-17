@@ -80,9 +80,11 @@ public class TrickUIManager : MonoBehaviour
             GameObject removedImage = _trickImages[0];
             _trickImages.RemoveAt(0);
             _trickImages.Add(removedImage);
+            _trickControllerComponent.PlayInputSFX(true);
         }
         else
         {
+            _trickControllerComponent.PlayInputSFX(false);
             _trickControllerComponent.BreakCurrentTrick();
         }
     }

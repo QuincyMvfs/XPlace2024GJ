@@ -249,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 1324388216533049113}
   serializedVersion: 2
   m_LocalRotation: {x: 0.040942974, y: -0, z: -0, w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 8.18, z: -10.49}
+  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1144,6 +1144,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1716060297879771716}
   - {fileID: 8480145576509924573}
   - {fileID: 2457025981626580621}
   - {fileID: 6717420782145436225}
@@ -1206,7 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveLeftRightSpeed: 14
-  _airbornLeftRightSpeed: 10
+  _airbornLeftRightSpeed: 7
   _moveForwardSpeed: 10
   _slowedForwardMoveSpeed: 6
   _maxSpeed: 15
@@ -1246,6 +1247,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trickSet: {fileID: 11400000, guid: 830036ef969bce34682f89a83c881066, type: 2}
   _alwaysTrick: 0
+  _trickInputSFXGameObject: {fileID: 2052214942839183673}
+  _trickInputSuccessSoundEffects:
+  - {fileID: 8300000, guid: f1e5d5a430d39a54fa5b1266557511f5, type: 3}
+  - {fileID: 8300000, guid: bce0ec080fcec4b4488b652c4fc19762, type: 3}
+  - {fileID: 8300000, guid: 4054d67afeb27014fba0293d015af66d, type: 3}
+  - {fileID: 8300000, guid: 7705f90873256574090588652fb5d951, type: 3}
+  - {fileID: 8300000, guid: ef39fe33f57ed3a44bfd257959252583, type: 3}
+  - {fileID: 8300000, guid: 0cd7a83e4a08d3d4b8caf1bb2a2fa01d, type: 3}
+  - {fileID: 8300000, guid: 4c9f45d709ddbee40a6191d343ef40a6, type: 3}
+  - {fileID: 8300000, guid: 83a799502a2d2fc458fc345ef3bbf054, type: 3}
+  - {fileID: 8300000, guid: ca4d7063eb557194283faffc5267cebb, type: 3}
+  - {fileID: 8300000, guid: e6a7905f758cb7a4d9a4e7a81f964883, type: 3}
+  - {fileID: 8300000, guid: 86d32c21e14e573488d28fd025ede8e9, type: 3}
+  - {fileID: 8300000, guid: cfcff4b4542696741b8160c7c5bfd865, type: 3}
+  - {fileID: 8300000, guid: d153c5562e92e5e498870c74b88aaf2d, type: 3}
+  - {fileID: 8300000, guid: ce5752f4238a25c4eb988cbcb8a6b70f, type: 3}
+  - {fileID: 8300000, guid: ece1a2dad95bb374d8e3559da12bc5f7, type: 3}
+  - {fileID: 8300000, guid: 5574a6c315a6d8a4db9458b24807fce4, type: 3}
+  _trickInputFailureSoundEffects:
+  - {fileID: 8300000, guid: f5b9bc60594079d4991b221230036ba3, type: 3}
+  - {fileID: 8300000, guid: d737c3e68830f2c48adfd505f4b307e7, type: 3}
+  - {fileID: 8300000, guid: 08de50198feb8aa4cab5a0c4443f5583, type: 3}
+  - {fileID: 8300000, guid: bc5b96e9d7fee0d4090ec508001ac031, type: 3}
+  - {fileID: 8300000, guid: d8bf9ad4d712e964cb487776fcba7a4c, type: 3}
+  - {fileID: 8300000, guid: 0a650dbe68b20e145bfa2b866003b439, type: 3}
+  - {fileID: 8300000, guid: bcef4596fd43cd547931ac8d5b8bcc70, type: 3}
+  - {fileID: 8300000, guid: ab25d439d521aed4d9f2a8bd56f54065, type: 3}
+  - {fileID: 8300000, guid: 6ebedb6a3eda0c64b8dd07d1885a4aa2, type: 3}
+  - {fileID: 8300000, guid: a4fd7010fd059c446b601b70c41ae9aa, type: 3}
+  - {fileID: 8300000, guid: d951d8f4e2935eb4582681cd619b57d9, type: 3}
+  - {fileID: 8300000, guid: af822fb3547497f4d90bd9ea0df170a5, type: 3}
+  - {fileID: 8300000, guid: b26985ab5c5444340b3c1bffdd6be9a9, type: 3}
+  - {fileID: 8300000, guid: 696db9e4fa7856d4eb656681af58fd2f, type: 3}
+  - {fileID: 8300000, guid: cf0b806ccd0fd2f438896c45be3e28b6, type: 3}
   OnTrickSuccessEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1411,7 +1446,7 @@ Transform:
   m_GameObject: {fileID: 8761967298286654922}
   serializedVersion: 2
   m_LocalRotation: {x: 0.040942974, y: -0, z: -0, w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 7.7799997, z: -10.49}
+  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2746,3 +2781,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &8311901617151879308
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1955443352078947860}
+    m_Modifications:
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008280732679582133, guid: 08653469522fc5b48be10cc6e387d310,
+        type: 3}
+      propertyPath: m_Name
+      value: SFX_TrickInput
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08653469522fc5b48be10cc6e387d310, type: 3}
+--- !u!4 &1716060297879771716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7244433368997393096, guid: 08653469522fc5b48be10cc6e387d310,
+    type: 3}
+  m_PrefabInstance: {fileID: 8311901617151879308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2052214942839183673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8008280732679582133, guid: 08653469522fc5b48be10cc6e387d310,
+    type: 3}
+  m_PrefabInstance: {fileID: 8311901617151879308}
+  m_PrefabAsset: {fileID: 0}
