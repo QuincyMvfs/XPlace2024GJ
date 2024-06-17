@@ -12,6 +12,7 @@ public class ScoreController : MonoBehaviour
     [SerializeField] private float _baseMultiplier = 1.0f;
     [SerializeField] public List<float> _multiplierMap = new List<float>();
     [SerializeField] private ScoreUIManager _scoreUIManager;
+    [SerializeField] private GameObject _endScreen;
 
     private int _currentScore = 0;
     private int _currentStreak = 0;
@@ -65,5 +66,10 @@ public class ScoreController : MonoBehaviour
 
         _scoreUIManager.UpdateCombo(_currentMultiplier);
         _scoreUIManager.UpdateStreak(_currentStreak);
+    }
+
+    public void EnableEndScreen()
+    {
+        _endScreen.SetActive(true);
     }
 }
