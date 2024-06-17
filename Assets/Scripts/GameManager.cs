@@ -15,8 +15,14 @@ public class GameManager : MonoBehaviour
     public Color profileColor;
 
     [Header("Progression Info")]
-    public bool[] hasCompleted;
-    public int[] gainedStar;
+    public bool hasCompletedLevelOne;
+    public bool hasCompletedLevelTwo;
+    public bool hasCompletedLevelThree;
+    public int gainedStarLevelOne;
+    public int gainedStarLevelTwo;
+    public int gainedStarThree;
+    public int gainedStarFour;
+    public bool isFromLevel = false;
 
     [Header("References")]
     [SerializeField] private GameObject pauseMenu;

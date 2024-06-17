@@ -22,5 +22,20 @@ public class EndOfLevel : MonoBehaviour
             }
         }
 
+        GameManager.Instance.isFromLevel = true;
+
+        if(SceneManager.GetActiveScene().name == "Level_1_America")
+        {
+            GameManager.Instance.hasCompletedLevelOne = true;
+        }
+        else if(SceneManager.GetActiveScene().name == "Level_2_Asia")
+        {
+            GameManager.Instance.hasCompletedLevelTwo = true;
+        }
+        else if(SceneManager.GetActiveScene().name == "Level_3_MiddleEast")
+        {
+            GameManager.Instance.hasCompletedLevelThree = true;
+        }
+
     }
 }

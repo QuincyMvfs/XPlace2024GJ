@@ -25,9 +25,32 @@ public class LevelSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LevelTwoButton.GetComponent<Button>().interactable = false;
-        LevelThreeButton.GetComponent<Button>().interactable = false;
-        LevelFourButton.GetComponent<Button>().interactable = false;
+        if (GameManager.Instance.hasCompletedLevelOne == true)
+        {
+            LevelTwoButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            LevelTwoButton.GetComponent<Button>().interactable = false;
+        }
+
+        if (GameManager.Instance.hasCompletedLevelTwo == true)
+        {
+            LevelThreeButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            LevelThreeButton.GetComponent<Button>().interactable = false;
+        }
+
+        if (GameManager.Instance.hasCompletedLevelThree == true)
+        {
+            LevelFourButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            LevelFourButton.GetComponent<Button>().interactable = false;
+        }
 
         //temp -- we need to read the player profile and set the stars accordingly
         foreach (var star in _levelFourStars)
