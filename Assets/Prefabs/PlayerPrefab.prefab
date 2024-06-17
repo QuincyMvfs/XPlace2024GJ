@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 1324388216533049113}
   serializedVersion: 2
   m_LocalRotation: {x: 0.040942974, y: -0, z: -0, w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 8.18, z: -10.49}
+  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -809,7 +809,7 @@ Transform:
   m_GameObject: {fileID: 8761967298286654922}
   serializedVersion: 2
   m_LocalRotation: {x: 0.040942974, y: -0, z: -0, w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 7.7799997, z: -10.49}
+  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1214,6 +1214,11 @@ PrefabInstance:
       propertyPath: _trickController
       value: 
       objectReference: {fileID: 1130872851831564014}
+    - target: {fileID: 3829985895298825174, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: _playerMovement
+      value: 
+      objectReference: {fileID: 3987534407580462498}
     - target: {fileID: 5251276686579208866, guid: 0b2f01e34b740804e8bbf4742cee06c8,
         type: 3}
       propertyPath: _checkInterval

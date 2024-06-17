@@ -11,6 +11,7 @@ public class Coin : MonoBehaviour
     [SerializeField] private float _rotationSpeedZ = 45f; 
     [SerializeField] private int _scoreAmount = 50;
     [SerializeField] private GameObject _coinVfxPrefab;
+    [SerializeField] private MeshRenderer _mesh;
 
 
     private float _rotationAmountX;
@@ -49,12 +50,12 @@ public class Coin : MonoBehaviour
             {
                 scoreController.AddCoinScore(_scoreAmount);
 
-                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                _mesh.enabled = false;
                 this.gameObject.GetComponent<SphereCollider>().enabled = false;
 
                 if(_coinVfxPrefab != null)
                 {
-                    Instantiate(_coinVfxPrefab, _coinVfxPrefab.transform);
+                    GameObject instantiatedVfx = Instantiate(_coinVfxPrefab, transform.position, Quaternion.identity);
                 }
 
                 StartCoroutine(DestroyAfterDelay(0.5f));

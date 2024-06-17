@@ -116,7 +116,9 @@ MonoBehaviour:
   _rotationSpeedY: 450
   _rotationSpeedZ: 0
   _scoreAmount: 50
-  _coinVfxPrefab: {fileID: 0}
+  _coinVfxPrefab: {fileID: 6785223838309990872, guid: e2cbaef15aa65464fab24e1036c3832e,
+    type: 3}
+  _mesh: {fileID: 2771507015818501148}
 --- !u!205 &4177530718814300733
 LODGroup:
   m_ObjectHideFlags: 0
@@ -206,11 +208,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin_regular
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ade4486b905410d42bc071ae11c2de48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ade4486b905410d42bc071ae11c2de48, type: 3}
+--- !u!23 &2771507015818501148 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: ade4486b905410d42bc071ae11c2de48,
+    type: 3}
+  m_PrefabInstance: {fileID: 3582555588908794008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3908405596981995379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ade4486b905410d42bc071ae11c2de48,
@@ -340,6 +353,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VFX_CoinSparkle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566384082420015233, guid: 8a13f253f4b6c6347852d3092b093d2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7699547242321777738, guid: 8a13f253f4b6c6347852d3092b093d2e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8788523184293765301, guid: 8a13f253f4b6c6347852d3092b093d2e,
         type: 3}

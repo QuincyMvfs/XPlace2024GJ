@@ -81,7 +81,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedAddition: 2
   _lastingTime: 2.5
-  _speedBoostVfxPrefab: {fileID: 0}
+  _speedBoostVfxPrefab: {fileID: 6785223838309990872, guid: e2cbaef15aa65464fab24e1036c3832e,
+    type: 3}
+  _mesh: {fileID: 2151440056084059660}
 --- !u!1001 &728148229057497736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,6 +155,12 @@ PrefabInstance:
 --- !u!4 &977386163946925411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 208357ad0cf78db42a5a8ca9637d641c,
+    type: 3}
+  m_PrefabInstance: {fileID: 728148229057497736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2151440056084059660 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 208357ad0cf78db42a5a8ca9637d641c,
     type: 3}
   m_PrefabInstance: {fileID: 728148229057497736}
   m_PrefabAsset: {fileID: 0}
