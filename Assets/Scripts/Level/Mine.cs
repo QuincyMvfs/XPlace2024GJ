@@ -21,6 +21,7 @@ public class Mine : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] private GameObject _innerMine;
     [SerializeField] private GameObject _mineVfxPrefab;
+    [SerializeField] private GameObject _explosionSFX;
 
     private float _rotationAmountX;
     private float _rotationAmountY;
@@ -57,7 +58,10 @@ public class Mine : MonoBehaviour
                 if (_mineVfxPrefab != null)
                 {
                     GameObject SpawnedVFX = Instantiate(_mineVfxPrefab, this.transform.position, this.transform.rotation);
-                    Destroy(SpawnedVFX, 1.0f);
+                    Destroy(SpawnedVFX, 5.0f);
+
+                    GameObject SpawnedSFX = Instantiate(_explosionSFX, this.transform.position, this.transform.rotation);
+                    Destroy(SpawnedSFX, 5.0f);
                 }
 
                 StartCoroutine(DestroyAfterDelay(0.5f));
