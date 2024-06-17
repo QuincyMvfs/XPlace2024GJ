@@ -9,7 +9,6 @@ public class ScoreController : MonoBehaviour
 {
     [Header("Score Variables")]
     [SerializeField] private float _baseScore = 25;
-    [SerializeField] private float _baseMultiplier = 1.0f;
     [SerializeField] public List<float> _multiplierMap = new List<float>();
     [SerializeField] private ScoreUIManager _scoreUIManager;
     [SerializeField] private GameObject _endScreen;

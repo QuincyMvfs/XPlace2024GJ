@@ -7,7 +7,6 @@ public class TrickController : MonoBehaviour
 {
     [SerializeField] private TrickSetSO _trickSet;
     [SerializeField] private bool _alwaysTrick = false;
-    [SerializeField] private float _inputWaitTime = 0.2f;
 
     private List<TrickButtons> _inputButtons = new List<TrickButtons>();
 
@@ -116,7 +115,6 @@ public class TrickController : MonoBehaviour
                 // If the amount of correct inputs it equal to the length of the combo and input, return true
                 if (correctInputs == _trickSet.TrickCombos[i].Combo.Count && _inputButtons.Count == correctInputs)
                 {
-                    Debug.Log($"Correct Count: {correctInputs} | Combo Count: {_trickSet.TrickCombos[i].Combo.Count} | Input Count: {_inputButtons.Count}");
                     OnDisplayTrickSuccessText.Invoke();
                     _scoreController.AddScore();
                     _inputButtons.Clear();

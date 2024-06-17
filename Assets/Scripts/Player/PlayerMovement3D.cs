@@ -63,7 +63,6 @@ public class PlayerMovement3D : MonoBehaviour
     private bool _isFalling = false;
 
     public bool IsFalling => _isFalling;
-    private bool _stopCoroutine = false;
     private TrickController _trickController;
     private Rigidbody _playerMeshRB;
 

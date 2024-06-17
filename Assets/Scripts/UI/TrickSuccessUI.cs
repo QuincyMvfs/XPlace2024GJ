@@ -16,7 +16,6 @@ public class TrickSuccessUI : MonoBehaviour
 
     private void StartTextSequence()
     {
-        Debug.Log("START ME UP!");
         StartCoroutine(PerfectTrickState());
     }
 

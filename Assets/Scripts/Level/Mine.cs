@@ -9,8 +9,6 @@ public class Mine : MonoBehaviour
     [Header("Rotation")]
     [SerializeField] private float _amplitude = 0.5f;  // Height of the floating
     [SerializeField] private float _frequency = 1f;    // Speed of the floating
-    [SerializeField] private float _minDelay = 0f;
-    [SerializeField] private float _maxDelay = 5f;
     [SerializeField] private float _rotationSpeedX = 45f;  
     [SerializeField] private float _rotationSpeedY = 45f;  
     [SerializeField] private float _rotationSpeedZ = 45f;

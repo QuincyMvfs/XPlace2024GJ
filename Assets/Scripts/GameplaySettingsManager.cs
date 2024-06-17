@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class GameplaySettingsManager : MonoBehaviour
 {
-    [SerializeField] private int _defaultQualityLevel = 2;
-
     private TMP_Dropdown _dropdown;
 
     private void Awake()
