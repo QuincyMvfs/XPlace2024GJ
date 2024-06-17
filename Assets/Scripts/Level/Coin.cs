@@ -66,6 +66,5 @@ public class Coin : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Destroy(this.gameObject);
-        
     }
 }
