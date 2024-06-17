@@ -40,15 +40,20 @@ public class GameManager : MonoBehaviour
         {
             pauseMenu.SetActive(true);
         }
+
+        Time.timeScale = 0;
     }
 
     public void UnPauseGame()
     {
         if(playerController != null)
 
-        { playerController.UnpauseController(); }
+        //{ playerController.UnpauseController(); }
 
+        playerController.IsPaused = false;
         pauseMenu.SetActive(false);
+
+        Time.timeScale = 1;
     }
 
     [System.Serializable]
