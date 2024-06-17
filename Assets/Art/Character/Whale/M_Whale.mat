@@ -7,10 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: outline
-  m_Shader: {fileID: -6465566751694194690, guid: 0a62ec9b6c5c764408505bf7696b75b3,
+  m_Name: M_Whale
+  m_Shader: {fileID: -6465566751694194690, guid: 60cd647fd4c795c48b98f4126ad1859e,
     type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: -876546973899608171, guid: 60cd647fd4c795c48b98f4126ad1859e,
+    type: 3}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -24,27 +25,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: f2df0aeccf5fc5c4f9904d261e08a836, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _OutlineThickness: 0.04
     - _QueueControl: 0
-    - _QueueOffset: 0
-    m_Colors:
-    - _Outline_Color: {r: 0.16352195, g: 0.10297254, b: 0.0827894, a: 0}
+    m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &6556780752140994514
+--- !u!114 &7069594406392614124
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
