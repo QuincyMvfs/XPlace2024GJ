@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplaySettingsManager : MonoBehaviour
 {
-    [SerializeField] private QualityLevel _defaultQualityLevel = QualityLevel.Good;
+    [SerializeField] private int _defaultQualityLevel = 2;
+
+    private TMP_Dropdown _dropdown;
 
     private void Awake()
     {
@@ -13,11 +17,12 @@ public class GameplaySettingsManager : MonoBehaviour
         int refreshRateInt = Mathf.RoundToInt((float)refreshRate.numerator / refreshRate.denominator);
         Application.targetFrameRate = refreshRateInt;
 
-        SetGraphicSettings(_defaultQualityLevel);
+        _dropdown = GetComponent<TMP_Dropdown>();
+        _dropdown.value = QualitySettings.GetQualityLevel()+ 1;
     }
 
-    public void SetGraphicSettings(QualityLevel qualityLevel)
+    public void SetGraphicSettings(int qualityLevel)
     {
-        QualitySettings.SetQualityLevel((int)qualityLevel);
+        QualitySettings.SetQualityLevel(qualityLevel + 1);
     }
 }
