@@ -327,7 +327,6 @@ public class PlayerMovement3D : MonoBehaviour
     private void PlayLandingSFX(AudioClip newClip)
     {
         _jumpSFXSource.clip = newClip;
-        _jumpSFXSource.volume = 0.5f;
         _jumpSFXSource.Play();
     }
 
