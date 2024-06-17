@@ -13,6 +13,7 @@ public class FinalScoreUIHandler: MonoBehaviour
     [SerializeField] private TextMeshProUGUI _speedText;
     [SerializeField] private float _scoreIncrementDelay = 0.01f;
     [SerializeField] private StoreFinalScores _storeFinalScores;
+    [SerializeField] private float _scoreIncreamentAmount;
 
     private void OnEnable()
     {
@@ -29,6 +30,7 @@ public class FinalScoreUIHandler: MonoBehaviour
         while (displayedScore < score)
         {
             displayedScore++;
+            displayedScore += _scoreIncreamentAmount;
             _speedText.text = displayedScore.ToString();
 
             if (displayedScore >= _storeFinalScores.star1)
