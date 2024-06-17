@@ -11,14 +11,17 @@ public class TrickUIManager : MonoBehaviour
     [SerializeField] private Sprite _leftArrow;
     [SerializeField] private Sprite _rightArrow;
     [SerializeField] private GameObject _trickImage;
+    [SerializeField] private GameObject _trickSuccessText;
     [SerializeField] private PlayerMovement3D _playerMovementComponent;
     
     private TrickController _trickControllerComponent;
+    private List<GameObject> _trickImages = new List<GameObject>();
 
     private Dictionary<TrickButtons, Sprite> _arrowSprites = new Dictionary<TrickButtons, Sprite>();
 
     private void Start()
     {
+        _trickSuccessText.SetActive(false);
         _arrowSprites.Add(TrickButtons.Up, _upArrow);
         _arrowSprites.Add(TrickButtons.Down, _downArrow);
         _arrowSprites.Add(TrickButtons.Right, _rightArrow);
@@ -31,6 +34,8 @@ public class TrickUIManager : MonoBehaviour
             if(_trickControllerComponent = _playerMovementComponent.GetComponent<TrickController>())
             {
                 _trickControllerComponent.OnTrickSuccessEvent.AddListener(DisplayTrick);
+                _trickControllerComponent.OnInputReceived.AddListener(InputReceived);
+
             }
         }
 
@@ -57,10 +62,28 @@ public class TrickUIManager : MonoBehaviour
         {
             if(_arrowSprites.TryGetValue(chosenTrick.Combo[i], out Sprite sprite))
             {
-                Debug.Log(chosenTrick.Combo[i] + " " + sprite);
+                //Debug.Log(chosenTrick.Combo[i] + " " + sprite);
                 GameObject newTrickImage = Instantiate(_trickImage, transform);
+                newTrickImage.name = chosenTrick.Combo[i].ToString();
                 newTrickImage.GetComponent<Image>().sprite = sprite;
+                _trickImages.Add(newTrickImage);
             }
+        }
+    }
+
+    public void InputReceived(TrickButtons button)
+    {
+        if (_trickImages[0].name == button.ToString())
+        {
+            Color transparent = new Color(0, 0, 0, 0);
+            _trickImages[0].GetComponent<Image>().color = transparent;
+            GameObject removedImage = _trickImages[0];
+            _trickImages.RemoveAt(0);
+            _trickImages.Add(removedImage);
+        }
+        else
+        {
+            _trickControllerComponent.BreakCurrentTrick();
         }
     }
 
@@ -70,5 +93,7 @@ public class TrickUIManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
+        _trickImages.Clear();
     }
 }
