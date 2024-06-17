@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedAddition: 2
-  _lastingTime: 5
+  _lastingTime: 2.5
   _speedBoostVfxPrefab: {fileID: 0}
