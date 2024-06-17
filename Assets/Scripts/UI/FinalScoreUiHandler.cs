@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class FinalScoreUI : MonoBehaviour
+public class FinalScoreUIHandler: MonoBehaviour
 {
     [SerializeField] private ScoreController _scoreController;
     [SerializeField] private GameObject _star1;
@@ -12,7 +13,6 @@ public class FinalScoreUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _speedText;
     [SerializeField] private float _scoreIncrementDelay = 0.01f;
     [SerializeField] private StoreFinalScores _storeFinalScores;
-
 
     private void OnEnable()
     {
@@ -31,19 +31,30 @@ public class FinalScoreUI : MonoBehaviour
             displayedScore++;
             _speedText.text = displayedScore.ToString();
 
-            if (displayedScore >= 0)
+            if (displayedScore >= _storeFinalScores.star1)
             {
                 _star1.SetActive(true);
             }
-            if (displayedScore >= 10)
+            if (displayedScore >= _storeFinalScores.star2)
             {
                 _star2.SetActive(true);
             }
-            if (displayedScore >= 50)
+            if (displayedScore >= _storeFinalScores.star3)
             {
                 _star3.SetActive(true);
             }
             yield return new WaitForSeconds(_scoreIncrementDelay);
         }
+    }
+
+    public void RestartLevel()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
+    public void OpenLevel(string level)
+    {
+        SceneManager.LoadScene(level);
     }
 }
