@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &512195372229335743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6409927781039060424}
+  - component: {fileID: 5912001846752042823}
+  m_Layer: 0
+  m_Name: ScoreStarsStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6409927781039060424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512195372229335743}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 495.34875, y: 139.68509, z: -3560.0613}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1955443352078947860}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5912001846752042823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512195372229335743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3ad0ba3c5e80941bbc04e24f720976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _star1: 0
+  _star2: 1000
+  _star3: 2000
 --- !u!1 &706344949692994340
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +1031,7 @@ MonoBehaviour:
   _star3: {fileID: 7348683107363386428}
   _speedText: {fileID: 8279844044111229651}
   _scoreIncrementDelay: 0.0001
+  _storeFinalScores: {fileID: 5912001846752042823}
 --- !u!1 &7348683107363386428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,6 +1144,7 @@ Transform:
   - {fileID: 8480145576509924573}
   - {fileID: 2457025981626580621}
   - {fileID: 6717420782145436225}
+  - {fileID: 6409927781039060424}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &978390283669802904

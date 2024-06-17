@@ -11,6 +11,8 @@ public class FinalScoreUI : MonoBehaviour
     [SerializeField] private GameObject _star3;
     [SerializeField] private TextMeshProUGUI _speedText;
     [SerializeField] private float _scoreIncrementDelay = 0.01f;
+    [SerializeField] private StoreFinalScores _storeFinalScores;
+
 
     private void OnEnable()
     {
