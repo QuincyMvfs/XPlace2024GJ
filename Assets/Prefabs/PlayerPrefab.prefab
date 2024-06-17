@@ -249,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 1324388216533049113}
   serializedVersion: 2
   m_LocalRotation: {x: 0.040942974, y: -0, z: -0, w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
+  m_LocalPosition: {x: 0, y: 8.18, z: -1.4899998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1032,7 +1032,7 @@ MonoBehaviour:
   _star2: {fileID: 4772839269572589651}
   _star3: {fileID: 7348683107363386428}
   _speedText: {fileID: 8279844044111229651}
-  _scoreIncrementDelay: 0.0001
+  _scoreIncrementDelay: 0.000001
   _storeFinalScores: {fileID: 5912001846752042823}
 --- !u!1 &7348683107363386428
 GameObject:
@@ -1123,7 +1123,6 @@ GameObject:
   - component: {fileID: 3987534407580462498}
   - component: {fileID: 1130872851831564014}
   - component: {fileID: 7763447329787320958}
-  - component: {fileID: 6214557632356821266}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -1205,8 +1204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5144f41cf8708b478acfc758e9137e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveLeftRightSpeed: 7
-  _airbornLeftRightSpeed: 3.5
+  _moveLeftRightSpeed: 14
+  _airbornLeftRightSpeed: 7
   _moveForwardSpeed: 10
   _slowedForwardMoveSpeed: 6
   _maxSpeed: 15
@@ -1283,18 +1282,6 @@ MonoBehaviour:
   - 30
   _scoreUIManager: {fileID: 6343873250188650682}
   _endScreen: {fileID: 5582202579491107336}
---- !u!114 &6214557632356821266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7868389763621126878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f6a199d31c941645adff5716ba61159, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8220857892979305349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1412,7 @@ Transform:
   m_GameObject: {fileID: 8761967298286654922}
   serializedVersion: 2
   m_LocalRotation: {x: 0.040942974, y: -0, z: -0, w: 0.9991615}
-  m_LocalPosition: {x: 0, y: 7.78, z: -10.49}
+  m_LocalPosition: {x: 0, y: 7.7799997, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1879,6 +1866,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3712664421754575052}
     m_Modifications:
+    - target: {fileID: 4666108440408304723, guid: d296f974874b00043aca8dafdda271b2,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7244433368997393096, guid: d296f974874b00043aca8dafdda271b2,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2349,6 +2341,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3712664421754575052}
     m_Modifications:
+    - target: {fileID: 4666108440408304723, guid: 475323d62a4922240bbd224fd99583f8,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7244433368997393096, guid: 475323d62a4922240bbd224fd99583f8,
         type: 3}
       propertyPath: m_LocalScale.x

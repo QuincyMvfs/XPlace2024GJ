@@ -464,7 +464,7 @@ PrefabInstance:
     - target: {fileID: 2141716901214906673, guid: ee0d195fbfba76443931bcc496d06c91,
         type: 3}
       propertyPath: m_text
-      value: 'Streak!: '
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2141716901214906673, guid: ee0d195fbfba76443931bcc496d06c91,
         type: 3}
@@ -485,12 +485,17 @@ PrefabInstance:
     - target: {fileID: 2141716901214906673, guid: ee0d195fbfba76443931bcc496d06c91,
         type: 3}
       propertyPath: m_fontColor.b
-      value: 0
+      value: 0.83613485
       objectReference: {fileID: 0}
     - target: {fileID: 2141716901214906673, guid: ee0d195fbfba76443931bcc496d06c91,
         type: 3}
       propertyPath: m_fontColor.g
-      value: 0
+      value: 0.504717
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141716901214906673, guid: ee0d195fbfba76443931bcc496d06c91,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2141716901214906673, guid: ee0d195fbfba76443931bcc496d06c91,
         type: 3}
