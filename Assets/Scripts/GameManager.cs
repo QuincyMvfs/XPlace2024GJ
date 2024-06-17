@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,16 @@ public class GameManager : MonoBehaviour
     public string profileName;
     public int starCount;
     public Color profileColor;
+
+    [Header("Progression Info")]
+    public bool hasCompletedLevelOne;
+    public bool hasCompletedLevelTwo;
+    public bool hasCompletedLevelThree;
+    public int gainedStarLevelOne;
+    public int gainedStarLevelTwo;
+    public int gainedStarThree;
+    public int gainedStarFour;
+    public bool isFromLevel = false;
 
     [Header("References")]
     [SerializeField] private GameObject pauseMenu;
