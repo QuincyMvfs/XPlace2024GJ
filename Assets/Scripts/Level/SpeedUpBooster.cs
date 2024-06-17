@@ -27,6 +27,7 @@ public class SpeedUpBooster : MonoBehaviour
                 if (_speedBoostVfxPrefab != null)
                 {
                     GameObject instantiatedVfx = Instantiate(_speedBoostVfxPrefab, transform.position, Quaternion.identity);
+                    Destroy(instantiatedVfx, 1.0f);
                 }
 
                 StartCoroutine(DestroyAfterDelay(_lastingTime));

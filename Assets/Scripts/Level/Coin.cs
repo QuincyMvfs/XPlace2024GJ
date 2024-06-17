@@ -54,6 +54,7 @@ public class Coin : MonoBehaviour
                 if(_coinVfxPrefab != null)
                 {
                     GameObject instantiatedVfx = Instantiate(_coinVfxPrefab, transform.position, Quaternion.identity);
+                    Destroy(instantiatedVfx, 1.0f);
                 }
 
                 StartCoroutine(DestroyAfterDelay(0.5f));

@@ -57,7 +57,7 @@ public class Mine : MonoBehaviour
                 if (_mineVfxPrefab != null)
                 {
                     GameObject SpawnedVFX = Instantiate(_mineVfxPrefab, this.transform.position, this.transform.rotation);
-                    Destroy(SpawnedVFX, 3.0f);
+                    Destroy(SpawnedVFX, 1.0f);
                 }
 
                 StartCoroutine(DestroyAfterDelay(0.5f));
