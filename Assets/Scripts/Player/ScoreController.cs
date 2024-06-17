@@ -43,6 +43,12 @@ public class ScoreController : MonoBehaviour
         }
     }
 
+    public void AddToStreak(int value)
+    {
+        _currentStreak += value;
+        AddScore();
+    }
+
     public void AddCoinScore(int score)
     {
         _currentScore += score;
