@@ -33,6 +33,7 @@ public class PlayerMovement3D : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private GameObject _wakeVFX;
     [SerializeField] private GameObject _airTrailVFX;
+    [SerializeField] private GameObject _airTrailVFX2;
     [SerializeField] private GameObject _landingSplashVFX;
     [SerializeField] private Transform _landingSplashVFXSpawnPoint;
 
@@ -89,7 +90,11 @@ public class PlayerMovement3D : MonoBehaviour
         _jumpSFXSource = _jumpSFX.GetComponent<AudioSource>();
         _jumpSFXSource.Stop();
 
-        if (_airTrailVFX != null) _airTrailVFX.SetActive(false);
+        if (_airTrailVFX != null)
+        {
+            _airTrailVFX.SetActive(false);
+            _airTrailVFX2.SetActive(false);
+        }
 
         _movingSFXSource = _movingSFXGameObject.GetComponent<AudioSource>();
         _normalMovingSFX = _movingSFXSource.clip;
@@ -142,7 +147,12 @@ public class PlayerMovement3D : MonoBehaviour
 
                 if (_wakeVFX != null)
                 {
-                    if (!_wakeVFX.activeInHierarchy) { _wakeVFX.SetActive(true); _airTrailVFX.SetActive(false); }
+                    if (!_wakeVFX.activeInHierarchy) 
+                    { 
+                        _wakeVFX.SetActive(true); 
+                        _airTrailVFX.SetActive(false); 
+                        _airTrailVFX2.SetActive(false); 
+                    }
                 }
                 if (_landingSplashVFX != null)
                 {
@@ -156,7 +166,12 @@ public class PlayerMovement3D : MonoBehaviour
             if (_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(false); }
             if (_airTrailVFX != null)
             {
-                if (!_airTrailVFX.activeInHierarchy) { _wakeVFX.SetActive(false); _airTrailVFX.SetActive(true); }
+                if (!_airTrailVFX.activeInHierarchy) 
+                { 
+                    _wakeVFX.SetActive(false); 
+                    _airTrailVFX.SetActive(true); 
+                    _airTrailVFX2.SetActive(true); 
+                }
             }
         }
     }
