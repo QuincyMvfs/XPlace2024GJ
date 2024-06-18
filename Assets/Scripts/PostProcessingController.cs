@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class PostProcessingController : MonoBehaviour
 {
     [SerializeField] private float _midSpeedRatio = 0.4f;
-    [SerializeField] private float _highSpeedRatio = 0.8f;
+    [SerializeField] private bool _isMainMenu = false;
 
     private float _currentSpeed = 0;
     private float _maxSpeed = 0;
@@ -24,6 +24,8 @@ public class PostProcessingController : MonoBehaviour
 
     private void Awake()
     {
+        if (_isMainMenu) return;
+
         _playerSpeed = FindObjectOfType<SpeedMeterUI>();
         _playerMovement = FindObjectOfType<PlayerMovement3D>();
         _globalVolume = GetComponent<Volume>();
