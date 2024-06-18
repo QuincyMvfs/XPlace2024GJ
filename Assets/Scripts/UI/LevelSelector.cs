@@ -28,6 +28,7 @@ public class LevelSelector : MonoBehaviour
         if (GameManager.Instance.hasCompletedLevelOne == true)
         {
             LevelTwoButton.GetComponent<Button>().interactable = true;
+            StarUpdating(GameManager.Instance.gainedStarLevelOne, _levelOneStars);
         }
         else
         {
@@ -37,6 +38,7 @@ public class LevelSelector : MonoBehaviour
         if (GameManager.Instance.hasCompletedLevelTwo == true)
         {
             LevelThreeButton.GetComponent<Button>().interactable = true;
+            StarUpdating(GameManager.Instance.gainedStarLevelTwo, _levelTwoStars);
         }
         else
         {
@@ -46,10 +48,16 @@ public class LevelSelector : MonoBehaviour
         if (GameManager.Instance.hasCompletedLevelThree == true)
         {
             LevelFourButton.GetComponent<Button>().interactable = true;
+            StarUpdating(GameManager.Instance.gainedStarLevelThree, _levelThreeStars);
         }
         else
         {
             LevelFourButton.GetComponent<Button>().interactable = false;
+        }
+
+        if (GameManager.Instance.hasCompletedLevelFour == true)
+        {
+            StarUpdating(GameManager.Instance.gainedStarLevelFour, _levelFourStars);
         }
 
         //temp -- we need to read the player profile and set the stars accordingly
@@ -68,6 +76,25 @@ public class LevelSelector : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void StarUpdating(int starFromLevel, GameObject[] level)
+    {
+        if(starFromLevel == 1)
+        {
+            level[starFromLevel-1].SetActive(true);
+        }
+        else if(starFromLevel == 2)
+        {
+            level[starFromLevel-2].SetActive(true);
+            level[starFromLevel-1].SetActive(true);
+        }
+        else if (starFromLevel == 3)
+        {
+            level[starFromLevel-3].SetActive(true);
+            level[starFromLevel-2].SetActive(true);
+            level[starFromLevel-1].SetActive(true);
+        }
     }
 
     public void StartLevelOne()

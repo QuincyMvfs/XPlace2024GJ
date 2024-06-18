@@ -18,10 +18,11 @@ public class GameManager : MonoBehaviour
     public bool hasCompletedLevelOne;
     public bool hasCompletedLevelTwo;
     public bool hasCompletedLevelThree;
+    public bool hasCompletedLevelFour;
     public int gainedStarLevelOne;
     public int gainedStarLevelTwo;
-    public int gainedStarThree;
-    public int gainedStarFour;
+    public int gainedStarLevelThree;
+    public int gainedStarLevelFour;
     public bool isFromLevel = false;
 
     [Header("References")]
