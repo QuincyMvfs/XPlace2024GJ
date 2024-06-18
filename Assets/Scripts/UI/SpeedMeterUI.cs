@@ -9,6 +9,8 @@ public class SpeedMeterUI : MonoBehaviour
     [SerializeField] private PlayerMovement3D _playerMovement;
     [SerializeField] private float _checkInterval = 0.3f;
 
+    public float Speed => int.Parse(_speedText.text);
+
     private string _startText;
 
     // Start is called before the first frame update

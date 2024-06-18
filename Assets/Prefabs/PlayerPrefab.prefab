@@ -262,7 +262,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -558,6 +558,10 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
+  _wakeVFX: {fileID: 0}
+  _airTrailVFX: {fileID: 0}
+  _landingSplashVFX: {fileID: 0}
+  _landingSplashVFXSpawnPoint: {fileID: 0}
   _movingSFXGameObject: {fileID: 5284691624866467180}
   _fastMovingSFX: {fileID: 8300000, guid: eafa759b6624f434a9f90604fbbc5c93, type: 3}
   _slowMovingSFX: {fileID: 8300000, guid: 00d0fa0fd69c16845b67cff877b35ce8, type: 3}
