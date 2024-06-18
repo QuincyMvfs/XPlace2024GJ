@@ -42,7 +42,7 @@ public class PostProcessingController : MonoBehaviour
             _motionBlur = motionBlur;
         }
 
-        StartCoroutine(GetSpeedState());
+        // StartCoroutine(GetSpeedState());
     }
 
     private IEnumerator GetSpeedState()
