@@ -30,6 +30,11 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private GameObject _playerGameObject;
     [SerializeField] private LayerMask _layerMask;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject _wakeVFX;
+    [SerializeField] private GameObject _airTrailVFX;
+    [SerializeField] private GameObject _landingSplashVFX;
+
     [Header("Audio")]
     [SerializeField] private GameObject _movingSFXGameObject;
     private AudioSource _movingSFXSource;
@@ -81,6 +86,9 @@ public class PlayerMovement3D : MonoBehaviour
         _landingSFXSource.Stop();
         _jumpSFXSource = _jumpSFX.GetComponent<AudioSource>();
         _jumpSFXSource.Stop();
+        _landingSplashVFX.SetActive(false);
+
+        _airTrailVFX.SetActive(false);
 
         _movingSFXSource = _movingSFXGameObject.GetComponent<AudioSource>();
         _normalMovingSFX = _movingSFXSource.clip;
@@ -130,12 +138,17 @@ public class PlayerMovement3D : MonoBehaviour
 
                 if (_jumpSFXSource != null && _jumpSFXSource.clip == _bigJumpSFX) { }
                 if (!_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(true); }
+
+                if (!_wakeVFX.activeInHierarchy) { _wakeVFX.SetActive(true); _airTrailVFX.SetActive(false); }
+                if (!_landingSplashVFX.activeInHierarchy) { _landingSplashVFX.SetActive(true); }
+                else { _landingSplashVFX.SetActive(false); _landingSplashVFX.SetActive(true); }
             }
         }
         else
         {
             _isFalling = true;
             if (_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(false); }
+            if (!_airTrailVFX.activeInHierarchy) { _wakeVFX.SetActive(false); _airTrailVFX.SetActive(true); }
         }
     }
 
