@@ -30,6 +30,11 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private GameObject _playerGameObject;
     [SerializeField] private LayerMask _layerMask;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject _wakeVFX;
+    [SerializeField] private GameObject _airTrailVFX;
+    [SerializeField] private GameObject _landingSplashVFX;
+
     [Header("Audio")]
     [SerializeField] private GameObject _movingSFXGameObject;
     private AudioSource _movingSFXSource;
@@ -52,6 +57,11 @@ public class PlayerMovement3D : MonoBehaviour
     [System.Serializable]
     public class JumpEvent : UnityEvent<bool> { }
     [HideInInspector] public JumpEvent OnJumpEvent;
+    [HideInInspector] public UnityEvent OnAirborneEvent;
+    [HideInInspector] public UnityEvent OnLandedEvent;
+    [HideInInspector] public UnityEvent OnMoveLeftEvent;
+    [HideInInspector] public UnityEvent OnMoveRightEvent;
+    [HideInInspector] public UnityEvent OnMoveStraightEvent;
 
     private Vector3 _gravityDir = new Vector3(0, -9.81f, 0);
     private Vector3 _forwardDir = new Vector3(0, 0, 10);
@@ -76,6 +86,9 @@ public class PlayerMovement3D : MonoBehaviour
         _landingSFXSource.Stop();
         _jumpSFXSource = _jumpSFX.GetComponent<AudioSource>();
         _jumpSFXSource.Stop();
+        _landingSplashVFX.SetActive(false);
+
+        _airTrailVFX.SetActive(false);
 
         _movingSFXSource = _movingSFXGameObject.GetComponent<AudioSource>();
         _normalMovingSFX = _movingSFXSource.clip;
@@ -125,12 +138,17 @@ public class PlayerMovement3D : MonoBehaviour
 
                 if (_jumpSFXSource != null && _jumpSFXSource.clip == _bigJumpSFX) { }
                 if (!_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(true); }
+
+                if (!_wakeVFX.activeInHierarchy) { _wakeVFX.SetActive(true); _airTrailVFX.SetActive(false); }
+                if (!_landingSplashVFX.activeInHierarchy) { _landingSplashVFX.SetActive(true); }
+                else { _landingSplashVFX.SetActive(false); _landingSplashVFX.SetActive(true); }
             }
         }
         else
         {
             _isFalling = true;
             if (_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(false); }
+            if (!_airTrailVFX.activeInHierarchy) { _wakeVFX.SetActive(false); _airTrailVFX.SetActive(true); }
         }
     }
 
@@ -233,6 +251,8 @@ public class PlayerMovement3D : MonoBehaviour
     // LEFT RIGHT
     private IEnumerator MoveLeft()
     {
+        OnMoveLeftEvent.Invoke();
+
         while (PlayerPosition.x > -_maxDistanceLeftRight)
         {
             if (_isFalling)
@@ -246,10 +266,14 @@ public class PlayerMovement3D : MonoBehaviour
 
             yield return null;
         }
+
+        ChangeState(Stop());
     }
 
     private IEnumerator MoveRight()
     {
+        OnMoveRightEvent.Invoke();
+
         while (PlayerPosition.x < _maxDistanceLeftRight)
         {
             if (_isFalling) 
@@ -267,12 +291,16 @@ public class PlayerMovement3D : MonoBehaviour
 
     private IEnumerator Stop()
     {
+        OnMoveStraightEvent.Invoke();
+
         yield return null;
     }
 
     public void Jump(JumpPowerType jumpPower)
     {
         if (_isFalling == true) return;
+
+        OnAirborneEvent.Invoke();
 
         _previousJumpPower = jumpPower;
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
@@ -286,6 +314,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void ForceJump(JumpPowerType jumpPower)
     {
+        OnAirborneEvent.Invoke();
+
         _previousJumpPower = jumpPower;
 
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
@@ -333,6 +363,8 @@ public class PlayerMovement3D : MonoBehaviour
     {
         _landingSFXSource.clip = newClip;
         _landingSFXSource.Play();
+
+        OnLandedEvent.Invoke();
     }
 
     public void ChangeRampJumpHeight(float newHeight) 
