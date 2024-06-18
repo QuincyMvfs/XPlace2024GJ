@@ -62,6 +62,6 @@ Material:
     - _QueueOffset: 0
     - _shadeSize: 0.109
     m_Colors:
-    - _Color: {r: 1, g: 0.9639253, b: 0.83962256, a: 0}
+    - _Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
