@@ -6,6 +6,7 @@ using UnityEngine;
 public class TrickSuccessUI : MonoBehaviour
 {
     [SerializeField] private float _visibleDuration = 0.2f;
+    [SerializeField] private float _growShrinkSpeed = 3.0f;
     [SerializeField] private GameObject _trickSuccessText;
     [SerializeField] private TrickController _trickController;
     [SerializeField] private GameObject _trickSuccessSFX;
@@ -66,7 +67,29 @@ public class TrickSuccessUI : MonoBehaviour
         _trickSuccessText.SetActive(true);
         _text.text = _perfectText;
         _text.color = _perfectColor;
-        yield return new WaitForSeconds(_visibleDuration);
+        Vector3 newScale = _rectTransform.localScale;
+        while (_rectTransform.localScale.magnitude < _startScale.magnitude)
+        {
+            newScale = new Vector3(
+                newScale.x += Time.deltaTime * _growShrinkSpeed,
+                newScale.y += Time.deltaTime * _growShrinkSpeed,
+                newScale.z += Time.deltaTime * _growShrinkSpeed);
+            _rectTransform.localScale = newScale;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(_visibleDuration / 3);
+
+        while (_rectTransform.localScale.magnitude > 0.1)
+        {
+            newScale = new Vector3(
+                newScale.x -= Time.deltaTime * _growShrinkSpeed,
+                newScale.y -= Time.deltaTime * _growShrinkSpeed,
+                newScale.z -= Time.deltaTime * _growShrinkSpeed);
+            _rectTransform.localScale = newScale;
+            yield return null;
+        }
+
         _trickSuccessText.SetActive(false);
     }
 
@@ -86,11 +109,26 @@ public class TrickSuccessUI : MonoBehaviour
         Vector3 newScale = _rectTransform.localScale;
         while (_rectTransform.localScale.magnitude < _startScale.magnitude)
         {
-            newScale = new Vector3(newScale.x += Time.deltaTime, newScale.y += Time.deltaTime, newScale.z += Time.deltaTime);
+            newScale = new Vector3(
+                newScale.x += Time.deltaTime * _growShrinkSpeed, 
+                newScale.y += Time.deltaTime * _growShrinkSpeed, 
+                newScale.z += Time.deltaTime * _growShrinkSpeed );
             _rectTransform.localScale = newScale;
             yield return null;
         }
-        yield return new WaitForSeconds(_visibleDuration);
+
+        yield return new WaitForSeconds(_visibleDuration / 3);
+
+        while (_rectTransform.localScale.magnitude > 0.1)
+        {
+            newScale = new Vector3(
+                newScale.x -= Time.deltaTime * _growShrinkSpeed,
+                newScale.y -= Time.deltaTime * _growShrinkSpeed,
+                newScale.z -= Time.deltaTime * _growShrinkSpeed);
+            _rectTransform.localScale = newScale;
+            yield return null;
+        }
+
         _trickSuccessText.SetActive(false);
     }
 }
