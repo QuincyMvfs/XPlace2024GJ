@@ -87,7 +87,6 @@ public class PlayerMovement3D : MonoBehaviour
         _landingSFXSource.Stop();
         _jumpSFXSource = _jumpSFX.GetComponent<AudioSource>();
         _jumpSFXSource.Stop();
-        _landingSplashVFX.SetActive(false);
 
         _airTrailVFX.SetActive(false);
 
