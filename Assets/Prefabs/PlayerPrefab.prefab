@@ -570,7 +570,19 @@ MonoBehaviour:
   OnJumpEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnAirborneEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnLandedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveRightEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMoveStraightEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1130872851831564014
@@ -920,6 +932,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Rig
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: fd0f40758de99434180612fd8790b28f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7444bbafc59966f43930212107e36ec9, type: 2}
+    - target: {fileID: 5866666021909216657, guid: fd0f40758de99434180612fd8790b28f,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -928,6 +950,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6415390809292523403}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fd0f40758de99434180612fd8790b28f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4687083676290971367}
   m_SourcePrefab: {fileID: 100100000, guid: fd0f40758de99434180612fd8790b28f, type: 3}
 --- !u!4 &216532376811620137 stripped
 Transform:
@@ -983,6 +1009,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4687083676290971367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597456614844931475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c75b9c97a8d7a4f81d41ebe9440433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 3987534407580462498}
 --- !u!1001 &2771367354907327705
 PrefabInstance:
   m_ObjectHideFlags: 0

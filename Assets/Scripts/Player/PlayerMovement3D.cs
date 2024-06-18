@@ -54,6 +54,9 @@ public class PlayerMovement3D : MonoBehaviour
     [HideInInspector] public JumpEvent OnJumpEvent;
     [HideInInspector] public UnityEvent OnAirborneEvent;
     [HideInInspector] public UnityEvent OnLandedEvent;
+    [HideInInspector] public UnityEvent OnMoveLeftEvent;
+    [HideInInspector] public UnityEvent OnMoveRightEvent;
+    [HideInInspector] public UnityEvent OnMoveStraightEvent;
 
     private Vector3 _gravityDir = new Vector3(0, -9.81f, 0);
     private Vector3 _forwardDir = new Vector3(0, 0, 10);
@@ -235,6 +238,8 @@ public class PlayerMovement3D : MonoBehaviour
     // LEFT RIGHT
     private IEnumerator MoveLeft()
     {
+        OnMoveLeftEvent.Invoke();
+
         while (PlayerPosition.x > -_maxDistanceLeftRight)
         {
             if (_isFalling)
@@ -248,10 +253,14 @@ public class PlayerMovement3D : MonoBehaviour
 
             yield return null;
         }
+
+        ChangeState(Stop());
     }
 
     private IEnumerator MoveRight()
     {
+        OnMoveRightEvent.Invoke();
+
         while (PlayerPosition.x < _maxDistanceLeftRight)
         {
             if (_isFalling) 
@@ -269,6 +278,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     private IEnumerator Stop()
     {
+        OnMoveStraightEvent.Invoke();
+
         yield return null;
     }
 
