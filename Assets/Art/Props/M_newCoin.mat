@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_purpleflag
+  m_Name: M_newCoin
   m_Shader: {fileID: -6465566751694194690, guid: 60cd647fd4c795c48b98f4126ad1859e,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: fbf549daf9a6e044a81b67d427ad12d4, type: 3}
+        m_Texture: {fileID: 2800000, guid: ab0d635ebd9f41f43883d7077b70f0c4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
