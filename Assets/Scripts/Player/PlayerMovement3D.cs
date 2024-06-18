@@ -34,6 +34,7 @@ public class PlayerMovement3D : MonoBehaviour
     [SerializeField] private GameObject _wakeVFX;
     [SerializeField] private GameObject _airTrailVFX;
     [SerializeField] private GameObject _landingSplashVFX;
+    [SerializeField] private Transform _landingSplashVFXSpawnPoint;
 
     [Header("Audio")]
     [SerializeField] private GameObject _movingSFXGameObject;
@@ -140,8 +141,10 @@ public class PlayerMovement3D : MonoBehaviour
                 if (!_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(true); }
 
                 if (!_wakeVFX.activeInHierarchy) { _wakeVFX.SetActive(true); _airTrailVFX.SetActive(false); }
-                if (!_landingSplashVFX.activeInHierarchy) { _landingSplashVFX.SetActive(true); }
-                else { _landingSplashVFX.SetActive(false); _landingSplashVFX.SetActive(true); }
+                if (_landingSplashVFX != null)
+                {
+                    Instantiate(_landingSplashVFX, _landingSplashVFXSpawnPoint.position, _landingSplashVFXSpawnPoint.rotation);
+                }
             }
         }
         else
