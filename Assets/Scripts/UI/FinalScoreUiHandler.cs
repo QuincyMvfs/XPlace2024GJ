@@ -11,6 +11,8 @@ public class FinalScoreUIHandler: MonoBehaviour
     [SerializeField] private GameObject _star2;
     [SerializeField] private GameObject _star3;
     [SerializeField] private TextMeshProUGUI _speedText;
+    [SerializeField] private TextMeshProUGUI _highestMultiplierText;
+    [SerializeField] private TextMeshProUGUI _highestStreakText;
     [SerializeField] private float _scoreIncrementDelay = 0.01f;
     [SerializeField] private StoreFinalScores _storeFinalScores;
     [SerializeField] private float _scoreIncreamentAmount;
@@ -26,6 +28,9 @@ public class FinalScoreUIHandler: MonoBehaviour
 
     IEnumerator DisplayScores(float score)
     {
+        _highestMultiplierText.text = _scoreController.GetHighestMultiplier().ToString();
+        _highestStreakText.text = _scoreController.GetHighestStreak().ToString();
+
         float displayedScore = 0;
         while (displayedScore < score)
         {

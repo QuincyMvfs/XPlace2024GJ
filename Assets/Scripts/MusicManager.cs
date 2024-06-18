@@ -5,7 +5,6 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] private AudioClip _victoryMusic;
-    private AudioClip _currentMusic;
     private AudioSource _source;
 
     private void Awake()
@@ -14,7 +13,7 @@ public class MusicManager : MonoBehaviour
         _source.loop = true;
         _source.Play();
 
-        EndOfLevel endOfLevel = new EndOfLevel();
+        EndOfLevel endOfLevel;
         endOfLevel = FindObjectOfType<EndOfLevel>();
         if (endOfLevel != null)
         {

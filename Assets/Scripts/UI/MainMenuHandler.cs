@@ -22,6 +22,10 @@ public class MainMenuHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(GameManager.Instance.isFromLevel == true)
+        {
+            OpenLevelSelector();
+        }
 
         _profileNameInputField.onEndEdit.AddListener((string profileName) =>
         {
@@ -50,6 +54,7 @@ public class MainMenuHandler : MonoBehaviour
 
     public void OpenLevelSelector()
     {
+        GameManager.Instance.isFromLevel = false;
         _levelSelectHandle.SetActive(true);
         _menuHandle.SetActive(false);
     }
