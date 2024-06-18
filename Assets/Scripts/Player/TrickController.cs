@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class TrickController : MonoBehaviour
 {
-    [SerializeField] private TrickSetSO _trickSet;
+    [SerializeField] private TrickSetSO[] _trickSets;
+    private TrickSetSO _trickSet;
     [SerializeField] private bool _alwaysTrick = false;
 
     [Header("SFX")]
@@ -29,13 +31,37 @@ public class TrickController : MonoBehaviour
     [HideInInspector] public TrickSuccessEvent OnTrickSuccessEvent;
     [HideInInspector] public UnityEvent<TrickButtons> OnInputReceived;
     [HideInInspector] public UnityEvent OnDisplayTrickSuccessText;
+    [HideInInspector] public UnityEvent OnDisplayTrickFailText;
 
+
+    public int TrickLength = 0;
 
     private void Awake()
     {
+        GetTrickSet();
         _trickInputSFXSource = _trickInputSFXGameObject.GetComponent<AudioSource>();
         _scoreController = GetComponent<ScoreController>();
         _movement = GetComponent<PlayerMovement3D>();
+    }
+
+    private void GetTrickSet()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        switch (currentScene)
+        {
+            case "Level_1_America":
+                _trickSet = _trickSets[0];
+                break;
+            case "Level_2_Asia":
+                _trickSet = _trickSets[1];
+                break;
+            case "Level_3_MiddleEast":
+                _trickSet = _trickSets[2];
+                break;
+            case "Level_4_Europe":
+                _trickSet = _trickSets[3];
+                break;
+        }
     }
 
     public void SetCanTrick(bool canTrick)
@@ -74,7 +100,7 @@ public class TrickController : MonoBehaviour
         _inputButtons.Add(Button);
         OnInputReceived.Invoke(Button);
 
-        bool isTrickSuccess = !CheckTrickSuccess();
+        bool isTrickSuccess = CheckTrickSuccess();
         if (!isTrickSuccess && !_movement.IsFalling)
         {
             _inputButtons.Clear();
@@ -127,7 +153,8 @@ public class TrickController : MonoBehaviour
                 else { break; }
 
                 // If the amount of correct inputs it equal to the length of the combo and input, return true
-                if (correctInputs == _trickSet.TrickCombos[i].Combo.Count && _inputButtons.Count == correctInputs)
+                if (correctInputs == _trickSet.TrickCombos[i].Combo.Count && _inputButtons.Count == correctInputs
+                    && correctInputs == TrickLength)
                 {
                     OnDisplayTrickSuccessText.Invoke();
                     _scoreController.AddScore();
@@ -138,6 +165,7 @@ public class TrickController : MonoBehaviour
                 }
             }
         }
+
         return false;
     }
 
@@ -155,6 +183,7 @@ public class TrickController : MonoBehaviour
             randomSound = Random.Range(0, _trickInputFailureSoundEffects.Length);
             _trickInputSFXSource.clip = _trickInputFailureSoundEffects[randomSound];
             _trickInputSFXSource.Play();
+            OnDisplayTrickFailText.Invoke();
         }
     }
 
