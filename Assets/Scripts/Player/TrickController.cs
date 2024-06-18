@@ -14,6 +14,9 @@ public class TrickController : MonoBehaviour
     [SerializeField] private AudioClip[] _trickInputFailureSoundEffects = new AudioClip[0];
     private AudioSource _trickInputSFXSource;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject _trickSuccessVFX;
+
     private List<TrickButtons> _inputButtons = new List<TrickButtons>();
     private bool _canReceiveInputs = false;
     private bool _inputGiven = false;
@@ -130,6 +133,7 @@ public class TrickController : MonoBehaviour
                     _scoreController.AddScore();
                     _inputButtons.Clear();
                     OnTrickSuccessEvent.Invoke(true);
+                    PlayTrickVFX();
                     return true;
                 }
             }
@@ -151,6 +155,22 @@ public class TrickController : MonoBehaviour
             randomSound = Random.Range(0, _trickInputFailureSoundEffects.Length);
             _trickInputSFXSource.clip = _trickInputFailureSoundEffects[randomSound];
             _trickInputSFXSource.Play();
+        }
+    }
+
+    private void PlayTrickVFX()
+    {
+        if (_trickSuccessVFX != null)
+        {
+            if (_trickSuccessVFX.activeInHierarchy)
+            {
+                _trickSuccessVFX.SetActive(false);
+                _trickSuccessVFX.SetActive(true);
+            }
+            else
+            {
+                _trickSuccessVFX.SetActive(true);
+            }
         }
     }
 }
