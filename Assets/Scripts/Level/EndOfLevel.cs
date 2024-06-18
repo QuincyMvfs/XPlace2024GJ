@@ -52,7 +52,6 @@ public class EndOfLevel : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Level_2_Asia")
         {
-            Debug.Log("Activated");
             if (_currentScore < 10000)
             {
                 _levelTwoStars = 1;
@@ -65,11 +64,9 @@ public class EndOfLevel : MonoBehaviour
             {
                 _levelTwoStars = 3;
             }
-            Debug.Log(_levelTwoStars);
 
             GameManager.Instance.hasCompletedLevelTwo = true;
             GameManager.Instance.gainedStarLevelTwo = _levelTwoStars;
-            Debug.Log(GameManager.Instance.gainedStarLevelTwo);
         }
 
         if (SceneManager.GetActiveScene().name == "Level_3_MiddleEast")
