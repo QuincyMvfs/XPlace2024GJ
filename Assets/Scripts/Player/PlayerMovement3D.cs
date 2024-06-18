@@ -33,6 +33,7 @@ public class PlayerMovement3D : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private GameObject _wakeVFX;
     [SerializeField] private GameObject _airTrailVFX;
+    [SerializeField] private GameObject _airTrailVFX2;
     [SerializeField] private GameObject _landingSplashVFX;
     [SerializeField] private Transform _landingSplashVFXSpawnPoint;
 
@@ -80,6 +81,7 @@ public class PlayerMovement3D : MonoBehaviour
     private Vector3 _previousPosition = Vector3.zero;
 
     public Vector3 PlayerPosition => _playerGameObject.transform.position;
+    public float MaxSpeed => _maxSpeed;
 
     private void Awake()
     {
@@ -88,7 +90,11 @@ public class PlayerMovement3D : MonoBehaviour
         _jumpSFXSource = _jumpSFX.GetComponent<AudioSource>();
         _jumpSFXSource.Stop();
 
-        _airTrailVFX.SetActive(false);
+        if (_airTrailVFX != null)
+        {
+            _airTrailVFX.SetActive(false);
+            _airTrailVFX2.SetActive(false);
+        }
 
         _movingSFXSource = _movingSFXGameObject.GetComponent<AudioSource>();
         _normalMovingSFX = _movingSFXSource.clip;
@@ -139,7 +145,15 @@ public class PlayerMovement3D : MonoBehaviour
                 if (_jumpSFXSource != null && _jumpSFXSource.clip == _bigJumpSFX) { }
                 if (!_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(true); }
 
-                if (!_wakeVFX.activeInHierarchy) { _wakeVFX.SetActive(true); _airTrailVFX.SetActive(false); }
+                if (_wakeVFX != null)
+                {
+                    if (!_wakeVFX.activeInHierarchy) 
+                    { 
+                        _wakeVFX.SetActive(true); 
+                        _airTrailVFX.SetActive(false); 
+                        _airTrailVFX2.SetActive(false); 
+                    }
+                }
                 if (_landingSplashVFX != null)
                 {
                     Instantiate(_landingSplashVFX, _landingSplashVFXSpawnPoint.position, _landingSplashVFXSpawnPoint.rotation);
@@ -150,7 +164,15 @@ public class PlayerMovement3D : MonoBehaviour
         {
             _isFalling = true;
             if (_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(false); }
-            if (!_airTrailVFX.activeInHierarchy) { _wakeVFX.SetActive(false); _airTrailVFX.SetActive(true); }
+            if (_airTrailVFX != null)
+            {
+                if (!_airTrailVFX.activeInHierarchy) 
+                { 
+                    _wakeVFX.SetActive(false); 
+                    _airTrailVFX.SetActive(true); 
+                    _airTrailVFX2.SetActive(true); 
+                }
+            }
         }
     }
 
