@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TrickUIManager : MonoBehaviour
 {
+    [SerializeField] private TrickSetSO[] _trickSets;
     [SerializeField] private TrickSetSO _trickSet;
     [SerializeField] private Sprite _upArrow;
     [SerializeField] private Sprite _downArrow;
@@ -18,6 +20,12 @@ public class TrickUIManager : MonoBehaviour
     private List<GameObject> _trickImages = new List<GameObject>();
 
     private Dictionary<TrickButtons, Sprite> _arrowSprites = new Dictionary<TrickButtons, Sprite>();
+    private int _trickLength = 0;
+
+    private void Awake()
+    {
+        GetTrickSet();
+    }
 
     private void Start()
     {
@@ -43,6 +51,26 @@ public class TrickUIManager : MonoBehaviour
         ClearChildren();
     }
 
+    private void GetTrickSet()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        switch (currentScene)
+        {
+            case "Level_1_America":
+                _trickSet = _trickSets[0];
+                break;
+            case "Level_2_Asia":
+                _trickSet = _trickSets[1];
+                break;
+            case "Level_3_MiddleEast":
+                _trickSet = _trickSets[2];
+                break;
+            case "Level_4_Europe":
+                _trickSet = _trickSets[3];
+                break;
+        }
+    }
+
     public void DisplayTrick(bool isInAir)
     {
         if(!isInAir) 
@@ -58,6 +86,8 @@ public class TrickUIManager : MonoBehaviour
         int randomTrick = Random.Range(0, _trickSet.TrickCombos.Count);
 
         TrickSO chosenTrick = _trickSet.TrickCombos[randomTrick];
+        _trickLength = chosenTrick.Combo.Count;
+        _trickControllerComponent.TrickLength = _trickLength;
         for (int i = 0; i < chosenTrick.Combo.Count; i++)
         {
             if(_arrowSprites.TryGetValue(chosenTrick.Combo[i], out Sprite sprite))
