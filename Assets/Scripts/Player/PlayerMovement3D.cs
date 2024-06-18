@@ -52,6 +52,8 @@ public class PlayerMovement3D : MonoBehaviour
     [System.Serializable]
     public class JumpEvent : UnityEvent<bool> { }
     [HideInInspector] public JumpEvent OnJumpEvent;
+    [HideInInspector] public UnityEvent OnAirborneEvent;
+    [HideInInspector] public UnityEvent OnLandedEvent;
 
     private Vector3 _gravityDir = new Vector3(0, -9.81f, 0);
     private Vector3 _forwardDir = new Vector3(0, 0, 10);
@@ -274,6 +276,8 @@ public class PlayerMovement3D : MonoBehaviour
     {
         if (_isFalling == true) return;
 
+        OnAirborneEvent.Invoke();
+
         _previousJumpPower = jumpPower;
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
         _playerMeshRB.AddForce(JumpForce, ForceMode.Force);
@@ -286,6 +290,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     public void ForceJump(JumpPowerType jumpPower)
     {
+        OnAirborneEvent.Invoke();
+
         _previousJumpPower = jumpPower;
 
         Vector3 JumpForce = new Vector3(0, CalculateJumpHeight(jumpPower) * 100, 0);
@@ -333,6 +339,8 @@ public class PlayerMovement3D : MonoBehaviour
     {
         _landingSFXSource.clip = newClip;
         _landingSFXSource.Play();
+
+        OnLandedEvent.Invoke();
     }
 
     public void ChangeRampJumpHeight(float newHeight) 
