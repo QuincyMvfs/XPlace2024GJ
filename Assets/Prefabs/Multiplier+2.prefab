@@ -136,7 +136,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _addToMultiplier: 2
-  _vfxPrefab: {fileID: 0}
+  _vfxPrefab: {fileID: 7243067846412897115}
+  _pickupSFX: {fileID: 8008280732679582133, guid: 25c24997401647e4eaa4f4ca29085ac7,
+    type: 3}
 --- !u!1001 &974389303694994394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,6 +323,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 023e3a10c84c93a42a1efaeff2734a88, type: 3}
+--- !u!1 &7243067846412897115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7566384082420015233, guid: 023e3a10c84c93a42a1efaeff2734a88,
+    type: 3}
+  m_PrefabInstance: {fileID: 974389303694994394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8390947921733045103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8788523184293765301, guid: 023e3a10c84c93a42a1efaeff2734a88,

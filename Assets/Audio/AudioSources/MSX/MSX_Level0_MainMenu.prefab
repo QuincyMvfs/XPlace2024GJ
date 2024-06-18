@@ -142,3 +142,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _victoryMusic: {fileID: 8300000, guid: f85d2205ab984454dbad1469d5b24767, type: 3}
+  _volume: 2
