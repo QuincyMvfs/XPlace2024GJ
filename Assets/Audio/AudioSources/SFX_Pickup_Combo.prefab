@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7244433368997393096}
   - component: {fileID: 4666108440408304723}
-  - component: {fileID: 6619307972333843301}
   m_Layer: 0
-  m_Name: MSX_Level3_MiddleEast
+  m_Name: SFX_Pickup_Combo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,11 +42,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9a8ac96e6da22c04392f61b64eb300ec, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1cb6a8490e6c13d4dac07672ab9d7b63, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -129,16 +128,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6619307972333843301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8008280732679582133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32ba2d4d03aec9a49babaadbd7941fd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _victoryMusic: {fileID: 8300000, guid: f85d2205ab984454dbad1469d5b24767, type: 3}
