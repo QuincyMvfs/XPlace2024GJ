@@ -61,14 +61,14 @@ public class LevelSelector : MonoBehaviour
         }
 
         //temp -- we need to read the player profile and set the stars accordingly
-        foreach (var star in _levelFourStars)
-        { star.SetActive(false); }
-
-        foreach (var star in _levelTwoStars)
-        { star.SetActive(false); }
-
-        foreach (var star in _levelThreeStars)
-        { star.SetActive(false); }
+        //foreach (var star in _levelFourStars)
+        //{ star.SetActive(false); }
+        //
+        //foreach (var star in _levelTwoStars)
+        //{ star.SetActive(false); }
+        //
+        //foreach (var star in _levelThreeStars)
+        //{ star.SetActive(false); }
 
     }
 
