@@ -5,7 +5,6 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] private AudioClip _victoryMusic;
-    private AudioClip _currentMusic;
     private AudioSource _source;
 
     private void Awake()

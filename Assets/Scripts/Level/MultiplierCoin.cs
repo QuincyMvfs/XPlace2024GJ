@@ -6,6 +6,8 @@ public class MultiplierCoin : MonoBehaviour
 {
     [SerializeField] private int _addToMultiplier = 1;
     [SerializeField] private GameObject _vfxPrefab;
+    [SerializeField] private GameObject _pickupSFX;
+
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -22,6 +24,12 @@ public class MultiplierCoin : MonoBehaviour
                 {
                     GameObject instantiatedVfx = Instantiate(_vfxPrefab, transform.position, Quaternion.identity);
                     Destroy(instantiatedVfx, 1.0f);
+                }
+
+                if (_pickupSFX != null)
+                {
+                    GameObject spawnedSFX = Instantiate(_pickupSFX, transform.position, Quaternion.identity);
+                    Destroy(spawnedSFX, 5.0f);
                 }
 
                 StartCoroutine(DestroyAfterDelay(0.5f));
