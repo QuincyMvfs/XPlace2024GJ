@@ -104,7 +104,7 @@ public class EndOfLevel : MonoBehaviour
             }
 
             GameManager.Instance.hasCompletedLevelFour = true;
-            GameManager.Instance.gainedStarLevelThree = _levelFourStars;
+            GameManager.Instance.gainedStarLevelFour = _levelFourStars;
         }
 
         }
