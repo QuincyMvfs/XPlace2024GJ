@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class SpeedUpBooster : MonoBehaviour
 {
+    [Header("Speed Up Variables")]
     [SerializeField] private float _speedAddition = 10.0f;
     [SerializeField] private float _lastingTime = 10.0f;
+
+    [Header("GameObjects")]
     [SerializeField] private GameObject _speedBoostVfxPrefab;
+    [SerializeField] private GameObject _speedUpSFX;
 
     private PlayerMovement3D _playerMovementComponent;
 
@@ -21,12 +25,19 @@ public class SpeedUpBooster : MonoBehaviour
                 _playerMovementComponent = playerMovementComponent;
                 _playerMovementComponent.AddMovementSpeed(_speedAddition, _lastingTime);
 
-                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
                 if (_speedBoostVfxPrefab != null)
                 {
-                    Instantiate(_speedBoostVfxPrefab, _speedBoostVfxPrefab.transform);
+                    GameObject instantiatedVfx = Instantiate(_speedBoostVfxPrefab, transform.position, Quaternion.identity);
+                    Destroy(instantiatedVfx, 5.0f);
+                }
+
+                if (_speedUpSFX != null)
+                {
+                    GameObject instantiatedSfx = Instantiate(_speedUpSFX, transform.position, Quaternion.identity);
+                    Destroy(instantiatedSfx, 5.0f);
                 }
 
                 StartCoroutine(DestroyAfterDelay(_lastingTime));

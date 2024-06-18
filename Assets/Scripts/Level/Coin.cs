@@ -6,12 +6,17 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    [Header("Rotation Variables")]
     [SerializeField] private float _rotationSpeedX = 45f; 
     [SerializeField] private float _rotationSpeedY = 45f; 
     [SerializeField] private float _rotationSpeedZ = 45f; 
-    [SerializeField] private int _scoreAmount = 50;
-    [SerializeField] private GameObject _coinVfxPrefab;
 
+    [Header("Score Variables")]
+    [SerializeField] private int _scoreAmount = 50;
+
+    [Header("GameObjects")]
+    [SerializeField] private GameObject _coinVfxPrefab;
+    [SerializeField] private GameObject _pickupSFX;
 
     private float _rotationAmountX;
     private float _rotationAmountY;
@@ -49,12 +54,19 @@ public class Coin : MonoBehaviour
             {
                 scoreController.AddCoinScore(_scoreAmount);
 
-                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 this.gameObject.GetComponent<SphereCollider>().enabled = false;
+                this.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
                 if(_coinVfxPrefab != null)
                 {
-                    Instantiate(_coinVfxPrefab, _coinVfxPrefab.transform);
+                    GameObject instantiatedVfx = Instantiate(_coinVfxPrefab, transform.position, Quaternion.identity);
+                    Destroy(instantiatedVfx, 5.0f);
+                }
+
+                if (_pickupSFX != null)
+                {
+                    GameObject spawnedSFX = Instantiate(_pickupSFX, transform.position, Quaternion.identity);
+                    Destroy(spawnedSFX, 5.0f);
                 }
 
                 StartCoroutine(DestroyAfterDelay(0.5f));
@@ -66,6 +78,5 @@ public class Coin : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Destroy(this.gameObject);
-        
     }
 }

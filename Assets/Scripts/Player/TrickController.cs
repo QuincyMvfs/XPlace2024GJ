@@ -7,24 +7,30 @@ public class TrickController : MonoBehaviour
 {
     [SerializeField] private TrickSetSO _trickSet;
     [SerializeField] private bool _alwaysTrick = false;
-    [SerializeField] private float _inputWaitTime = 0.2f;
+
+    [Header("SFX")]
+    [SerializeField] private GameObject _trickInputSFXGameObject;
+    [SerializeField] private AudioClip[] _trickInputSuccessSoundEffects = new AudioClip[0];
+    [SerializeField] private AudioClip[] _trickInputFailureSoundEffects = new AudioClip[0];
+    private AudioSource _trickInputSFXSource;
 
     private List<TrickButtons> _inputButtons = new List<TrickButtons>();
-
     private bool _canReceiveInputs = false;
     private bool _inputGiven = false;
     private PlayerMovement3D _movement;
     private ScoreController _scoreController;
 
+
     [System.Serializable]
     public class TrickSuccessEvent : UnityEvent<bool> { }
     [HideInInspector] public TrickSuccessEvent OnTrickSuccessEvent;
+    [HideInInspector] public UnityEvent<TrickButtons> OnInputReceived;
+    [HideInInspector] public UnityEvent OnDisplayTrickSuccessText;
 
-    public UnityEvent<TrickButtons> OnInputReceived;
-    public UnityEvent OnDisplayTrickSuccessText;
 
     private void Awake()
     {
+        _trickInputSFXSource = _trickInputSFXGameObject.GetComponent<AudioSource>();
         _scoreController = GetComponent<ScoreController>();
         _movement = GetComponent<PlayerMovement3D>();
     }
@@ -110,13 +116,16 @@ public class TrickController : MonoBehaviour
                 }
 
                 // If the given combos j index of button is the same as the input j, thats the correct input.
-                if (_trickSet.TrickCombos[i].Combo[j] == _inputButtons[j]) { correctInputs++; }
+                if (_trickSet.TrickCombos[i].Combo[j] == _inputButtons[j]) 
+                {
+                    PlayInputSFX(true);
+                    correctInputs++; 
+                }
                 else { break; }
 
                 // If the amount of correct inputs it equal to the length of the combo and input, return true
                 if (correctInputs == _trickSet.TrickCombos[i].Combo.Count && _inputButtons.Count == correctInputs)
                 {
-                    Debug.Log($"Correct Count: {correctInputs} | Combo Count: {_trickSet.TrickCombos[i].Combo.Count} | Input Count: {_inputButtons.Count}");
                     OnDisplayTrickSuccessText.Invoke();
                     _scoreController.AddScore();
                     _inputButtons.Clear();
@@ -125,8 +134,24 @@ public class TrickController : MonoBehaviour
                 }
             }
         }
-
         return false;
+    }
+
+    public void PlayInputSFX(bool isCorrectInput)
+    {
+        int randomSound = 0;
+        if (isCorrectInput)
+        {
+            randomSound = Random.Range(0, _trickInputSuccessSoundEffects.Length);
+            _trickInputSFXSource.clip = _trickInputSuccessSoundEffects[randomSound];
+            _trickInputSFXSource.Play();
+        }
+        else
+        {
+            randomSound = Random.Range(0, _trickInputFailureSoundEffects.Length);
+            _trickInputSFXSource.clip = _trickInputFailureSoundEffects[randomSound];
+            _trickInputSFXSource.Play();
+        }
     }
 }
 

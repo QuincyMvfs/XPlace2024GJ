@@ -55,9 +55,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MaxBrightness: 5
-    - _MinBrightness: 1.25
-    - _OutlineThickness: 1
+    - _MaxBrightness: 1.5
+    - _MinBrightness: 1
+    - _OutlineThickness: 2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _shadeSize: 0.25

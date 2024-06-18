@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool _isMovingLeft = false;
     private bool _isMovingRight = false;
     private MovementDirections _currentDirection = MovementDirections.Stop;
+    public bool IsPaused = false;
 
     private void Awake()
     {
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveLeft()
     {
+        if (IsPaused) return;
+
         _isMovingLeft = !_isMovingLeft;
 
         if (_isMovingLeft)
@@ -40,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveRight()
     {
+        if (IsPaused) return;
+
         _isMovingRight = !_isMovingRight;
 
         if (_isMovingRight)
@@ -56,38 +61,50 @@ public class PlayerController : MonoBehaviour
     
     private void OnJump()
     {
+        if (IsPaused) return;
+
         _characterMovement.Jump(JumpPowerType.Small);
     }
 
     private void OnLeftArrow()
     {
+        if (IsPaused) return;
+
         _trickController.ReceiveTrickInput(TrickButtons.Left);
     }
 
     private void OnRightArrow()
     {
+        if (IsPaused) return;
+
         _trickController.ReceiveTrickInput(TrickButtons.Right);
     }
 
     private void OnUpArrow()
     {
+        if (IsPaused) return;
+
         _trickController.ReceiveTrickInput(TrickButtons.Up);
     }
 
     private void OnDownArrow()
     {
+        if (IsPaused) return;
+
         _trickController.ReceiveTrickInput(TrickButtons.Down);
     }
 
     private void OnPause()
     {
-        
-        if(_playerInput != null)
+        IsPaused = !IsPaused;
+        if (IsPaused)
         {
-            _playerInput.enabled = false;
+            GameManager.Instance?.PauseGame(this);
         }
-
-        GameManager.Instance?.PauseGame(this);
+        else
+        {
+            GameManager.Instance?.UnPauseGame();
+        }
     }
 
     public void UnpauseController()

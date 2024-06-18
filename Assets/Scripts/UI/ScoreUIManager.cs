@@ -6,7 +6,6 @@ using UnityEngine;
 public class ScoreUIManager : MonoBehaviour
 {
     [SerializeField] private ScoreController _scoreController;
-
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _comboText;
     [SerializeField] private TextMeshProUGUI _streakText;
@@ -29,7 +28,15 @@ public class ScoreUIManager : MonoBehaviour
 
     public void UpdateStreak(int value)
     {
-        _streakText.text = _startStreakString + value.ToString();
+        if(value > 0)
+        {
+            _streakText.enabled = true;
+            _streakText.text = "Streak!: </color>" + _startStreakString + value.ToString();
+        }
+        else
+        {
+            _streakText.enabled = false;
+        }
     }
 
     public void UpdateCombo(float value)

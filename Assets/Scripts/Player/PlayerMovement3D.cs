@@ -63,7 +63,6 @@ public class PlayerMovement3D : MonoBehaviour
     private bool _isFalling = false;
 
     public bool IsFalling => _isFalling;
-    private bool _stopCoroutine = false;
     private TrickController _trickController;
     private Rigidbody _playerMeshRB;
 
@@ -101,7 +100,13 @@ public class PlayerMovement3D : MonoBehaviour
             _newForwardDir.z = _currentAcceleration;
         }
 
-        transform.transform.Translate(_newForwardDir * Time.fixedDeltaTime);
+        
+    }
+
+    // Forward movement and falling 
+    private void Update()
+    {
+        transform.transform.Translate(_newForwardDir * Time.deltaTime);
 
         if (Physics.Raycast(_playerMeshRB.transform.position, -Vector3.up, out RaycastHit hitInfo, 0.5f, _layerMask))
         {
@@ -118,7 +123,7 @@ public class PlayerMovement3D : MonoBehaviour
                     else { PlayLandingSFX(_largeLandingSFX); }
                 }
 
-                if (_jumpSFXSource != null && _jumpSFXSource.clip == _bigJumpSFX) StopJumpSFX();
+                if (_jumpSFXSource != null && _jumpSFXSource.clip == _bigJumpSFX) { }
                 if (!_movingSFXGameObject.activeInHierarchy) { _movingSFXGameObject.SetActive(true); }
             }
         }
@@ -196,7 +201,7 @@ public class PlayerMovement3D : MonoBehaviour
     private void ChangeMovingSFX(AudioClip newClip)
     {
         _movingSFXSource.clip = newClip;
-        _movingSFXSource.Play();
+        if (_movingSFXGameObject.activeInHierarchy) { _movingSFXSource.Play(); }
     }
 
     public void ChangeMovementState(MovementDirections Direction)
@@ -232,11 +237,11 @@ public class PlayerMovement3D : MonoBehaviour
         {
             if (_isFalling)
             {
-                _playerGameObject.transform.Translate(new Vector3(-(_airbornLeftRightSpeed * Time.fixedUnscaledDeltaTime), 0, 0), Space.Self);
+                _playerGameObject.transform.Translate(new Vector3(-(_airbornLeftRightSpeed * Time.deltaTime), 0, 0), Space.Self);
             }
             else
             {
-                _playerGameObject.transform.Translate(new Vector3(-(_moveLeftRightSpeed * Time.fixedUnscaledDeltaTime), 0, 0), Space.Self);
+                _playerGameObject.transform.Translate(new Vector3(-(_moveLeftRightSpeed * Time.deltaTime), 0, 0), Space.Self);
             }
 
             yield return null;
@@ -249,11 +254,11 @@ public class PlayerMovement3D : MonoBehaviour
         {
             if (_isFalling) 
             {
-                _playerGameObject.transform.Translate(new Vector3((_airbornLeftRightSpeed * Time.fixedUnscaledDeltaTime), 0, 0), Space.Self);
+                _playerGameObject.transform.Translate(new Vector3((_airbornLeftRightSpeed * Time.deltaTime), 0, 0), Space.Self);
             }
             else 
             {
-                _playerGameObject.transform.Translate(new Vector3((_moveLeftRightSpeed * Time.fixedUnscaledDeltaTime), 0, 0), Space.Self);
+                _playerGameObject.transform.Translate(new Vector3((_moveLeftRightSpeed * Time.deltaTime), 0, 0), Space.Self);
             }
 
             yield return null;
@@ -326,8 +331,8 @@ public class PlayerMovement3D : MonoBehaviour
 
     private void PlayLandingSFX(AudioClip newClip)
     {
-        _jumpSFXSource.clip = newClip;
-        _jumpSFXSource.Play();
+        _landingSFXSource.clip = newClip;
+        _landingSFXSource.Play();
     }
 
     public void ChangeRampJumpHeight(float newHeight) 

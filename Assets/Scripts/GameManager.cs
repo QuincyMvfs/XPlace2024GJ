@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,17 @@ public class GameManager : MonoBehaviour
     public string profileName;
     public int starCount;
     public Color profileColor;
+
+    [Header("Progression Info")]
+    public bool hasCompletedLevelOne;
+    public bool hasCompletedLevelTwo;
+    public bool hasCompletedLevelThree;
+    public bool hasCompletedLevelFour;
+    public int gainedStarLevelOne;
+    public int gainedStarLevelTwo;
+    public int gainedStarLevelThree;
+    public int gainedStarLevelFour;
+    public bool isFromLevel = false;
 
     [Header("References")]
     [SerializeField] private GameObject pauseMenu;
@@ -40,15 +52,20 @@ public class GameManager : MonoBehaviour
         {
             pauseMenu.SetActive(true);
         }
+
+        Time.timeScale = 0;
     }
 
     public void UnPauseGame()
     {
         if(playerController != null)
 
-        { playerController.UnpauseController(); }
+        //{ playerController.UnpauseController(); }
 
+        playerController.IsPaused = false;
         pauseMenu.SetActive(false);
+
+        Time.timeScale = 1;
     }
 
     [System.Serializable]
