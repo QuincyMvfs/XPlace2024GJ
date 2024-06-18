@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
-using UnityEditor.ShaderGraph.Internal;
 using static UnityEngine.Rendering.DebugUI;
 using Unity.VisualScripting;
 
