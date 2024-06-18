@@ -123,7 +123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4675354194005293927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -167,10 +167,15 @@ MonoBehaviour:
   - {fileID: 7442610833103832661}
   - {fileID: 5897283554372755546}
   - {fileID: 7135252339073800880}
-  _americaColor: {r: 0, g: 0.8490566, b: 0.8490566, a: 1}
-  _asiaColor: {r: 1, g: 0.5588679, b: 0.2688679, a: 1}
-  _middleEastColor: {r: 1, g: 0.21226418, b: 0.29909214, a: 1}
-  _europeColor: {r: 0.33490568, g: 0.33490568, b: 1, a: 1}
+  _sprites:
+  - {fileID: 21300000, guid: 03716af75735592499050b3bd78b6db2, type: 3}
+  - {fileID: 21300000, guid: f7dab8cfd2c8f8c4d959960041d570c9, type: 3}
+  - {fileID: 21300000, guid: f1aa182841f8fb54493200917bbc8cff, type: 3}
+  - {fileID: 21300000, guid: 4c2e841093debf747a8566960835f203, type: 3}
+  _americaColor: {r: 0.07058824, g: 0.7137255, b: 0.8235295, a: 1}
+  _asiaColor: {r: 0.6392157, g: 0.7725491, b: 0.227451, a: 1}
+  _middleEastColor: {r: 0.9686275, g: 0.5803922, b: 0.1137255, a: 1}
+  _europeColor: {r: 0.5803922, g: 0.3019608, b: 0.61960787, a: 1}
 --- !u!1 &1685937328077713461
 GameObject:
   m_ObjectHideFlags: 0
