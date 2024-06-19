@@ -112,15 +112,15 @@ public class EndOfLevel : MonoBehaviour
                 GameManager.Instance.profileStarAchieved[0] = true;
             }
 
-            if (_currentScore < 13500)
+            if (_currentScore < 15000)
             {
                 _levelFourStars = 1;
             }
-            else if (_currentScore < 25000 && _currentScore >= 13500)
+            else if (_currentScore < 32000 && _currentScore >= 15000)
             {
                 _levelFourStars = 2;
             }
-            else if (_currentScore >= 25000)
+            else if (_currentScore >= 32000)
             {
                 _levelFourStars = 3;
                 if (!GameManager.Instance.profileStarAchieved[4])
