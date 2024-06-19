@@ -36,7 +36,7 @@ public class MainMenuHandler : MonoBehaviour
         _profileNameInputField.text = GameManager.Instance.profileName;
 
         //light up stars on profile card
-        for(int i = 0; i < GameManager.Instance.starCount; i++)
+        for(int i = 0; i < GameManager.Instance.profileStarCount; i++)
         {
             _profileStars[i].SetActive(true);
 

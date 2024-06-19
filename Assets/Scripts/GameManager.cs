@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Profile Settings")]
     public string profileName;
-    public int starCount;
+    public int profileStarCount;
     public Color profileColor;
 
     [Header("Progression Info")]
@@ -71,9 +71,21 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     class SaveData
     {
+        [Header ("Profile")]
         public string profileName;
         public Color profileColor;
-        public int starCount;
+        public int profileStarCount;
+
+        [Header("Progression Info")]
+        public bool hasCompletedLevelOne;
+        public bool hasCompletedLevelTwo;
+        public bool hasCompletedLevelThree;
+        public bool hasCompletedLevelFour;
+        public int gainedStarLevelOne;
+        public int gainedStarLevelTwo;
+        public int gainedStarLevelThree;
+        public int gainedStarLevelFour;
+        public bool isFromLevel = false;
     }
 
     public void SaveProfile()
@@ -81,7 +93,16 @@ public class GameManager : MonoBehaviour
         SaveData data = new SaveData();
         data.profileName = profileName;
         data.profileColor = profileColor;
-        data.starCount = starCount;
+        data.profileStarCount = profileStarCount;
+        data.hasCompletedLevelOne = hasCompletedLevelOne;
+        data.hasCompletedLevelTwo = hasCompletedLevelTwo;
+        data.hasCompletedLevelThree = hasCompletedLevelThree;
+        data.hasCompletedLevelFour = hasCompletedLevelFour;
+        data.gainedStarLevelOne = gainedStarLevelOne;
+        data.gainedStarLevelTwo = gainedStarLevelTwo;
+        data.gainedStarLevelThree = gainedStarLevelThree;
+        data.gainedStarLevelFour = gainedStarLevelFour;
+        data.isFromLevel = isFromLevel;
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
@@ -97,7 +118,31 @@ public class GameManager : MonoBehaviour
 
             profileName = data.profileName;
             profileColor = data.profileColor;
-            starCount = data.starCount;
+            profileStarCount = data.profileStarCount;
+            hasCompletedLevelOne = data.hasCompletedLevelOne;
+            hasCompletedLevelTwo = data.hasCompletedLevelTwo;
+            hasCompletedLevelThree = data.hasCompletedLevelThree;
+            hasCompletedLevelFour = data.hasCompletedLevelFour;
+            gainedStarLevelOne = data.gainedStarLevelOne;
+            gainedStarLevelTwo = data.gainedStarLevelTwo;
+            gainedStarLevelThree = data.gainedStarLevelThree;
+            gainedStarLevelFour = data.gainedStarLevelFour;
+            isFromLevel = data.isFromLevel;
         }
+    }
+
+    public void ResetProfile()
+    {
+        profileName = null;
+        profileStarCount = 0;
+        hasCompletedLevelOne = false;
+        hasCompletedLevelTwo = false;
+        hasCompletedLevelThree = false;
+        hasCompletedLevelFour = false;
+        gainedStarLevelOne = 0;
+        gainedStarLevelTwo = 0;
+        gainedStarLevelThree = 0;
+        gainedStarLevelFour = 0;
+        isFromLevel = false;
     }
 }
