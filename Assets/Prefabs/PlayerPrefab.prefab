@@ -1668,6 +1668,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5691945573052356583, guid: 0b2f01e34b740804e8bbf4742cee06c8,
         type: 3}
+      propertyPath: _upArrow
+      value: 
+      objectReference: {fileID: 21300000, guid: b02b954ee2a45264d9577e89eba2632a,
+        type: 3}
+    - target: {fileID: 5691945573052356583, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: _downArrow
+      value: 
+      objectReference: {fileID: 21300000, guid: 4fa24d0567422e4409459d6836ec2225,
+        type: 3}
+    - target: {fileID: 5691945573052356583, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: _leftArrow
+      value: 
+      objectReference: {fileID: 21300000, guid: b52526bcb4db5824ca965cbd1063546f,
+        type: 3}
+    - target: {fileID: 5691945573052356583, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: _rightArrow
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d28bf69b3999534c85d9b12df2871f6,
+        type: 3}
+    - target: {fileID: 5691945573052356583, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
       propertyPath: _playerMovementComponent
       value: 
       objectReference: {fileID: 3987534407580462498}
@@ -1835,6 +1859,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -265.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046092822354494735, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7211575599221070680, guid: 0b2f01e34b740804e8bbf4742cee06c8,
         type: 3}

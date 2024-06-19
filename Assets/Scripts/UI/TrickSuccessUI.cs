@@ -102,13 +102,6 @@ public class TrickSuccessUI : MonoBehaviour
 
     private IEnumerator FailureTrickState()
     {
-        if (_trickSuccessSFX != null)
-        {
-            int randomSound = Random.Range(0, _trickSuccessSoundEffects.Length);
-            _trickSuccessSFXSource.clip = _trickSuccessSoundEffects[randomSound];
-            _trickSuccessSFXSource.Play();
-        }
-
         _trickSuccessText.SetActive(true);
         _text.text = _failureText;
         _text.color = _failureColor;
