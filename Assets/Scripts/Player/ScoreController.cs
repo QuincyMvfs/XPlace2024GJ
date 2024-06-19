@@ -28,6 +28,7 @@ public class ScoreController : MonoBehaviour
 
     private void Start()
     {
+        
         UpdateScoreValues(0);
         BreakCombo();
     }
