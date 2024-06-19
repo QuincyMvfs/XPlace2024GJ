@@ -119,8 +119,8 @@ public class TrickUIManager : MonoBehaviour
     {
         if (_trickImages[0].name == button.ToString())
         {
-            Color transparent = new Color(0, 0, 0, 0);
-            _trickImages[0].GetComponent<Image>().color = Color.red;
+            Color transparent = new Color(1, 0, 0, 0.4f);
+            _trickImages[0].GetComponent<Image>().color = transparent;
             GameObject removedImage = _trickImages[0];
             _trickImages.RemoveAt(0);
             _trickImages.Add(removedImage);
