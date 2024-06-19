@@ -42,6 +42,7 @@ public class PostProcessingController : MonoBehaviour
             _motionBlur = motionBlur;
         }
 
+        QualitySettings.SetQualityLevel(2);
         // StartCoroutine(GetSpeedState());
     }
 
