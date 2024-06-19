@@ -1846,6 +1846,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7694845618211813780, guid: 0b2f01e34b740804e8bbf4742cee06c8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -175
+      objectReference: {fileID: 0}
     - target: {fileID: 8513771906893914177, guid: 0b2f01e34b740804e8bbf4742cee06c8,
         type: 3}
       propertyPath: _scoreController
