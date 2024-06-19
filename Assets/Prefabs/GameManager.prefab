@@ -57,6 +57,7 @@ MonoBehaviour:
   gainedStarLevelThree: 0
   gainedStarLevelFour: 0
   isFromLevel: 0
+  profileStarAchieved: 0000000000
   pauseMenu: {fileID: 9007055272682545732}
 --- !u!1001 &8144448023362447240
 PrefabInstance:
@@ -250,7 +251,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a67fea2aff8e01445a57ff8a13df5266,
+      objectReference: {fileID: 21300000, guid: 74146da72fce938448031c047675a7b1,
         type: 3}
     - target: {fileID: 3729456415054921359, guid: 9c486c1182665674b865e4ac1a9a5809,
         type: 3}
