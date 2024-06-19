@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,6 +22,10 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private GameObject[] _levelThreeStars;
     [SerializeField] private GameObject[] _levelFourStars;
 
+    [SerializeField] private GameObject[] _levelImages;
+    [SerializeField] private GameObject[] _levelStarImages;
+    [SerializeField] private TextMeshProUGUI[] _levelTexts;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +33,11 @@ public class LevelSelector : MonoBehaviour
         if (GameManager.Instance.hasCompletedLevelOne == true)
         {
             LevelTwoButton.GetComponent<Button>().interactable = true;
+            ControllTransparency(_levelImages, 0);
+            ControllTransparency(_levelStarImages, 0);
+            ControllTransparency(_levelStarImages, 1);
+            ControllTransparency(_levelStarImages, 2);
+            ControllTextTransparency(_levelTexts, 0);
             StarUpdating(GameManager.Instance.gainedStarLevelOne, _levelOneStars);
         }
         else
@@ -38,6 +48,11 @@ public class LevelSelector : MonoBehaviour
         if (GameManager.Instance.hasCompletedLevelTwo == true)
         {
             LevelThreeButton.GetComponent<Button>().interactable = true;
+            ControllTransparency(_levelImages, 1);
+            ControllTransparency(_levelStarImages, 3);
+            ControllTransparency(_levelStarImages, 4);
+            ControllTransparency(_levelStarImages, 5);
+            ControllTextTransparency(_levelTexts, 1);
             StarUpdating(GameManager.Instance.gainedStarLevelTwo, _levelTwoStars);
         }
         else
@@ -48,6 +63,11 @@ public class LevelSelector : MonoBehaviour
         if (GameManager.Instance.hasCompletedLevelThree == true)
         {
             LevelFourButton.GetComponent<Button>().interactable = true;
+            ControllTransparency(_levelImages, 2);
+            ControllTransparency(_levelStarImages, 6);
+            ControllTransparency(_levelStarImages, 7);
+            ControllTransparency(_levelStarImages, 8);
+            ControllTextTransparency(_levelTexts, 2);
             StarUpdating(GameManager.Instance.gainedStarLevelThree, _levelThreeStars);
         }
         else
@@ -76,6 +96,21 @@ public class LevelSelector : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void ControllTransparency(GameObject[] image, int index)
+    {
+        Color customColor = image[index].GetComponent<Image>().color;
+        customColor.a = 1;
+        image[index].GetComponent<Image>().color = customColor;
+    }
+
+    private void ControllTextTransparency(TextMeshProUGUI[] text, int index)
+    {
+        UnityEngine.Debug.Log(text[index]);
+        Color customColor = text[index].color;
+        customColor.a = 1;
+        text[index].color = customColor;
     }
 
     private void StarUpdating(int starFromLevel, GameObject[] level)
