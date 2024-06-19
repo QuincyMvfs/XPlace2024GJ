@@ -24,11 +24,11 @@ public class LevelSelector : MonoBehaviour
 
     [SerializeField] private GameObject[] _levelImages;
     [SerializeField] private GameObject[] _levelStarImages;
-    [SerializeField] private TextMeshProUGUI[] _levelTexts;
+    [SerializeField] private TextMeshProUGUI[] _levelTexts1;
 
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         if (GameManager.Instance.hasCompletedLevelOne == true)
         {
@@ -37,7 +37,7 @@ public class LevelSelector : MonoBehaviour
             ControllTransparency(_levelStarImages, 0);
             ControllTransparency(_levelStarImages, 1);
             ControllTransparency(_levelStarImages, 2);
-            ControllTextTransparency(_levelTexts, 0);
+            ControllTextTransparency(_levelTexts1, 0);
             StarUpdating(GameManager.Instance.gainedStarLevelOne, _levelOneStars);
         }
         else
@@ -52,7 +52,7 @@ public class LevelSelector : MonoBehaviour
             ControllTransparency(_levelStarImages, 3);
             ControllTransparency(_levelStarImages, 4);
             ControllTransparency(_levelStarImages, 5);
-            ControllTextTransparency(_levelTexts, 1);
+            ControllTextTransparency(_levelTexts1, 1);
             StarUpdating(GameManager.Instance.gainedStarLevelTwo, _levelTwoStars);
         }
         else
@@ -67,7 +67,7 @@ public class LevelSelector : MonoBehaviour
             ControllTransparency(_levelStarImages, 6);
             ControllTransparency(_levelStarImages, 7);
             ControllTransparency(_levelStarImages, 8);
-            ControllTextTransparency(_levelTexts, 2);
+            ControllTextTransparency(_levelTexts1, 2);
             StarUpdating(GameManager.Instance.gainedStarLevelThree, _levelThreeStars);
         }
         else
