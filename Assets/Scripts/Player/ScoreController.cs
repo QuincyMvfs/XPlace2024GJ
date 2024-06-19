@@ -13,6 +13,8 @@ public class ScoreController : MonoBehaviour
     [SerializeField] private ScoreUIManager _scoreUIManager;
     [SerializeField] private GameObject _endScreen;
 
+    [HideInInspector] public UnityEvent OnComboBrokenEvent;
+
     private int _currentScore = 0;
     private int _currentStreak = 0;
     private float _currentMultiplier = 0;
@@ -78,6 +80,8 @@ public class ScoreController : MonoBehaviour
 
         _scoreUIManager.UpdateCombo(_currentMultiplier);
         _scoreUIManager.UpdateStreak(_currentStreak);
+
+        OnComboBrokenEvent.Invoke();
     }
 
     public void EnableEndScreen()

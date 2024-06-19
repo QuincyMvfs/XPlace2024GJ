@@ -61,6 +61,7 @@ public class PauseMenu : MonoBehaviour
 
     private void SetSprites(int index)
     {
+
         foreach (Image image in _buttons)
         {
             image.sprite = _sprites[index];

@@ -13,6 +13,7 @@ public class TrickSuccessUI : MonoBehaviour
     [SerializeField] private AudioClip[] _trickSuccessSoundEffects = new AudioClip[0];
     private AudioSource _trickSuccessSFXSource;
 
+    private ScoreController _scoreController;
     private string _perfectText;
     private string _failureText = "FAIL!";
     private TextMeshProUGUI _text;
@@ -25,6 +26,7 @@ public class TrickSuccessUI : MonoBehaviour
 
     private void Awake()
     {
+        _scoreController = _trickController.GetComponent<ScoreController>();
         _rectTransform = _trickSuccessText.GetComponent<RectTransform>();
         _startScale = _rectTransform.localScale;
         _text = _trickSuccessText.GetComponent<TextMeshProUGUI>();
@@ -34,7 +36,7 @@ public class TrickSuccessUI : MonoBehaviour
 
         _trickSuccessText.SetActive(false);
         _trickController.OnDisplayTrickSuccessText.AddListener(ShowPerfectText);
-        _trickController.OnDisplayTrickFailText.AddListener(ShowFailureText);
+        _scoreController.OnComboBrokenEvent.AddListener(ShowFailureText);
     }
 
     private void ChangeState(IEnumerator newState)
