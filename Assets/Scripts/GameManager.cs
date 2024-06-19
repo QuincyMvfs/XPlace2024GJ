@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int gainedStarLevelThree;
     public int gainedStarLevelFour;
     public bool isFromLevel = false;
+    public bool[] profileStarAchieved = new bool [5];
 
     [Header("References")]
     [SerializeField] private GameObject pauseMenu;
@@ -85,7 +86,6 @@ public class GameManager : MonoBehaviour
         public int gainedStarLevelTwo;
         public int gainedStarLevelThree;
         public int gainedStarLevelFour;
-        public bool isFromLevel = false;
     }
 
     public void SaveProfile()
@@ -102,7 +102,6 @@ public class GameManager : MonoBehaviour
         data.gainedStarLevelTwo = gainedStarLevelTwo;
         data.gainedStarLevelThree = gainedStarLevelThree;
         data.gainedStarLevelFour = gainedStarLevelFour;
-        data.isFromLevel = isFromLevel;
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
@@ -127,7 +126,6 @@ public class GameManager : MonoBehaviour
             gainedStarLevelTwo = data.gainedStarLevelTwo;
             gainedStarLevelThree = data.gainedStarLevelThree;
             gainedStarLevelFour = data.gainedStarLevelFour;
-            isFromLevel = data.isFromLevel;
         }
     }
 
@@ -144,5 +142,6 @@ public class GameManager : MonoBehaviour
         gainedStarLevelThree = 0;
         gainedStarLevelFour = 0;
         isFromLevel = false;
+        profileStarAchieved = new bool[4];
     }
 }

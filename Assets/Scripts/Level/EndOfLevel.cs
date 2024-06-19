@@ -44,6 +44,12 @@ public class EndOfLevel : MonoBehaviour
             else if (_currentScore >= 10000)
             {
                 _levelOneStars = 3;
+                if (!GameManager.Instance.profileStarAchieved[1])
+                { 
+                    GameManager.Instance.profileStarCount++;
+                    GameManager.Instance.profileStarAchieved[1] = true; 
+                } 
+
             }
 
             GameManager.Instance.hasCompletedLevelOne = true;
@@ -63,6 +69,11 @@ public class EndOfLevel : MonoBehaviour
             else if (_currentScore >= 20000)
             {
                 _levelTwoStars = 3;
+                if (!GameManager.Instance.profileStarAchieved[2])
+                {
+                    GameManager.Instance.profileStarCount++;
+                    GameManager.Instance.profileStarAchieved[2] = true;
+                }
             }
 
             GameManager.Instance.hasCompletedLevelTwo = true;
@@ -82,6 +93,11 @@ public class EndOfLevel : MonoBehaviour
             else if (_currentScore >= 25000)
             {
                 _levelThreeStars = 3;
+                if (!GameManager.Instance.profileStarAchieved[3])
+                {
+                    GameManager.Instance.profileStarCount++;
+                    GameManager.Instance.profileStarAchieved[3] = true;
+                }
             }
 
             GameManager.Instance.hasCompletedLevelThree = true;
@@ -90,6 +106,12 @@ public class EndOfLevel : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "Level_4_Europe")
         {
+            if (!GameManager.Instance.profileStarAchieved[0])
+            {
+                GameManager.Instance.profileStarCount++;
+                GameManager.Instance.profileStarAchieved[0] = true;
+            }
+
             if (_currentScore < 13500)
             {
                 _levelFourStars = 1;
@@ -101,6 +123,11 @@ public class EndOfLevel : MonoBehaviour
             else if (_currentScore >= 25000)
             {
                 _levelFourStars = 3;
+                if (!GameManager.Instance.profileStarAchieved[4])
+                {
+                    GameManager.Instance.profileStarCount++;
+                    GameManager.Instance.profileStarAchieved[4] = true;
+                }
             }
 
             GameManager.Instance.hasCompletedLevelFour = true;
