@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class TrickUIManager : MonoBehaviour
 {
+    [Header("Variables")]
+    [SerializeField] private float _growShrinkSpeed = 3.0f; 
+
+    [Header("Slots")]
     [SerializeField] private TrickSetSO[] _trickSets;
     [SerializeField] private TrickSetSO _trickSet;
     [SerializeField] private Sprite _upArrow;
@@ -21,9 +25,15 @@ public class TrickUIManager : MonoBehaviour
 
     private Dictionary<TrickButtons, Sprite> _arrowSprites = new Dictionary<TrickButtons, Sprite>();
     private int _trickLength = 0;
+    private RectTransform _rectTransform;
+    private Vector3 _startScale;
+    protected IEnumerator _currentState;
+
 
     private void Awake()
     {
+        _rectTransform = GetComponent<RectTransform>();
+        _startScale = _rectTransform.localScale;
         GetTrickSet();
     }
 
@@ -80,8 +90,10 @@ public class TrickUIManager : MonoBehaviour
             return;
         }
 
+
+
         ClearChildren();
-        
+
         this.gameObject.SetActive(true);
         int randomTrick = Random.Range(0, _trickSet.TrickCombos.Count);
 
@@ -99,6 +111,8 @@ public class TrickUIManager : MonoBehaviour
                 _trickImages.Add(newTrickImage);
             }
         }
+
+        ChangeState(EnlargeState());
     }
 
     public void InputReceived(TrickButtons button)
@@ -127,5 +141,28 @@ public class TrickUIManager : MonoBehaviour
         }
 
         _trickImages.Clear();
+    }
+
+    private void ChangeState(IEnumerator newState)
+    {
+        if (_currentState != null) StopCoroutine(_currentState);
+
+        _currentState = newState;
+        StartCoroutine(_currentState);
+    }
+
+    private IEnumerator EnlargeState()
+    {
+        _rectTransform.localScale = Vector3.zero;
+        Vector3 newScale = _rectTransform.localScale;
+        while (_rectTransform.localScale.magnitude < _startScale.magnitude)
+        {
+            newScale = new Vector3(
+                newScale.x += Time.deltaTime * _growShrinkSpeed,
+                newScale.y += Time.deltaTime * _growShrinkSpeed,
+                newScale.z += Time.deltaTime * _growShrinkSpeed);
+            _rectTransform.localScale = newScale;
+            yield return null;
+        }
     }
 }

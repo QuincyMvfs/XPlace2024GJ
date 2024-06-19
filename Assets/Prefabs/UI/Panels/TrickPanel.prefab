@@ -130,11 +130,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a3a0a8e29d0c04da2f2f9e1a4b40ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trickSet: {fileID: 11400000, guid: 830036ef969bce34682f89a83c881066, type: 2}
+  _growShrinkSpeed: 5
+  _trickSets:
+  - {fileID: 11400000, guid: 830036ef969bce34682f89a83c881066, type: 2}
+  - {fileID: 11400000, guid: d801ea716c5808a4bbc419b7f4f76941, type: 2}
+  - {fileID: 11400000, guid: 335c6d1170e345e408c455e2ae1fc247, type: 2}
+  - {fileID: 11400000, guid: ca3a81223538e6a42bc57c1192b6c1e5, type: 2}
+  _trickSet: {fileID: 11400000, guid: ca3a81223538e6a42bc57c1192b6c1e5, type: 2}
   _upArrow: {fileID: 21300000, guid: d232aa5689632a24289582c1e29bd869, type: 3}
   _downArrow: {fileID: 21300000, guid: 7947c33b16bf94442a5c5f565bba22c1, type: 3}
   _leftArrow: {fileID: 21300000, guid: cb68eb7ec5e8f954f86348982168587d, type: 3}
   _rightArrow: {fileID: 21300000, guid: 1900008a8add3d04caa3c9566a1ec4db, type: 3}
   _trickImage: {fileID: 1063247923968920997, guid: a332820ee78ef54428e8d8e4339c41e1,
     type: 3}
+  _trickSuccessText: {fileID: 0}
   _playerMovementComponent: {fileID: 0}
