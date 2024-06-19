@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class EndOfLevel : MonoBehaviour
@@ -26,6 +27,11 @@ public class EndOfLevel : MonoBehaviour
                 FinalScoreUIHandler finalScoreUIHandler = FindObjectOfType<FinalScoreUIHandler>();
                 finalScoreUIHandler.gameObject.SetActive(true);
                 _currentScore = scoreController.CurrentScore;
+
+                if (playerMesh.PlayerGameObject.TryGetComponent<PlayerInput>(out PlayerInput playerInput))
+                {
+                    playerInput.enabled = false; // Disable the PlayerInput component
+                }
             }
         }
 
