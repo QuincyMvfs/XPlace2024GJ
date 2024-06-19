@@ -143,5 +143,7 @@ public class GameManager : MonoBehaviour
         gainedStarLevelFour = 0;
         isFromLevel = false;
         profileStarAchieved = new bool[4];
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
