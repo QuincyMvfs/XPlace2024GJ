@@ -16,6 +16,7 @@ public class TrickSuccessUI : MonoBehaviour
     private ScoreController _scoreController;
     private string _perfectText;
     private string _failureText = "FAIL!";
+    private float _showTextDelayTime = 0;
     private TextMeshProUGUI _text;
     private RectTransform _rectTransform;
     private Vector3 _startScale;
@@ -33,7 +34,7 @@ public class TrickSuccessUI : MonoBehaviour
         _perfectColor = _text.color;
         _perfectText = _text.text;
         _trickSuccessSFXSource = _trickSuccessSFX.GetComponent<AudioSource>();
-
+        _showTextDelayTime = Time.time + 1.0f;
         _trickSuccessText.SetActive(false);
         _trickController.OnDisplayTrickSuccessText.AddListener(ShowPerfectText);
         _scoreController.OnComboBrokenEvent.AddListener(ShowFailureText);
@@ -49,11 +50,15 @@ public class TrickSuccessUI : MonoBehaviour
 
     private void ShowPerfectText()
     {
+        if (_showTextDelayTime > Time.time) return;
+
         ChangeState(PerfectTrickState());
     }
 
     private void ShowFailureText()
     {
+        if (_showTextDelayTime > Time.time) return;
+
         ChangeState(FailureTrickState());
     }
 
