@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private Image[] _buttons;
     [SerializeField] private TextMeshProUGUI[] _texts;
+    [SerializeField] private Sprite[] _sprites;
     [SerializeField] private Color _americaColor = Color.cyan;
     [SerializeField] private Color _asiaColor = Color.red;
     [SerializeField] private Color _middleEastColor = Color.red;
@@ -32,15 +33,19 @@ public class PauseMenu : MonoBehaviour
         {
             case "Level_1_America":
                 SetColor(_americaColor);
+                SetSprites(0);
                 break;
             case "Level_2_Asia":
                 SetColor(_asiaColor);
+                SetSprites(1);
                 break;
             case "Level_3_MiddleEast":
                 SetColor(_middleEastColor);
+                SetSprites(2);
                 break;
             case "Level_4_Europe":
                 SetColor(_europeColor);
+                SetSprites(3);
                 break;
 
         }
@@ -48,14 +53,17 @@ public class PauseMenu : MonoBehaviour
 
     private void SetColor(Color newColor)
     {
-        foreach (Image image in _buttons)
-        {
-            image.color = newColor;
-        }
-
         foreach (TextMeshProUGUI text in _texts)
         {
             text.color = newColor;
+        }
+    }
+
+    private void SetSprites(int index)
+    {
+        foreach (Image image in _buttons)
+        {
+            image.sprite = _sprites[index];
         }
     }
 
